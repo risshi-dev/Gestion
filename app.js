@@ -1,12 +1,12 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+import express from "express";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import mongooseConnect from "./config/db.js";
 
 const app = express();
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI;
+await mongooseConnect();
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -16,9 +16,6 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose
-  .connect(MONGODB_URI)
-  .then(() => {
-    app.listen(5000);
-  })
-  .catch((err) => console.log(err));
+app.get("/", (req, res) => res.send(" CHal rha H bHenChod"));
+
+app.listen(5000);
