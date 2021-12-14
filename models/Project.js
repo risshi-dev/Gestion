@@ -1,14 +1,9 @@
 import mongoose from "mongoose";
-import User from "./User";
 
 const invites = mongoose.Schema({
   id: {
     type: mongoose.Types.ObjectId,
     ref: "User",
-  },
-  projectId: {
-    type: mongoose.Types.ObjectId,
-    ref: "Project",
   },
 });
 
@@ -29,9 +24,10 @@ const project = mongoose.Schema({
   },
 
   invitesSent: [invites],
-
   teamMembers: [{ type: mongoose.Types.ObjectId, ref: "User" }],
 });
+
+// TODO: add a 'isAdmin' field in every object of team members to provide edit rights to right person
 
 const Project = mongoose.model("Project", project);
 export default Project;

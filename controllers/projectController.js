@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Project from "../models/Project.js";
 import User from "../models/User.js";
 
@@ -17,53 +18,71 @@ export const createProjectController = async (req, res) => {
   }
 
   const user = await User.findById(req.user_id);
-  user.projects.push(project);
+  user.projects.push({ id: project._id });
+  project.teamMembers.push(user._id);
+
   await user.save();
+  await project.save();
+
   res.status(200).json({ project });
 };
 
 export const inviteSentController = async (req, res) => {
-  const { email } = req.body;
+  const { email, projectId } = req.body;
   const receiver = await User.findOne({ email });
+
+  if (!receiver) {
+    res.status(404);
+    throw new Error("No user found with that emailID");
+  }
 
   if (receiver._id === req.user_id) {
     res.status(400);
     throw new Error("Cannot invite yourself");
   }
 
-  const sender = await User.findById(req.user_id);
+  const project = await Project.findById(projectId);
 
-  const { invitesSent } = sender;
-
-  if (invitesSent.forEach((invite) => invite.id === receiver._id)) {
+  if (project.invitesSent.forEach((invite) => invite.id === receiver._id)) {
     res.status(400);
     throw new Error("invite already sent");
   } else {
-    invitesSent.push({ id: receiver._id });
-    receiver.invitesReceived.push({ id: sender._id });
+    project.invitesSent.push({ id: receiver._id });
+    receiver.invitesReceived.push({ id: req.user_id, projectId: projectId });
 
     await receiver.save();
-    await sender.save();
-  }
+    await project.save();
 
-  if (receiver) {
     res.status(200).send("request sent");
   }
 };
 
 export const inviteReceivedController = async (req, res) => {
-  const { senderId, isAccepted } = req.body;
+  const { projectId, isAccepted, senderId } = req.body;
 
   const receiver = await User.findById(req.user_id);
-  const sender = await User.findById(senderId);
-  const { invitesReceived } = receiver;
+  const project = await Project.findById(projectId);
 
-  invitesReceived = invitesReceived.filter((invite) => invite.id !== senderId);
-
-  sender.invitesSent = sender.invitesSent.filter(
-    (invite) => invite.id !== req.user_id
+  receiver.invitesReceived = receiver.invitesReceived.filter(
+    (invite) => !invite.id.equals(mongoose.Types.ObjectId(senderId))
   );
+
+  console.log(receiver.invitesReceived);
+
+  project.invitesSent = project.invitesSent.filter(
+    (invite) => invite.id.toString() !== req.user_id
+  );
+
   if (!isAccepted) {
     res.status(200).send("Invite Rejected");
   }
+
+  // invite accepted
+  project.teamMembers.push(receiver._id);
+  receiver.projects.push({ id: project._id });
+
+  await project.save();
+  await receiver.save();
+
+  res.status(200).send("Invite accepted");
 };
