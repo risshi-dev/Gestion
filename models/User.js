@@ -1,8 +1,20 @@
 import mongoose from "mongoose";
-const invites = mongose.Schema({
+
+const invites = mongoose.Schema({
   id: {
     type: mongoose.Types.ObjectId,
     ref: "User",
+  },
+  projectId: {
+    type: mongoose.Types.ObjectId,
+    ref: "Project",
+  },
+});
+
+const project = mongoose.Schema({
+  id: {
+    type: mongoose.Types.ObjectId,
+    ref: "Project",
   },
 });
 
@@ -28,8 +40,8 @@ const userModel = mongoose.Schema({
     type: String,
     required: true,
   },
-  invitesSent: [invites],
   invitesReceived: [invites],
+  projects: [project],
 });
 
 const User = mongoose.model("User", userModel);

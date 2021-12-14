@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongooseConnect from "./config/db.js";
+import userRoute from "./routes/UserRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -17,5 +18,6 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => res.send(" CHal rha H bHenChod"));
+app.use("/api/user", userRoute);
 
-app.listen(5000);
+app.listen(5000, console.log("server is runnig "));
