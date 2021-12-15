@@ -1,15 +1,50 @@
 .container {
-  padding: 0 2rem;
+  padding: 0 5rem;
 }
 
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
+  padding: 1rem 0 4rem 0;
+  font-size: 24px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.tagLine {
+  font-size: 48px;
+  padding: 2rem 0 4rem 0;
+}
+
+.Invite {
+  padding: 2rem 0 4rem 0;
+  font-size: 22px;
+}
+
+.form{
+  padding: 1rem 0 1rem 0;
+}
+
+.form > input{
+  width: 260px;
+  padding: 10px;
+  margin-right: 10px;
+  border-bottom: 1px solid #848484;
+  border-right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+.form > button {
+  padding: 10px;
+    width: 100px;
+    color: #fff;
+    background: #3b78f8;
+    border-radius: 5px;
+    border: 1px solid #ccc0;
+    cursor: pointer;
+    letter-spacing: 1px;
 }
 
 .footer {
@@ -42,7 +77,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 1.5rem;
 }
 
 .title,
