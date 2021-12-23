@@ -17,8 +17,8 @@ export const createProjectController = async (req, res) => {
     res.status(400);
     throw new Error("Failed to create project");
   }
-
   const user = await User.findById(req.user_id);
+
   user.projects.push({ id: project._id });
   project.teamMembers.push(user._id);
 

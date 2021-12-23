@@ -18,10 +18,10 @@ app.use((req, res, next) => {
 });
 
 // for testing purposes
-app.use((req, res, next) => {
-  req.user_id = "61b74484f2234a73b38b4fd6";
-  next();
-});
+// app.use((req, res, next) => {
+//   req.user_id = "61b74484f2234a73b38b4fd6";
+//   next();
+// });
 
 app.get("/", (req, res) => res.send(" CHal rha H bHenChod"));
 app.use("/api/user", userRoute);
