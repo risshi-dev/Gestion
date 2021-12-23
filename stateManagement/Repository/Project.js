@@ -1,3 +1,4 @@
+import axios from "axios";
 import Repository, { baseUrl } from "./Repository";
 
 class ProjectRepository {
@@ -6,10 +7,19 @@ class ProjectRepository {
   }
 
   async createProject(params) {
-    console.log(params);
-    const reponse = await Repository.post(`${baseUrl}/user/create`, { params });
-    console.log(response);
-    return reponse;
+    const token = window.localStorage.getItem("token");
+    console.log(token);
+    const response = await axios.post(
+      `${baseUrl}/user/create`,
+      { params },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response;
   }
 }
 

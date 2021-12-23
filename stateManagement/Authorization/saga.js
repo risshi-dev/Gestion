@@ -2,6 +2,7 @@ import { call, all, put, takeEvery } from "redux-saga/effects";
 import AuthorizationRepository from "../../stateManagement/Repository/Authorization";
 import { actionTypes, loginSuccess, registerSuccess } from "./action";
 import { notification } from "antd";
+import router from "next/router";
 
 const modalSuccessLogin = (type) => {
   notification[type]({
@@ -24,6 +25,8 @@ function* loginSaga({ payload }) {
     if (status === 200) {
       yield put(loginSuccess(data));
       modalSuccessLogin("success");
+      localStorage.setItem("token", data.token);
+      router.push("/dashboard");
     } else {
       console.log(data);
     }
@@ -41,6 +44,7 @@ function* registerSaga({ payload }) {
     if (status === 200) {
       yield put(registerSuccess(data));
       modalSuccessRegister("success");
+      router.push("/dashboard");
     } else {
       console.log(data);
     }

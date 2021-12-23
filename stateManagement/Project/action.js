@@ -1,18 +1,15 @@
 export const actionTypes = {
-  LOGIN_REQUEST: "LOGIN_REQUEST",
-  LOGIN_SUCCESS: "LOGIN_SUCCESS",
-
-  REGISTER_REQUEST: "REGISTER_REQUEST",
-  REGISTER_SUCCESS: "REGISTER_SUCCESS",
+  CREATE_PROJECT_REQUEST: "CREATE_PROJECT_REQUEST",
+  CREATE_PROJECT_SUCCESS: "CREATE_PROJECT_SUCCESS",
 };
 
-export function login(payload) {
-  return { type: actionTypes.LOGIN_REQUEST, payload };
+export function createProject(payload) {
+  return { type: actionTypes.CREATE_PROJECT_REQUEST, payload };
 }
 
-export function loginSuccess(payload) {
+export function createProjectSuccess(payload) {
   return {
-    type: actionTypes.LOGIN_SUCCESS,
+    type: actionTypes.CREATE_PROJECT_SUCCESS,
     payload,
   };
 }

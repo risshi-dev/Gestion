@@ -11,14 +11,14 @@ export default function CreateProject({ isOpen, setModal }) {
   const dispatch = useDispatch();
 
   const [projectDetails, setProjectDetails] = useState({
-    titile: "",
+    title: "",
     techStack: "",
     githubLink: "",
     deploymentLink: "",
   });
 
   const handleSubmit = () => {
-    console.log("working");
+    console.log(projectDetails);
     dispatch(createProject(projectDetails));
   };
   return (
@@ -39,7 +39,7 @@ export default function CreateProject({ isOpen, setModal }) {
               setProjectDetails({ ...projectDetails, title: e.target.value })
             }
             placeholder="Project title"
-            required="true"
+            required={true}
           />
           <input
             type="text"

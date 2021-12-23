@@ -1,29 +1,26 @@
-import { all, put, takeEvery } from "redux-saga/effects";
+import { all, put, call, takeEvery } from "redux-saga/effects";
 import { notification } from "antd";
 
-import { actionTypes, createProject, createProjectSuccess } from "./action";
+import { actionTypes, createProjectSuccess } from "./action";
 import Project from "../Repository/Project";
 
 const modalSuccess = (type) => {
   notification[type]({
-    message: "Wellcome back",
-    description: "You are login successful!",
+    message: "Project Created",
+    description: "Now Easily Manage Your Project",
   });
 };
 
 function* createProjectSaga({ payload }) {
   try {
-    const data = yield call(Project.createProject, payload);
-    console.log(data);
-  } catch (err) {
-    console.log(err);
-  }
-}
+    const response = yield call(Project.createProject, payload);
 
-function* createProjectSuccessSaga() {
-  try {
-    yield put(logOutSuccess());
-    modalWarning("warning");
+    const { status, data } = response;
+
+    if (status === 200) {
+      yield put(createProjectSuccess(data));
+      modalSuccess("success");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -31,7 +28,4 @@ function* createProjectSuccessSaga() {
 
 export default function* rootSaga() {
   yield all([takeEvery(actionTypes.CREATE_PROJECT_REQUEST, createProjectSaga)]);
-  yield all([
-    takeEvery(actionTypes.CREATE_PROJECT_SUCCESS, createProjectSuccessSaga),
-  ]);
 }
