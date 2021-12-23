@@ -3,13 +3,14 @@ import Project from "../models/Project.js";
 import User from "../models/User.js";
 
 export const createProjectController = async (req, res) => {
-  const { title, techStack, githubLink, deploymentLink } = req.body;
+  const { title, techStack, githubLink, deploymentLink } = req.body.params;
 
   const project = await Project.create({
     title,
     techStack,
     githubLink,
     deploymentLink,
+    isAdmin: true,
   });
 
   if (!project) {
@@ -28,7 +29,7 @@ export const createProjectController = async (req, res) => {
 };
 
 export const inviteSentController = async (req, res) => {
-  const { email, projectId } = req.body;
+  const { email, projectId } = req.body.params;
   const receiver = await User.findOne({ email });
 
   if (!receiver) {
@@ -58,7 +59,7 @@ export const inviteSentController = async (req, res) => {
 };
 
 export const inviteReceivedController = async (req, res) => {
-  const { projectId, isAccepted, senderId } = req.body;
+  const { projectId, isAccepted, senderId } = req.body.params;
 
   const receiver = await User.findById(req.user_id);
   const project = await Project.findById(projectId);

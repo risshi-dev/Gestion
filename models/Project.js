@@ -22,7 +22,10 @@ const project = mongoose.Schema({
   deploymentLink: {
     type: String,
   },
-
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
   invitesSent: [invites],
   teamMembers: [{ type: mongoose.Types.ObjectId, ref: "User" }],
 });

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import tokenGenerator from "../config/token.js";
 
 export const loginController = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body.params;
   const isUser = await User.findOne({ email });
 
   if (!isUser) {
@@ -15,8 +15,8 @@ export const loginController = async (req, res) => {
 
     if (isMatch) {
       res.status(200).json({
-        login: true,
         email: User.email,
+        username: User.username,
         token: tokenGenerator(User._id),
       });
     } else {
@@ -27,7 +27,7 @@ export const loginController = async (req, res) => {
 };
 
 export const signinController = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password } = req.body.params;
   const isUser = await User.findOne({ email });
 
   if (isUser) {
