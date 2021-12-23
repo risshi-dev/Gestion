@@ -1,6 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  registerRequest,
+  signinRequest,
+} from "../../stateManagement/Authorization/action";
 import styles from "../../styles/Home.module.css";
 import SignStyle from "../../styles/Registration.module.css";
 
@@ -11,11 +16,19 @@ export default function Landing() {
     password: "",
     verifyPassword: "",
   });
+  const dispatch = useDispatch();
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    if (signinData.password != signinData.verifyPassword) console.log("Error");
-    else console.log(signinData);
+    if (
+      signinData.password != "" &&
+      signinData.password != signinData.verifyPassword
+    )
+      console.log("Error");
+    else {
+      console.log(signinData);
+      dispatch(registerRequest(signinData));
+    }
   };
 
   return (
@@ -58,6 +71,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, username: e.target.value })
               }
+              required={true}
             />
           </div>
 
@@ -69,6 +83,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, email: e.target.value })
               }
+              required={true}
             />
           </div>
           <div className={SignStyle.inputContainer}>
@@ -79,6 +94,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, password: e.target.value })
               }
+              required={true}
             />
           </div>
           <div className={SignStyle.inputContainer}>
@@ -89,6 +105,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, verifyPassword: e.target.value })
               }
+              required={true}
             />
           </div>
 

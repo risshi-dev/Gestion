@@ -1,20 +1,20 @@
-import { actionTypes } from "../actions/login";
+import { actionTypes } from "./action";
 
 export const initState = {
-  isLoggedIn: false,
+  loading: false,
 };
 
 function reducer(state = initState, action) {
   switch (action.type) {
-    case actionTypes.LOGIN_SUCCESS:
+    case actionTypes.CREATE_PROJECT_REQUEST:
       return {
         ...state,
-        ...{ isLoggedIn: true },
+        ...{ loading: false },
       };
-    case actionTypes.LOGOUT_SUCCESS:
+    case actionTypes.CREATE_PROJECT_REQUEST:
       return {
         ...state,
-        ...{ isLoggedIn: false },
+        ...{ loading: true },
       };
     default:
       return state;

@@ -1,8 +1,9 @@
 import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
-
-import rootReducer from "../stateManagement/index";
-import rootSaga from "../stateManagement/rootSaga";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import rootReducer from "./index";
+import rootSaga from "./rootSaga";
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== "production") {
@@ -11,10 +12,11 @@ const bindMiddleware = (middleware) => {
   }
   return applyMiddleware(...middleware);
 };
-
+const persistConfig = { key: "gestion", storage };
+const persistRed = persistReducer(persistConfig, rootReducer);
 function configureStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(rootReducer, bindMiddleware([sagaMiddleware]));
+  const store = createStore(persistRed, bindMiddleware([sagaMiddleware]));
 
   store.sagaTask = sagaMiddleware.run(rootSaga);
   return store;

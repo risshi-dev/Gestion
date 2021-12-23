@@ -1,38 +1,38 @@
-.heading{
-    font-size: 48px;
-    padding: 0rem 0 1rem 0;
-  }
-
-.dot{
-    color: #3b78f8;
-    font-size: 72px;
-}
-.inputContainer{
-    margin-bottom: 15px;
-}
-.inputBox{
-    
-        padding: 15px 20px;
-        border-radius: 15px;
-        border: 1px solid #afafaf;
-        width: 280px;
+.heading {
+  font-size: 48px;
+  padding: 0rem 0 1rem 0;
 }
 
-.signUP{
-    width: 180px;
-    background-color: #3b78f8;
-    color: #fff;
-    padding: 15px 15px;
-    border: none;
-    letter-spacing: 1.5px;
-    font-size: 16px;
-    border-radius: 40px;
+.dot {
+  color: #3b78f8;
+  font-size: 72px;
+}
+.inputContainer {
+  margin-bottom: 15px;
+}
+.inputBox {
+  font-size: 15px;
+  padding: 12px 20px;
+  border-radius: 15px;
+  border: 1px solid #afafaf;
+  width: 280px;
 }
 
-.label{
-    
-        font-size: 14px;
-        letter-spacing: 1px;
-        margin: 5px 0px;
-    
+.signUP {
+  width: 180px;
+  background-color: #3b78f8;
+  color: #fff;
+  padding: 15px 15px;
+  border: none;
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  border-radius: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.label {
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 5px 0px;
 }

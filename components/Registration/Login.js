@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginRequest } from "../../stateManagement/Authorization/action";
 import styles from "../../styles/Home.module.css";
 import SignStyle from "../../styles/Registration.module.css";
 
@@ -10,9 +12,11 @@ export default function Landing() {
     password: "",
   });
 
+  const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
-
+    dispatch(loginRequest(loginData));
     console.log(loginData);
   };
 

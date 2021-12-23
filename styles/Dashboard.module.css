@@ -1,0 +1,27 @@
+.CreateProject > input {
+  width: 260px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.Card {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 6px 9px 12px #dee9ffbf;
+  position: relative;
+  transition: 0.5s ease-in;
+}
+
+.Card:hover {
+  cursor: pointer;
+}
+
+.newProject {
+  position: absolute;
+  top: 75px;
+  font-size: 25px;
+  left: 40px;
+}
