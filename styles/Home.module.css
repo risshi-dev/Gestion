@@ -1,6 +1,7 @@
 .container {
   padding: 0 5rem;
   min-height: 100vh;
+  background-color: #f1f5fd;
 }
 
 .innerContainer {
@@ -50,6 +51,11 @@
   border-right: 0;
   border-left: 0;
   border-top: 0;
+  background-color: #f1f5fd;
+}
+
+.form > input::placeholder {
+  color: rgb(189, 189, 189);
 }
 
 .form > button {

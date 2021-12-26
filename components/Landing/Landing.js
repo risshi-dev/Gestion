@@ -10,7 +10,9 @@ export default function Landing() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.title}>Gestion</div>
+        <div className={styles.title}>
+          <b>Gestion</b>
+        </div>
       </main>
       <div className={styles.innerContainer}>
         <div className={styles.content}>
@@ -24,7 +26,7 @@ export default function Landing() {
             <div>Invite Your Team Members</div>
 
             <form className={styles.form}>
-              <input type="text" placeholder="email" />
+              <input type="text" placeholder="youremail@here.com" />
               <button type="submit"> Invite </button>
             </form>
           </div>
