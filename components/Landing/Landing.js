@@ -21,28 +21,30 @@ export default function Landing() {
         <meta name="description" content="A Project Management Tool" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
         <div className={styles.title}>Gestion</div>
       </main>
+      <div className={styles.innerContainer}>
+        <div className={styles.content}>
+          <div className={styles.tagLine}>
+            Make Your <b>110%</b> of
+            <br />
+            <b>Everyday</b>
+          </div>
 
-      <div className={styles.tagLine}>
-        Make Your <b>110%</b> of
-        <br />
-        <b>Everyday</b>
-      </div>
+          <div className={styles.Invite}>
+            <div>Invite Your Team Members</div>
 
-      <div className={styles.Invite}>
-        <div>Invite Your Team Members</div>
-
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <button type="submit"> Sign up </button>
-        </form>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button type="submit"> Sign up </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );

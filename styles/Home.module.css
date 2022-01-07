@@ -1,5 +1,21 @@
 .container {
   padding: 0 5rem;
+  min-height: 100vh;
+  background-color: #f1f5fd;
+}
+
+.innerContainer {
+  display: flex;
+}
+
+.image {
+  flex: 1;
+}
+.image > img {
+  height: 100%;
+}
+.content {
+  flex: 1;
 }
 
 .main {
@@ -14,10 +30,10 @@
 
 .tagLine {
   font-size: 48px;
-  padding: 2rem 0 4rem 0;
+  padding: 4rem 0 4rem 0;
 }
 
-.Invite {
+.invite {
   padding: 2rem 0 4rem 0;
   font-size: 22px;
 }
@@ -35,6 +51,11 @@
   border-right: 0;
   border-left: 0;
   border-top: 0;
+  background-color: #f1f5fd;
+}
+
+.form > input::placeholder {
+  color: rgb(189, 189, 189);
 }
 
 .form > button {
@@ -149,5 +170,23 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+  .container {
+    padding: 0 2rem;
+  }
+  .innerContainer {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .tagLine {
+    font-size: 30px;
+    padding: 2rem 0;
+  }
+  .invite {
+    padding: 0;
+    font-size: 22px;
+  }
+  .form > button {
+    margin-top: 10px;
   }
 }
