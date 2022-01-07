@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
-import styles from "../../styles/Home.module.css";
 import dashboard from "../../styles/Dashboard.module.css";
 import CreateProject from "./CreateProject";
 import Sidebar from "../Sidebar/Sidebar";
+import Header from "./Header";
 
 export default function MainDashboard() {
   const [openModal, setOpenModal] = useState(false);
@@ -17,11 +17,7 @@ export default function MainDashboard() {
         <meta name="description" content="Login in your account" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={dashboard.Header}>
-        <main>
-          <div className={styles.title}>Gestion</div>
-        </main>
-      </div>
+      <Header />
 
       <div className={dashboard.Main}>
         <Sidebar />

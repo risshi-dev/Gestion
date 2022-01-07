@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   registerRequest,
@@ -16,6 +16,11 @@ export default function Landing() {
     password: "",
     verifyPassword: "",
   });
+
+  useEffect(() => {
+    setSignInData({ ...signinData, email: localStorage.getItem("email") });
+  }, []);
+
   const dispatch = useDispatch();
 
   const handleSignIn = (e) => {
@@ -80,6 +85,7 @@ export default function Landing() {
             <input
               type="email"
               className={SignStyle.inputBox}
+              value={signinData.email}
               onChange={(e) =>
                 setSignInData({ ...signinData, email: e.target.value })
               }
