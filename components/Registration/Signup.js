@@ -18,7 +18,10 @@ export default function Landing() {
   });
 
   useEffect(() => {
-    setSignInData({ ...signinData, email: localStorage.getItem("email") });
+    setSignInData({
+      ...signinData,
+      email: localStorage.getItem("email") ? localStorage.getItem("email") : "",
+    });
   }, []);
 
   const dispatch = useDispatch();

@@ -2,7 +2,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../../styles/Home.module.css";
-
+import Image from "next/image";
+import landing from "../../public/landing_illustration.svg";
 export default function Landing() {
   const router = useRouter();
 
@@ -22,7 +23,9 @@ export default function Landing() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.title}>Gestion</div>
+        <div className={styles.title}>
+          <b>Gestion</b>
+        </div>
       </main>
       <div className={styles.innerContainer}>
         <div className={styles.content}>
@@ -32,7 +35,7 @@ export default function Landing() {
             <b>Everyday</b>
           </div>
 
-          <div className={styles.Invite}>
+          <div className={styles.invite}>
             <div>Invite Your Team Members</div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
@@ -44,6 +47,9 @@ export default function Landing() {
               <button type="submit"> Sign up </button>
             </form>
           </div>
+        </div>
+        <div className={styles.image}>
+          <Image src={landing} alt="landing illustration" layout="responsive" />
         </div>
       </div>
     </div>
