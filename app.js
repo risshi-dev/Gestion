@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongooseConnect from "./config/db.js";
 import userRoute from "./routes/UserRoutes.js";
+import projectRoute from "./routes/ProjectRoutes.js";
+import cardRoute from "./routes/CardRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -17,13 +19,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// for testing purposes
-// app.use((req, res, next) => {
-//   req.user_id = "61b74484f2234a73b38b4fd6";
-//   next();
-// });
-
-app.get("/", (req, res) => res.send(" CHal rha H bHenChod"));
+app.use("/", () => console.log("API is running...🤩"));
 app.use("/api/user", userRoute);
+app.use("/project", projectRoute);
+app.use("/card", cardRoute);
 
-app.listen(5000, console.log("server is running "));
+app.listen(5000, console.log("server is running... "));

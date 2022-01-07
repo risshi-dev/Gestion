@@ -26,6 +26,12 @@ const project = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  cards: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Cards",
+    },
+  ],
   invitesSent: [invites],
   teamMembers: [{ type: mongoose.Types.ObjectId, ref: "User" }],
 });

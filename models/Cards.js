@@ -9,6 +9,7 @@ const description = mongoose.Schema({
   isChecked: {
     required: true,
     type: Boolean,
+    default: false,
   },
   text: {
     type: String,
@@ -21,7 +22,7 @@ const cards = mongoose.Schema({
     type: String,
     required: true,
   },
-  description: [description],
+  todo: [description],
   comments: [comments],
 });
 
