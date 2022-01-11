@@ -19,7 +19,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", () => console.log("API is running...🤩"));
+app.use("/", (req, res, next) => {
+  console.log("API is running...🤩");
+  next();
+});
 app.use("/api/user", userRoute);
 app.use("/project", projectRoute);
 app.use("/card", cardRoute);

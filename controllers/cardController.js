@@ -1,7 +1,7 @@
 import Card from "../models/Cards.js";
 import Project from "../models/Project.js";
 
-export const createCard = async (req, res, next) => {
+export const createCardController = async (req, res, next) => {
   const { title, projectId } = req.body.params;
 
   const card = await Card.create({ title: title });
