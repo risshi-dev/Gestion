@@ -4,12 +4,11 @@ import { useState } from "react";
 import dashboard from "../../styles/Dashboard.module.css";
 import CreateProject from "./CreateProject";
 import Sidebar from "../Sidebar/Sidebar";
-import Header from "./Header";
+import Header from "../Header/Header.js";
+import { useRouter } from "next/router";
 
 export default function MainDashboard() {
-  const [openModal, setOpenModal] = useState(false);
-
-  const setModal = (isOpen) => setOpenModal(isOpen);
+  const router = useRouter();
   return (
     <div className={dashboard.container}>
       <Head>
@@ -17,16 +16,22 @@ export default function MainDashboard() {
         <meta name="description" content="Login in your account" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Header />
 
       <div className={dashboard.Main}>
         <Sidebar />
-        <div>
-          <div className={dashboard.Card} onClick={() => setModal(true)}>
-            <div className={dashboard.newProject}>Add Project</div>
+        <div className={dashboard.projectContainer}>
+          <div
+            className={dashboard.Card}
+            onClick={() => router.push("/projects/1")}
+          >
+            <div className={dashboard.newProject}>Project 1</div>
           </div>
 
-          <CreateProject isOpen={openModal} setModal={setModal} />
+          <div className={dashboard.Card}>
+            <div className={dashboard.newProject}>Project 1</div>
+          </div>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { loginRequest } from "../../stateManagement/Authorization/action";
 import styles from "../../styles/Home.module.css";
 import SignStyle from "../../styles/Registration.module.css";
+import Header from "../Header/Header";
 
 export default function Landing() {
   const [loginData, setLoginInData] = useState({
@@ -28,9 +29,7 @@ export default function Landing() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <div className={styles.title}>Gestion</div>
-      </main>
+      <Header />
 
       <div className={SignStyle.heading}>
         <b>

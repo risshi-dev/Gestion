@@ -15,6 +15,14 @@ a {
   box-sizing: border-box;
 }
 
+.SidebarContainer {
+  margin: 10px 0px;
+}
+
 .sidebarText {
   display: none;
+}
+
+input {
+  outline: none;
 }

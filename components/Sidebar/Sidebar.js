@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import dashboard from "../../styles/Dashboard.module.css";
+import icons from "../../styles/Icons.module.css";
 import {
-  ArrowRightOutlined,
   RightCircleOutlined,
-  UserOutlined,
-  MailOutlined,
-  LoginOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons/lib/icons";
-import { Avatar } from "antd";
+
 import UserSidebar from "./UserSidebar";
 import ProjectSidebar from "./ProjectSidebar";
+import { useRouter } from "next/router";
+
 function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -25,6 +25,7 @@ function Sidebar() {
         document.getElementsByClassName("sidebarText")[i].style.display =
           "initial";
       }
+
       setIsExpanded(true);
     } else {
       document.getElementById("sidebar").style.width = "80px";
@@ -42,19 +43,20 @@ function Sidebar() {
     }
   };
 
+  const router = useRouter();
   return (
     <div id="sidebar" className={dashboard.Sidebar}>
       <div className={dashboard.SidebarTop}>
         <RightCircleOutlined
           id="expandIcon"
-          style={{ color: "#3b78f8", fontSize: "28px" }}
+          className={icons.colorSize}
           onClick={() => handleSidebar()}
         />
       </div>
-      {ProjectSidebar()}
+      {router.pathname.match("/projects/") ? ProjectSidebar() : UserSidebar()}
       <div className={dashboard.SidebarBottom}>
         <div>
-          <LoginOutlined style={{ color: "#3b78f8", fontSize: "28px" }} />{" "}
+          <LogoutOutlined className={icons.colorSize} />{" "}
           <span className="sidebarText">Log out</span>
         </div>
       </div>

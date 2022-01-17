@@ -1,7 +1,7 @@
 .container {
   padding: 0 5rem;
   min-height: 100vh;
-  background-color: #f1f5fd;
+  background-color: #fff;
 }
 
 .innerContainer {
@@ -51,7 +51,7 @@
   border-right: 0;
   border-left: 0;
   border-top: 0;
-  background-color: #f1f5fd;
+  background-color: #fff;
 }
 
 .form > input::placeholder {

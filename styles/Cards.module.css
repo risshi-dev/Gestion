@@ -7,7 +7,7 @@
 .card {
   font-size: 18px;
   width: 250px;
-  height: 150px;
+  height: auto;
   background: #fff;
   border-radius: 15px;
   padding: 15px;
@@ -19,4 +19,49 @@
 .cardFooter {
   display: grid;
   grid-template-columns: auto auto;
+}
+
+.checkboxContainer {
+  margin: 20px 0px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox > input {
+  margin-right: 15px;
+}
+
+.createCardInput {
+  padding: 10px 20px 10px 10px;
+  border-radius: 10px;
+  border: 0.5px solid #cdcdcd;
+}
+.addInputButton {
+  margin: 20px auto;
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: 0.5px solid #fff;
+  background-color: #269aff;
+  color: #fff;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+}
+
+.createCardTodoInput {
+  width: 250px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 0.5px solid #cdcdcd;
+  margin-left: 10px;
+}
+
+.createCardTodo {
+  margin: 30px auto;
+}
+
+.createCardTodoContainer {
+  margin: 15px auto;
 }

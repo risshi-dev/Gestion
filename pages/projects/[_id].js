@@ -2,7 +2,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Head from "next/head";
 import dashboard from "../../styles/Dashboard.module.css";
 import Cards from "../../styles/Cards.module.css";
-import Header from "../../components/Dashboard/Header";
+import Header from "../../components/Header/Header.js";
 import styles from "../../styles/Home.module.css";
 import Card from "../../components/Dashboard/Cards";
 export default function Dashboard() {

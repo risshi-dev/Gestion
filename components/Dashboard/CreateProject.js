@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Cards.module.css";
 import { Modal, Button } from "antd";
 import Dashboard from "../../styles/Dashboard.module.css";
 import { useDispatch } from "react-redux";
@@ -12,9 +11,6 @@ export default function CreateProject({ isOpen, setModal }) {
 
   const [projectDetails, setProjectDetails] = useState({
     title: "",
-    techStack: "",
-    githubLink: "",
-    deploymentLink: "",
   });
 
   const handleSubmit = () => {
@@ -39,37 +35,8 @@ export default function CreateProject({ isOpen, setModal }) {
               setProjectDetails({ ...projectDetails, title: e.target.value })
             }
             placeholder="Project title"
+            className={Dashboard.addProjectModal}
             required={true}
-          />
-          <input
-            type="text"
-            onChange={(e) =>
-              setProjectDetails({
-                ...projectDetails,
-                techStack: e.target.value,
-              })
-            }
-            placeholder="Tech stack"
-          />
-          <input
-            type="text"
-            onChange={(e) =>
-              setProjectDetails({
-                ...projectDetails,
-                githubLink: e.target.value,
-              })
-            }
-            placeholder="Github Link"
-          />
-          <input
-            type="text"
-            onChange={(e) =>
-              setProjectDetails({
-                ...projectDetails,
-                deploymentLink: e.target.value,
-              })
-            }
-            placeholder="Deployment Link"
           />
         </form>
       </Modal>

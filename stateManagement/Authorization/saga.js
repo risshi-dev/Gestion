@@ -1,21 +1,15 @@
 import { call, all, put, takeEvery } from "redux-saga/effects";
 import AuthorizationRepository from "../../stateManagement/Repository/Authorization";
 import { actionTypes, loginSuccess, registerSuccess } from "./action";
-import { notification } from "antd";
+import { message } from "antd";
 import router from "next/router";
 
 const modalSuccessLogin = (type) => {
-  notification[type]({
-    message: "Welcome back",
-    description: "Do your 110% ",
-  });
+  message.success("Welcome back");
 };
 
 const modalSuccessRegister = (type) => {
-  notification[type]({
-    message: "Welcome",
-    description: "All in one place for management",
-  });
+  message.success("Welcome");
 };
 function* loginSaga({ payload }) {
   try {
@@ -28,7 +22,7 @@ function* loginSaga({ payload }) {
       localStorage.setItem("token", data.token);
       router.push("/dashboard");
     } else {
-      console.log(data);
+      message.error("Wrong email or password");
     }
   } catch (err) {
     console.log(err);
@@ -46,7 +40,7 @@ function* registerSaga({ payload }) {
       modalSuccessRegister("success");
       router.push("/dashboard");
     } else {
-      console.log(data);
+      message.error("Some Error occured");
     }
   } catch (error) {
     console.log(error);

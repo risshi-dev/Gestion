@@ -8,6 +8,7 @@ import {
 } from "../../stateManagement/Authorization/action";
 import styles from "../../styles/Home.module.css";
 import SignStyle from "../../styles/Registration.module.css";
+import Header from "../Header/Header";
 
 export default function Landing() {
   const [signinData, setSignInData] = useState({
@@ -18,7 +19,10 @@ export default function Landing() {
   });
 
   useEffect(() => {
-    setSignInData({ ...signinData, email: localStorage.getItem("email") });
+    setSignInData({
+      ...signinData,
+      email: localStorage.getItem("email") ? localStorage.getItem("email") : "",
+    });
   }, []);
 
   const dispatch = useDispatch();
@@ -44,13 +48,7 @@ export default function Landing() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <div className={styles.title}>
-          <Link href="/">
-            <a>Gestion</a>
-          </Link>
-        </div>
-      </main>
+      <Header />
 
       <div className={SignStyle.heading}>
         <b>

@@ -1,16 +1,17 @@
-.CreateProject > input {
-  width: 260px;
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid #000;
-  border-radius: 5px;
+.projectContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0fr));
+  height: 80vh;
+  overflow-y: auto;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
 }
 
 .Card {
   width: 200px;
   height: 200px;
+  border: 1px solid;
   border-radius: 10px;
-  box-shadow: 6px 9px 12px #dee9ffbf;
   position: relative;
   transition: 0.5s ease-in;
 }
@@ -26,9 +27,16 @@
   left: 40px;
 }
 
+.addProjectModal {
+  padding: 10px 20px 10px 10px;
+  border-radius: 10px;
+  border: 0.5px solid #cdcdcd;
+}
+
 .Sidebar {
   height: 80vh;
-  background: #c3d1ee47;
+  background: #fff;
+  border: 1px solid #3b78f8;
   width: 80px;
   border-radius: 15px;
   text-align: center;
@@ -40,17 +48,14 @@
 
 .Header {
   padding: 1rem 0 2rem 0;
-  font-size: 24px;
-  flex: 1 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  font-size: 22px;
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 .Main {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-column-gap: 20px;
+  grid-column-gap: 40px;
 }
 .SidebarTop {
   display: flex;
@@ -69,4 +74,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.SidebarContainer {
+  width: 90%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.searchHeader {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+}
+
+.inputSearchHeader {
+  font-size: 14px;
+  border: 0px;
+  margin-right: 10px;
 }
