@@ -45,7 +45,11 @@ export default function Landing() {
         </Link>
       </div>
       <div className={styles.Invite}>
-        <form className={SignStyle.form} onSubmit={submitHandler}>
+        <form
+          className={SignStyle.form}
+          onSubmit={submitHandler}
+          style={{ marginTop: "50px" }}
+        >
           <div className={SignStyle.inputContainer}>
             <div className={SignStyle.label}>Email</div>
             <input
@@ -54,6 +58,7 @@ export default function Landing() {
                 setLoginInData({ ...loginData, email: e.target.value })
               }
               className={SignStyle.inputBox}
+              placeholder="@your.mail.com"
             />
           </div>
 
@@ -65,6 +70,7 @@ export default function Landing() {
                 setLoginInData({ ...loginData, password: e.target.value })
               }
               className={SignStyle.inputBox}
+              placeholder="Here..."
             />
           </div>
 

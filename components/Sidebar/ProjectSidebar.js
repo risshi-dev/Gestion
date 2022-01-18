@@ -4,11 +4,13 @@ import {
   UserOutlined,
   PlusCircleOutlined,
   UsergroupAddOutlined,
+  MessageOutlined,
 } from "@ant-design/icons/lib/icons";
 import { Avatar } from "antd";
 import CardModal from "./CardModal";
 import { useState } from "react";
 import InviteMember from "./InviteMember";
+import EditCardModal from "../Cards/EditCardModal";
 
 export default function ProjectSidebar() {
   const [openModal, setOpenModal] = useState(false);
@@ -54,6 +56,14 @@ export default function ProjectSidebar() {
           size="large"
         />{" "}
         <span className="sidebarText">Invite Member</span>
+      </div>
+
+      <div className="SidebarContainer">
+        <Avatar
+          src={<MessageOutlined className={icons.colorSize} />}
+          size="large"
+        />{" "}
+        <span className="sidebarText">Chat</span>
       </div>
 
       <CardModal isOpen={openModal} setModal={setModal} />

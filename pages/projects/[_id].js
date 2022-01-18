@@ -4,8 +4,13 @@ import dashboard from "../../styles/Dashboard.module.css";
 import Cards from "../../styles/Cards.module.css";
 import Header from "../../components/Header/Header.js";
 import styles from "../../styles/Home.module.css";
-import Card from "../../components/Dashboard/Cards";
-export default function Dashboard() {
+import Card from "../../components/Cards/Cards";
+import EditCardModal from "../../components/Cards/EditCardModal";
+import { useState } from "react";
+export default function Project() {
+  const [openModal, setOpenModal] = useState(false);
+
+  const setModal = (isOpen) => setOpenModal(isOpen);
   return (
     <div className={styles.container}>
       <div className={dashboard.container}>
@@ -19,10 +24,11 @@ export default function Dashboard() {
         <div className={dashboard.Main}>
           <Sidebar />
           <div className={Cards.container}>
-            <Card />
+            <Card open={openModal} click={setModal} />
           </div>
         </div>
       </div>
+      <EditCardModal isOpen={openModal} setModal={setModal} />
     </div>
   );
 }

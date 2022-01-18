@@ -63,7 +63,7 @@ export default function Landing() {
           </a>
         </Link>
       </div>
-      <div className={styles.Invite}>
+      <div className={styles.Invite} style={{ margin: "20px 0px" }}>
         <form className={SignStyle.form} onSubmit={handleSignIn}>
           <div className={SignStyle.inputContainer}>
             <div className={SignStyle.label}>Username</div>
@@ -74,6 +74,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, username: e.target.value })
               }
+              placeholder="what should we call you?"
               required={true}
             />
           </div>
@@ -87,6 +88,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, email: e.target.value })
               }
+              placeholder="@your.mail.com"
               required={true}
             />
           </div>
@@ -99,10 +101,11 @@ export default function Landing() {
                 setSignInData({ ...signinData, password: e.target.value })
               }
               required={true}
+              placeholder="Here..."
             />
           </div>
           <div className={SignStyle.inputContainer}>
-            <div className={SignStyle.label}>Verify Password</div>
+            <div className={SignStyle.label}>Confirm Password</div>
             <input
               type="password"
               className={SignStyle.inputBox}
@@ -110,6 +113,7 @@ export default function Landing() {
                 setSignInData({ ...signinData, verifyPassword: e.target.value })
               }
               required={true}
+              placeholder="Here..."
             />
           </div>
 

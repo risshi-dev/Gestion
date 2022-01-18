@@ -26,3 +26,8 @@ a {
 input {
   outline: none;
 }
+
+input::placeholder {
+  color: #51554fa9;
+  font-size: 14px;
+}

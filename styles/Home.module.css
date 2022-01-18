@@ -55,14 +55,14 @@
 }
 
 .form > input::placeholder {
-  color: rgb(189, 189, 189);
+  color: #51554f;
 }
 
 .form > button {
   padding: 10px;
   width: 100px;
-  color: #fff;
-  background: #3b78f8;
+  color: #e7e6e8;
+  background: #030303;
   border-radius: 5px;
   border: 1px solid #ccc0;
   cursor: pointer;

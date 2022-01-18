@@ -37,9 +37,10 @@ export default function Landing() {
 
             <form className={styles.form} onSubmit={handleSubmit}>
               <input
-                type="text"
-                placeholder="@your.com"
+                type="email"
+                placeholder="@your.mail.com"
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
               <button type="submit"> Sign up </button>
             </form>
