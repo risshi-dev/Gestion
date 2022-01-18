@@ -64,6 +64,21 @@ export default function Project() {
     setModal(true);
     setActiveCard(card);
   };
+
+  const handleModalClose = () => {
+    setModal(false);
+
+    // card edited
+    if (activeCard._id) {
+      const newCards = cards.filter((card) => card._id !== activeCard);
+      newCards.push(activeCard);
+      setCards(newCards);
+    }
+    //card created
+    else {
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={dashboard.container}>
@@ -88,7 +103,12 @@ export default function Project() {
           </div>
         </div>
       </div>
-      <EditCardModal card={activeCard} isOpen={openModal} setModal={setModal} />
+      <EditCardModal
+        card={activeCard}
+        setCard={setActiveCard}
+        isOpen={openModal}
+        handleModalClose={handleModalClose}
+      />
     </div>
   );
 }
