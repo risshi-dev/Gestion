@@ -19,14 +19,13 @@ function Card({ click, open, card }) {
     <div className={Cards.card} onClick={click}>
       <div>{card.title}</div>
       <div>
-        <div>
-          <div>
+        <div className={Cards.cardstats}>
+          <div className={Cards.cardstat}>
             <CheckSquareOutlined /> <span>{countChecked()}</span>/
             <span>{card.todo.length}</span>
           </div>
-          <div>
-            <CommentOutlined />
-            {card.comments.length}
+          <div className={Cards.cardstat}>
+            <CommentOutlined /> {card.comments.length}
           </div>
         </div>
       </div>

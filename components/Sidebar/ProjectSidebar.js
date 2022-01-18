@@ -13,9 +13,9 @@ import { Avatar, Tooltip } from "antd";
 import CardModal from "./CardModal";
 import { useState } from "react";
 import InviteMember from "./InviteMember";
-import EditCardModal from "../Cards/EditCardModal";
+import CreateCardModal from "../Cards/CreateCardModal";
 
-export default function ProjectSidebar() {
+export default function ProjectSidebar(props) {
   const [isSideScreen, setSideScreen] = useState(false);
 
   const [chat, setChat] = useState(false);
@@ -53,7 +53,7 @@ export default function ProjectSidebar() {
             <Avatar
               src={
                 <PlusCircleOutlined
-                  onClick={setModal}
+                  onClick={() => setModal(true)}
                   className={icons.colorSize}
                 />
               }
@@ -98,7 +98,11 @@ export default function ProjectSidebar() {
           </Tooltip>
         </div>
 
-        <CardModal isOpen={openModal} setModal={setModal} />
+        <CreateCardModal
+          isOpen={openModal}
+          setModal={setModal}
+          handleCreateCard={props.handleCreateCard}
+        />
         <InviteMember isOpen={openInviteModal} setModal={setInviteModal} />
       </div>
       <div className={dashboard.SidebarBottom}>

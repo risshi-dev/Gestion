@@ -7,10 +7,11 @@ import styles from "../../styles/Home.module.css";
 import Card from "../../components/Cards/Cards";
 import EditCardModal from "../../components/Cards/EditCardModal";
 import { useState } from "react";
+import Chat from "../../components/Chat/Chat";
 
 const sampleCards = [
   {
-    id: 1,
+    _id: 1,
     title: "Card one",
     description: "This is a description",
     todo: [
@@ -31,7 +32,7 @@ const sampleCards = [
     ],
   },
   {
-    id: 2,
+    _id: 2,
     title: "Card two",
     description: "This is another description",
     todo: [
@@ -53,12 +54,18 @@ const sampleCards = [
   },
 ];
 
-import Chat from "../../components/Chat/Chat";
+const emptyCard = {
+  title: "",
+  todo: [],
+  comments: [],
+  description: "",
+};
+
 export default function Project() {
   const [openModal, setOpenModal] = useState(false);
 
   const [cards, setCards] = useState(sampleCards);
-  const [activeCard, setActiveCard] = useState();
+  const [activeCard, setActiveCard] = useState(emptyCard);
 
   const setModal = (isOpen) => setOpenModal(isOpen);
   const onCardClick = (card) => {
@@ -66,17 +73,26 @@ export default function Project() {
     setActiveCard(card);
   };
 
-  const handleModalClose = () => {
-    setModal(false);
-
-    // card edited
-    if (activeCard._id) {
-      const newCards = cards.filter((card) => card._id !== activeCard);
-      newCards.push(activeCard);
-      setCards(newCards);
+  // edits a existing card
+  const handleEditModalClose = () => {
+    const newCards = cards;
+    for (let card of newCards) {
+      if (card._id === activeCard._id) {
+        card = activeCard;
+        break;
+      }
     }
-    //card created
-    else {
+    setCards(newCards);
+
+    //resetting the active card
+    setActiveCard(emptyCard);
+  };
+
+  // creates a new card
+  // TODO: this function will eventually send a request and create a card in DB and get back its _id (right now edit modal doesn't work for newly created cards)
+  const handleCreateCard = (title) => {
+    if (title.length > 0) {
+      setCards([...cards, { ...emptyCard, title: title }]);
     }
   };
 
@@ -91,7 +107,7 @@ export default function Project() {
         <Header />
 
         <div className={dashboard.Main}>
-          <Sidebar />
+          <Sidebar handleCreateCard={handleCreateCard} />
           <div className={Cards.container}>
             {cards.map((card) => (
               <Card
@@ -111,7 +127,8 @@ export default function Project() {
         card={activeCard}
         setCard={setActiveCard}
         isOpen={openModal}
-        handleModalClose={handleModalClose}
+        handleEditModalClose={handleEditModalClose}
+        setModal={setModal}
       />
     </div>
   );

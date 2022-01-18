@@ -11,6 +11,7 @@
   background: #fff;
   border-radius: 5px;
   padding: 15px;
+  margin: 15px;
   display: grid;
   grid-template-rows: 1fr auto;
   cursor: pointer;
@@ -64,4 +65,14 @@
 
 .createCardTodoContainer {
   margin: 15px auto;
+}
+
+.cardstats {
+  display: flex;
+  font-size: 0.9em;
+  color: rgb(87, 87, 87);
+}
+
+.cardstat {
+  padding: 10px;
 }

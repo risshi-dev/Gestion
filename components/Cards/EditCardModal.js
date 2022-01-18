@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Progress, Checkbox } from "antd";
 import Card from "../../styles/Cards.module.css";
-import { CloseOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
+import {
+  AlignLeftOutlined,
+  CheckSquareOutlined,
+  CloseOutlined,
+  DeleteOutlined,
+  UnorderedListOutlined,
+} from "@ant-design/icons/lib/icons";
+import styles from "../../styles/EditCard.module.css";
 
 // using props because of naming clash (state task and props task)
 // using this function to both edit and add a new task to the todoList
@@ -11,6 +18,7 @@ const EditTaskForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.editTodo(props.index, task);
+    setTask("");
     if (props.keepOpen === true) return;
     props.toggleForm();
   };
@@ -21,11 +29,16 @@ const EditTaskForm = (props) => {
         value={task}
         onChange={(e) => setTask(e.target.value)}
         placeholder="Add an item"
+        className={styles.cardInput}
       />
-      <button type="submit" className={Card.addInputButton}>
+      <button type="submit" className={styles.cardButtonPrimary}>
         Save
       </button>
-      <button onClick={props.toggleForm}>
+      <button
+        className={styles.cardButtonPrimary}
+        style={{ backgroundColor: "grey" }}
+        onClick={props.toggleForm}
+      >
         <CloseOutlined />
       </button>
     </form>
@@ -52,14 +65,19 @@ const TodoListItem = ({ item, editTodo, index, removeTodo }) => {
           toggleForm={toggleEditTaskForm}
         />
       ) : (
-        <>
+        <div className={styles.cardTodoItemContainer}>
           <Checkbox checked={item.isChecked} onChange={handleCheckboxChange} />
-          <div onClick={toggleEditTaskForm}>{item.task}</div>
+          <div
+            className={item.isChecked && styles.cardTaskStrike}
+            onClick={toggleEditTaskForm}
+          >
+            {item.task}
+          </div>
           <DeleteOutlined
             onClick={() => removeTodo(index)}
-            style={{ fontSize: "16px", marginLeft: "10px" }}
+            className={styles.cardTaskDelete}
           />
-        </>
+        </div>
       )}
     </>
   );
@@ -117,12 +135,15 @@ const TodoList = ({ card, setCard }) => {
   };
 
   return (
-    <div className={Card.createCardTodoContainer}>
-      <h3>Checklist</h3>
+    <div className={styles.cardTodoContainer}>
+      <h3 className={styles.header}>
+        <CheckSquareOutlined className={styles.headerIcon} />
+        Checklist
+      </h3>
       <Progress showInfo={false} percent={progressPercent} />
 
       {card.todo.map((item, index) => (
-        <div key={index} className={Card.createCardTodo}>
+        <div key={index}>
           <TodoListItem
             item={item}
             index={index}
@@ -141,7 +162,11 @@ const TodoList = ({ card, setCard }) => {
             keepOpen={true}
           />
         ) : (
-          <button onClick={toggleEditTaskForm} className={Card.addInputButton}>
+          <button
+            onClick={toggleEditTaskForm}
+            className={styles.cardButtonPrimary}
+            style={{ backgroundColor: "rgb(231, 231, 231)", color: "black" }}
+          >
             Add Task
           </button>
         )}
@@ -158,25 +183,38 @@ const CommentList = ({ card, setCard }) => {
     const newComments = card.comments;
     newComments.unshift({ id: "sample_userid", comment });
     setCard({ ...card, comments: newComments });
+    setcomment("");
   };
   return (
     <>
-      <div>
+      <div className={styles.cardCommentContainer}>
+        <h3 className={styles.header}>
+          <UnorderedListOutlined className={styles.headerIcon} />
+          Activity
+        </h3>
         <form onSubmit={handleAddComment}>
           <input
             type="text"
             value={comment}
             onChange={(e) => setcomment(e.target.value)}
             placeholder="Write a comment..."
+            className={styles.cardInput}
           />
-          <button type="submit" className={Card.addInputButton}>
+          <button type="submit" className={styles.cardButtonPrimary}>
             Comment
           </button>
         </form>
-
-        {card.comments.map((comment) => (
-          <div key={comment.id}>{comment.comment}</div>
-        ))}
+        <div className={styles.cardCommentListContainer}>
+          {card.comments.map((comment) => (
+            <div key={comment.id} className={styles.cardComment}>
+              <div className={styles.cardCommentUserDetails}>
+                <img src="https://via.placeholder.com/40" />
+                <div>User name</div>
+              </div>
+              {comment.comment}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
@@ -184,33 +222,36 @@ const CommentList = ({ card, setCard }) => {
 
 export default function EditCardModal({
   isOpen,
-  handleModalClose,
+  handleEditModalClose,
   card,
   setCard,
+  setModal,
 }) {
   return (
     <>
       <Modal
         visible={isOpen}
-        onOk={() => handleSubmit()}
-        okText="Create Card"
-        cancelText="Discard"
-        onCancel={handleModalClose}
+        afterClose={handleEditModalClose}
+        footer={false}
         width={600}
+        onCancel={() => setModal(false)}
       >
-        <div className="asd">
-          <div className="cardTitle-container">
+        <div className={styles.container}>
+          <div className={styles.header}>
             <input
               type="text"
-              className={Card.createCardInput}
+              className={styles.cardTitle}
               value={card?.title}
               onChange={(e) => setCard({ ...card, title: e.target.value })}
               placeholder="Card Title..."
               required={true}
             />
           </div>
-          <div className="cardDescription-container">
-            <h3>Description</h3>
+          <div className={styles.cardDescriptionContainer}>
+            <h3 className={styles.header}>
+              <AlignLeftOutlined className={styles.headerIcon} />
+              Description
+            </h3>
             <textarea
               rows="3"
               cols="50"
@@ -219,6 +260,7 @@ export default function EditCardModal({
                 setCard({ ...card, description: e.target.value })
               }
               placeholder="Add more detailed description..."
+              className={styles.cardDescription}
             />
           </div>
 
