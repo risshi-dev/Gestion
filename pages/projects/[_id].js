@@ -7,10 +7,63 @@ import styles from "../../styles/Home.module.css";
 import Card from "../../components/Cards/Cards";
 import EditCardModal from "../../components/Cards/EditCardModal";
 import { useState } from "react";
+
+const sampleCards = [
+  {
+    id: 1,
+    title: "Card one",
+    description: "This is a description",
+    todo: [
+      {
+        task: "This is a todo task",
+        isChecked: false,
+      },
+      {
+        task: "this is a another task",
+        isChecked: true,
+      },
+    ],
+    comments: [
+      {
+        id: "userid",
+        comment: "this is a comment",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Card two",
+    description: "This is another description",
+    todo: [
+      {
+        task: "This is a todo task",
+        isChecked: false,
+      },
+      {
+        task: "this is a another task",
+        isChecked: true,
+      },
+    ],
+    comments: [
+      {
+        id: "userid",
+        comment: "this is another comment",
+      },
+    ],
+  },
+];
+
 export default function Project() {
   const [openModal, setOpenModal] = useState(false);
 
+  const [cards, setCards] = useState(sampleCards);
+  const [activeCard, setActiveCard] = useState();
+
   const setModal = (isOpen) => setOpenModal(isOpen);
+  const onCardClick = (card) => {
+    setModal(true);
+    setActiveCard(card);
+  };
   return (
     <div className={styles.container}>
       <div className={dashboard.container}>
@@ -24,11 +77,18 @@ export default function Project() {
         <div className={dashboard.Main}>
           <Sidebar />
           <div className={Cards.container}>
-            <Card open={openModal} click={setModal} />
+            {cards.map((card) => (
+              <Card
+                key={card.id}
+                open={openModal}
+                click={() => onCardClick(card)}
+                card={card}
+              />
+            ))}
           </div>
         </div>
       </div>
-      <EditCardModal isOpen={openModal} setModal={setModal} />
+      <EditCardModal card={activeCard} isOpen={openModal} setModal={setModal} />
     </div>
   );
 }
