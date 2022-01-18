@@ -53,6 +53,7 @@ const sampleCards = [
   },
 ];
 
+import Chat from "../../components/Chat/Chat";
 export default function Project() {
   const [openModal, setOpenModal] = useState(false);
 
@@ -100,6 +101,9 @@ export default function Project() {
                 card={card}
               />
             ))}
+          </div>
+          <div className="sideScreen">
+            <Chat />
           </div>
         </div>
       </div>
