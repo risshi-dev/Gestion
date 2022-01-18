@@ -1,0 +1,50 @@
+.inputBox {
+  font-size: 12px;
+  padding: 12px 12px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  width: 250px;
+  color: #51554fa9;
+  margin: 10px auto 10px auto;
+}
+.inputContainer {
+  margin: 20px 0px;
+}
+.label {
+  color: #030303;
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin: 5px 0px 5px 15px;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.technos {
+  font-size: 12px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #030303;
+  border: 1px solid #030303;
+  width: fit-content;
+  color: #e7e6e8;
+  margin: 10px auto 10px auto;
+}
+
+.sideScreenButtons {
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #030303;
+  border: 1px solid #030303;
+  width: 120px;
+  width: 100px;
+  color: #e7e6e8;
+  margin: 10px auto 10px auto;
+}

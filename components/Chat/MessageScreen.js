@@ -2,6 +2,12 @@ import { Divider } from "antd";
 import React from "react";
 import Chat from "../../styles/Chats.module.css";
 
+//name
+//text
+
+//name==username Chat.self
+// chat.others
+
 function MessageScreen() {
   return (
     <div className={Chat.messageScreen}>

@@ -14,8 +14,11 @@ import CardModal from "./CardModal";
 import { useState } from "react";
 import InviteMember from "./InviteMember";
 import EditCardModal from "../Cards/EditCardModal";
+import { useRouter } from "next/router";
 
 export default function ProjectSidebar() {
+  const router = useRouter();
+
   const [isSideScreen, setSideScreen] = useState(false);
 
   const [chat, setChat] = useState(false);
@@ -104,7 +107,10 @@ export default function ProjectSidebar() {
       <div className={dashboard.SidebarBottom}>
         <div>
           <Tooltip placement="right" title="Back to Projects" color="#030303">
-            <LeftCircleOutlined className={icons.colorSize} />{" "}
+            <LeftCircleOutlined
+              onClick={() => router.push("/dashboard")}
+              className={icons.colorSize}
+            />{" "}
           </Tooltip>
         </div>
       </div>
