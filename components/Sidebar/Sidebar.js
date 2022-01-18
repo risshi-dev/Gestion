@@ -10,7 +10,7 @@ import UserSidebar from "./UserSidebar";
 import ProjectSidebar from "./ProjectSidebar";
 import { useRouter } from "next/router";
 
-function Sidebar() {
+function Sidebar(props) {
   const router = useRouter();
   return (
     // <div id="sidebar" className={dashboard.Sidebar}>
@@ -22,7 +22,9 @@ function Sidebar() {
     //     />
     //   </div>
     <>
-      {router.pathname.match("/projects/") ? ProjectSidebar() : UserSidebar()}
+      {router.pathname.match("/projects/")
+        ? ProjectSidebar(props)
+        : UserSidebar()}
     </>
     // <div className={dashboard.SidebarBottom}>
     // <div>
