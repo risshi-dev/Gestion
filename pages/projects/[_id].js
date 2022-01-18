@@ -7,6 +7,7 @@ import styles from "../../styles/Home.module.css";
 import Card from "../../components/Cards/Cards";
 import EditCardModal from "../../components/Cards/EditCardModal";
 import { useState } from "react";
+import Chat from "../../components/Chat/Chat";
 export default function Project() {
   const [openModal, setOpenModal] = useState(false);
 
@@ -25,6 +26,9 @@ export default function Project() {
           <Sidebar />
           <div className={Cards.container}>
             <Card open={openModal} click={setModal} />
+          </div>
+          <div className="sideScreen">
+            <Chat />
           </div>
         </div>
       </div>

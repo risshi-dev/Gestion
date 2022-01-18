@@ -4,6 +4,7 @@ import {
   UserOutlined,
   MailOutlined,
   PlusCircleOutlined,
+  MailFilled,
 } from "@ant-design/icons/lib/icons";
 import { Avatar } from "antd";
 import CreateProject from "../Dashboard/CreateProject";
@@ -37,7 +38,7 @@ export default function UserSidebar() {
         </div>
         <div className="SidebarContainer">
           <Avatar
-            src={<MailOutlined className={icons.colorSize} />}
+            src={<MailFilled className={icons.colorSize} />}
             size="large"
           />{" "}
           <span className="sidebarText">Invites</span>
