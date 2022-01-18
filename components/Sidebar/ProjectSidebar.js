@@ -5,6 +5,9 @@ import {
   PlusCircleOutlined,
   UsergroupAddOutlined,
   MessageOutlined,
+  InfoCircleOutlined,
+  LogoutOutlined,
+  LeftCircleOutlined,
 } from "@ant-design/icons/lib/icons";
 import { Avatar, Tooltip } from "antd";
 import CardModal from "./CardModal";
@@ -38,66 +41,73 @@ export default function ProjectSidebar() {
   };
 
   return (
-    <div className={dashboard.SidebarMid}>
-      {/* <div>
-        <Avatar
-          src={<UserOutlined style={{ color: "#3b78f8", fontSize: "28px" }} />}
-          size="large"
-        />{" "}
-        <span className="sidebarText">Profile</span>
-      </div> */}
-      <div className="SidebarContainer">
-        <Avatar
-          src={
-            <PlusCircleOutlined
-              onClick={setModal}
-              className={icons.colorSize}
+    <div id="sidebar" className={dashboard.Sidebar}>
+      <div className={dashboard.SidebarTop}>
+        <Tooltip placement="right" title="Project Info" color="#030303">
+          <InfoCircleOutlined id="expandIcon" className={icons.colorSize} />
+        </Tooltip>
+      </div>
+      <div className={dashboard.SidebarMid}>
+        <div className="SidebarContainer">
+          <Tooltip placement="right" title="Add Task" color="#030303">
+            <Avatar
+              src={
+                <PlusCircleOutlined
+                  onClick={setModal}
+                  className={icons.colorSize}
+                />
+              }
+              size="large"
             />
-          }
-          size="large"
-        />
-        <span className="sidebarText">Task</span>
-      </div>
+          </Tooltip>
+        </div>
 
-      <div className="SidebarContainer">
-        <Tooltip placement="right" title="View Members" color="#030303">
-          <Avatar
-            onClick={() => {
-              openSideScreen();
-              setProfile(true);
-            }}
-            src={<UserOutlined className={icons.colorSize} />}
-            size="large"
-          />
-        </Tooltip>
-        <span className="sidebarText">View Member</span>
-      </div>
+        <div className="SidebarContainer">
+          <Tooltip placement="right" title="View Members" color="#030303">
+            <Avatar
+              onClick={() => {
+                openSideScreen();
+                setProfile(true);
+              }}
+              src={<UserOutlined className={icons.colorSize} />}
+              size="large"
+            />
+          </Tooltip>
+        </div>
 
-      <div className="SidebarContainer">
-        <Tooltip placement="right" title="View Members" color="#030303">
-          <Avatar
-            src={<UsergroupAddOutlined className={icons.colorSize} />}
-            onClick={setInviteModal}
-            size="large"
-          />
-        </Tooltip>
-        <span className="sidebarText">Invite Member</span>
-      </div>
+        <div className="SidebarContainer">
+          <Tooltip placement="right" title="Send Invites" color="#030303">
+            <Avatar
+              src={<UsergroupAddOutlined className={icons.colorSize} />}
+              onClick={setInviteModal}
+              size="large"
+            />
+          </Tooltip>
+        </div>
 
-      <div className="SidebarContainer">
-        <Avatar
-          onClick={() => {
-            openSideScreen();
-            setChat(true);
-          }}
-          src={<MessageOutlined className={icons.colorSize} />}
-          size="large"
-        />{" "}
-        <span className="sidebarText">Chat</span>
-      </div>
+        <div className="SidebarContainer">
+          <Tooltip placement="right" title="Discuss Tasks" color="#030303">
+            <Avatar
+              onClick={() => {
+                openSideScreen();
+                setChat(true);
+              }}
+              src={<MessageOutlined className={icons.colorSize} />}
+              size="large"
+            />
+          </Tooltip>
+        </div>
 
-      <CardModal isOpen={openModal} setModal={setModal} />
-      <InviteMember isOpen={openInviteModal} setModal={setInviteModal} />
+        <CardModal isOpen={openModal} setModal={setModal} />
+        <InviteMember isOpen={openInviteModal} setModal={setInviteModal} />
+      </div>
+      <div className={dashboard.SidebarBottom}>
+        <div>
+          <Tooltip placement="right" title="Back to Projects" color="#030303">
+            <LeftCircleOutlined className={icons.colorSize} />{" "}
+          </Tooltip>
+        </div>
+      </div>
     </div>
   );
 }
