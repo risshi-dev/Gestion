@@ -20,6 +20,8 @@
   padding: 10px;
   margin-bottom: 10px;
   left: -10px;
+  border-radius: 5px;
+  transition: 0.2s ease;
 }
 
 .cardTitle:hover {
@@ -37,6 +39,8 @@
 .cardDescription {
   border: 0;
   resize: none;
+  border-radius: 5px;
+  transition: 0.2s ease;
 }
 
 .cardDescription:hover {
