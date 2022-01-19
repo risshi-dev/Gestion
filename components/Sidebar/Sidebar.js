@@ -10,7 +10,7 @@ import UserSidebar from "./UserSidebar";
 import ProjectSidebar from "./ProjectSidebar";
 import { useRouter } from "next/router";
 
-function Sidebar(props) {
+function Sidebar({ handleCreateCard, openSideScreen, setSideScreen }) {
   const router = useRouter();
   return (
     // <div id="sidebar" className={dashboard.Sidebar}>
@@ -22,9 +22,15 @@ function Sidebar(props) {
     //     />
     //   </div>
     <>
-      {router.pathname.match("/projects/")
-        ? ProjectSidebar(props)
-        : UserSidebar()}
+      {router.pathname.match("/projects/") ? (
+        <ProjectSidebar
+          handleCreateCard={handleCreateCard}
+          openSideScreen={openSideScreen}
+          setSideScreen={setSideScreen}
+        />
+      ) : (
+        <UserSidebar />
+      )}
     </>
     // <div className={dashboard.SidebarBottom}>
     // <div>

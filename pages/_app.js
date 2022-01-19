@@ -13,12 +13,15 @@ import withReduxSaga from "next-redux-saga";
 import rootReducer from "../stateManagement";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import { CookiesProvider } from "react-cookie";
 function MyApp({ Component, pageProps }) {
   const store = createStore(rootReducer);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistStore(store)}>
-        <Component {...pageProps} />
+        <CookiesProvider>
+          <Component {...pageProps} />
+        </CookiesProvider>
       </PersistGate>
     </Provider>
   );

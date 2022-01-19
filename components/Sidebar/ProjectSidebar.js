@@ -14,13 +14,14 @@ import CardModal from "./CardModal";
 import { useState } from "react";
 import InviteMember from "./InviteMember";
 import CreateCardModal from "../Cards/CreateCardModal";
+import { useRouter } from "next/router";
 
-export default function ProjectSidebar(props) {
-  const [isSideScreen, setSideScreen] = useState(false);
-
-  const [chat, setChat] = useState(false);
-  const [profile, setProfile] = useState(false);
-
+export default function ProjectSidebar({
+  handleCreateCard,
+  openSideScreen,
+  setSideScreen,
+}) {
+  const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [openInviteModal, setOpenInviteModal] = useState(false);
 
@@ -28,23 +29,18 @@ export default function ProjectSidebar(props) {
 
   const setInviteModal = (isopen) => setOpenInviteModal(isopen);
 
-  const openSideScreen = () => {
-    if (!isSideScreen || chat || profile) {
-      const side = document.getElementsByClassName("sideScreen")[0];
-      side.style.width = "300px";
-      setSideScreen(!isSideScreen);
-    } else {
-      const side = document.getElementsByClassName("sideScreen")[0];
-      side.style.width = "0px";
-      setSideScreen(!isSideScreen);
-    }
-  };
-
   return (
     <div id="sidebar" className={dashboard.Sidebar}>
       <div className={dashboard.SidebarTop}>
         <Tooltip placement="right" title="Project Info" color="#030303">
-          <InfoCircleOutlined id="expandIcon" className={icons.colorSize} />
+          <InfoCircleOutlined
+            id="expandIcon"
+            className={icons.colorSize}
+            onClick={() => {
+              openSideScreen();
+              setSideScreen("info");
+            }}
+          />
         </Tooltip>
       </div>
       <div className={dashboard.SidebarMid}>
@@ -65,10 +61,7 @@ export default function ProjectSidebar(props) {
         <div className="SidebarContainer">
           <Tooltip placement="right" title="View Members" color="#030303">
             <Avatar
-              onClick={() => {
-                openSideScreen();
-                setProfile(true);
-              }}
+              onClick={() => openSideScreen()}
               src={<UserOutlined className={icons.colorSize} />}
               size="large"
             />
@@ -90,7 +83,7 @@ export default function ProjectSidebar(props) {
             <Avatar
               onClick={() => {
                 openSideScreen();
-                setChat(true);
+                setSideScreen("chat");
               }}
               src={<MessageOutlined className={icons.colorSize} />}
               size="large"
@@ -101,7 +94,7 @@ export default function ProjectSidebar(props) {
         <CreateCardModal
           isOpen={openModal}
           setModal={setModal}
-          handleCreateCard={props.handleCreateCard}
+          handleCreateCard={handleCreateCard}
         />
         <InviteMember isOpen={openInviteModal} setModal={setInviteModal} />
       </div>

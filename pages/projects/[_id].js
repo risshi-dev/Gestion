@@ -6,8 +6,10 @@ import Header from "../../components/Header/Header.js";
 import styles from "../../styles/Home.module.css";
 import Card from "../../components/Cards/Cards";
 import EditCardModal from "../../components/Cards/EditCardModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chat from "../../components/Chat/Chat";
+import ProjectInfo from "../../components/Project/ProjectInfo";
+import SideScreen from "../../components/Project/SideScreen";
 
 const sampleCards = [
   {
@@ -96,6 +98,23 @@ export default function Project() {
     }
   };
 
+  //SideScreen
+  const [isSideScreen, setSideScreen] = useState(false);
+  const [activeScreen, setActiveScreen] = useState("");
+
+  const setScreen = (screen) => setActiveScreen(screen);
+  const screenVisible = (is) => setSideScreen(is);
+
+  const openSideScreen = () => {
+    if (!isSideScreen) {
+      const side = document.getElementsByClassName("sideScreen")[0];
+      side.style.width = "320px";
+    } else {
+      const side = document.getElementsByClassName("sideScreen")[0];
+      side.style.width = "0px";
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={dashboard.container}>
@@ -107,7 +126,11 @@ export default function Project() {
         <Header />
 
         <div className={dashboard.Main}>
-          <Sidebar handleCreateCard={handleCreateCard} />
+          <Sidebar
+            handleCreateCard={handleCreateCard}
+            openSideScreen={openSideScreen}
+            setSideScreen={setScreen}
+          />
           <div className={Cards.container}>
             {cards.map((card) => (
               <Card
@@ -118,10 +141,7 @@ export default function Project() {
               />
             ))}
           </div>
-          <div className="sideScreen">
-            {/* <Chat /> */}
-            <ProjectInfo />
-          </div>
+          <SideScreen screen={activeScreen} />
         </div>
       </div>
       <EditCardModal
