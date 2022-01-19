@@ -22,8 +22,13 @@
   left: -10px;
 }
 
+.cardTitle:hover {
+  cursor: pointer;
+}
+
 .cardTitle:focus {
   background-color: aliceblue;
+  cursor: text;
 }
 
 .cardDescriptionContainer {
@@ -34,10 +39,15 @@
   resize: none;
 }
 
+.cardDescription:hover {
+  cursor: pointer;
+}
+
 .cardDescription:focus {
   background-color: aliceblue;
   outline: 0;
   padding: 10px;
+  cursor: text;
 }
 
 .cardTodoContainer {
@@ -45,6 +55,14 @@
 
 .cardTodoItemContainer {
   display: flex;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.cardTodoItemContainer:hover {
+  background-color: rgb(249, 249, 249);
+  padding-left: 5px;
+  border-radius: 5px;
 }
 
 .cardTodoItemContainer > * {
@@ -57,16 +75,30 @@
   text-decoration: line-through;
 }
 
-.cardTaskDelete {
-  width: 40px;
+.cardTaskAction {
+  margin-left: auto;
   height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.cardTaskDelete,
+.cardTaskEdit {
   font-size: 16px;
   padding-right: 0;
+  width: 34px;
+  height: 34px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   color: rgb(187, 187, 187);
   transition: 0.2s ease-in;
+}
+
+.cardTaskEdit:hover {
+  color: #1890ff;
+  background-color: #dceeff;
+  border-radius: 50%;
 }
 
 .cardTaskDelete:hover {
@@ -102,6 +134,10 @@
 
 .cardCommentUserDetails > div {
   font-weight: 500;
+}
+
+.cardEditTaskForm {
+  margin-top: 10px;
 }
 
 .cardInput {
