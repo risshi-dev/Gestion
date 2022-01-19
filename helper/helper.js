@@ -1,6 +1,8 @@
 export const WriteCookie = (time) => {
-  console.log(time);
   const expires = new Date(Date.now() + 86400 * 1000).toUTCString();
-  console.log(expires);
-  document.cookie = "name=" + time + ";" + " expires=" + expires + ";path=/;";
+  document.cookie = "half=" + time + ";" + " expires=" + expires + ";path=/;";
+};
+
+export const isAuth = () => {
+  return document.cookie("half") === null ? true : false;
 };

@@ -1,6 +1,8 @@
 import { Divider } from "antd";
 import React from "react";
+import { useEffect } from "react";
 import Chat from "../../styles/Chats.module.css";
+import db from "./firebase";
 
 //name
 //text
@@ -9,6 +11,14 @@ import Chat from "../../styles/Chats.module.css";
 // chat.others
 
 function MessageScreen() {
+  useEffect(() => {
+    db.collection("id")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        console.log(snapshot.docs.map((doc) => doc.data()));
+      });
+  }, []);
+
   return (
     <div className={Chat.messageScreen}>
       <div className={`${Chat.self} ${Chat.messageContainer}`}>
