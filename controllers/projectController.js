@@ -40,7 +40,6 @@ export const getProjectsController = async (req, res, next) => {
     res.status(400);
     throw new Error("Failed to get the projects");
   }
-
   res.status(200).send(projects);
 };
 
