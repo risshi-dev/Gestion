@@ -30,6 +30,20 @@ export const createProjectController = async (req, res) => {
   res.status(200).json({ project });
 };
 
+export const getProjectsController = async (req, res, next) => {
+  const userId = req.user_id;
+  const projects = await User.findById(userId)
+    .select({ projects: 1 })
+    .populate("projects");
+
+  if (!projects) {
+    res.status(400);
+    throw new Error("Failed to get the projects");
+  }
+
+  res.status(200).send(projects);
+};
+
 export const inviteSentController = async (req, res) => {
   const { email, projectId } = req.body.params;
   const receiver = await User.findOne({ email });
