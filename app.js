@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import cors from "cors";
 import mongooseConnect from "./config/db.js";
 import userRoute from "./routes/UserRoutes.js";
 import projectRoute from "./routes/ProjectRoutes.js";
