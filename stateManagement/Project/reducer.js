@@ -15,6 +15,19 @@ function reducer(state = initState, action) {
         loading: false,
         projectDetails: { ...action.payload },
       };
+
+    case actionTypes.GET_PROJECTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case actionTypes.GET_PROJECTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        ...action.payload,
+      };
     default:
       return state;
   }
