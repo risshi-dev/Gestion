@@ -3,6 +3,7 @@ import AuthorizationRepository from "../../stateManagement/Repository/Authorizat
 import { actionTypes, loginSuccess, registerSuccess } from "./action";
 import { message } from "antd";
 import router from "next/router";
+import { WriteCookie } from "../../helper/helper";
 
 const modalSuccessLogin = (type) => {
   message.success("Welcome back");
@@ -19,7 +20,7 @@ function* loginSaga({ payload }) {
     if (status === 200) {
       yield put(loginSuccess(data));
       modalSuccessLogin("success");
-      localStorage.setItem("token", data.token);
+      WriteCookie();
       router.push("/dashboard");
     } else {
       message.error("Wrong email or password");
