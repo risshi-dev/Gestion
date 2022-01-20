@@ -21,6 +21,16 @@ class ProjectRepository {
 
     return response;
   }
+
+  async getProjects() {
+    const token = window.localStorage.getItem("token");
+    const response = await axios.get(`${baseUrl}/project/getall`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  }
 }
 
 export default new ProjectRepository();

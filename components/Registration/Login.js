@@ -75,7 +75,7 @@ export default function Landing() {
           </div>
 
           <button type="submit" className={SignStyle.signUP}>
-            Sign In
+            Login
           </button>
         </form>
       </div>

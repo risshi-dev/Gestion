@@ -7,14 +7,16 @@ class AuthorizationRepository {
 
   async loginRepo(params) {
     console.log(params);
-    const reponse = await Repository.post(`${baseUrl}/user/login`, { params });
-    return reponse;
+    const response = await Repository.post(`${baseUrl}/user/login`, { params });
+    return response;
   }
 
   async signinRepo(params) {
     console.log(params);
-    const reponse = await Repository.post(`${baseUrl}/user/signin`, { params });
-    return reponse;
+    const response = await Repository.post(`${baseUrl}/user/signin`, {
+      params,
+    });
+    return response;
   }
 }
 

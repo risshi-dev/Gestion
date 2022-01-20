@@ -1,7 +1,11 @@
 import { all, put, call, takeEvery } from "redux-saga/effects";
 import { notification } from "antd";
 
-import { actionTypes, createProjectSuccess } from "./action";
+import {
+  actionTypes,
+  createProjectSuccess,
+  getProjectsSuccess,
+} from "./action";
 import Project from "../Repository/Project";
 
 const modalSuccess = (type) => {
@@ -26,6 +30,21 @@ function* createProjectSaga({ payload }) {
   }
 }
 
+function* getProjectsSaga() {
+  try {
+    const response = yield call(Project.getProjects);
+
+    const { status, data } = response;
+
+    if (status === 200) {
+      yield put(getProjectsSuccess(data));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export default function* rootSaga() {
   yield all([takeEvery(actionTypes.CREATE_PROJECT_REQUEST, createProjectSaga)]);
+  yield all([takeEvery(actionTypes.GET_PROJECTS_REQUEST, getProjectsSaga)]);
 }

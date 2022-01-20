@@ -6,6 +6,7 @@ import {
   CheckSquareOutlined,
   CloseOutlined,
   DeleteOutlined,
+  EditOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons/lib/icons";
 import styles from "../../styles/EditCard.module.css";
@@ -23,7 +24,7 @@ const EditTaskForm = (props) => {
     props.toggleForm();
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.cardEditTaskForm}>
       <input
         type="text"
         value={task}
@@ -67,16 +68,19 @@ const TodoListItem = ({ item, editTodo, index, removeTodo }) => {
       ) : (
         <div className={styles.cardTodoItemContainer}>
           <Checkbox checked={item.isChecked} onChange={handleCheckboxChange} />
-          <div
-            className={item.isChecked && styles.cardTaskStrike}
-            onClick={toggleEditTaskForm}
-          >
+          <div className={item.isChecked && styles.cardTaskStrike}>
             {item.task}
           </div>
-          <DeleteOutlined
-            onClick={() => removeTodo(index)}
-            className={styles.cardTaskDelete}
-          />
+          <div className={styles.cardTaskAction}>
+            <EditOutlined
+              className={styles.cardTaskEdit}
+              onClick={toggleEditTaskForm}
+            />
+            <DeleteOutlined
+              onClick={() => removeTodo(index)}
+              className={styles.cardTaskDelete}
+            />
+          </div>
         </div>
       )}
     </>

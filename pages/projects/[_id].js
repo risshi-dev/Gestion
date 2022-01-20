@@ -77,13 +77,15 @@ export default function Project() {
 
   // edits a existing card
   const handleEditModalClose = () => {
-    const newCards = cards;
-    for (let card of newCards) {
-      if (card._id === activeCard._id) {
-        card = activeCard;
+    let newCards = [...cards];
+
+    for (let i = 0; i < newCards.length; i++) {
+      if (newCards[i]._id === activeCard._id) {
+        newCards[i] = activeCard;
         break;
       }
     }
+
     setCards(newCards);
 
     //resetting the active card
