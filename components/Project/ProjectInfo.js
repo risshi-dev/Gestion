@@ -1,8 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons/lib/icons";
 import React from "react";
 import Input from "../../styles/Project.module.css";
-import Icons from "../../styles/Icons.module.css";
-import { WriteCookie } from "../../helper/helper";
 function ProjectInfo() {
   return (
     <div>
@@ -49,12 +47,11 @@ function ProjectInfo() {
 
         <div className={Input.inputContainer} style={{ display: "flex" }}>
           <div className={Input.sideScreenButtons}>Cancel</div>
-          <div
-            className={Input.sideScreenButtons}
-            onClick={() => WriteCookie("now")}
-          >
-            Update
-          </div>
+          <div className={Input.sideScreenButtons}>Update</div>
+        </div>
+
+        <div className={Input.inputContainer}>
+          <div className={Input.sideScreenDeleteButtons}>Delete Project</div>
         </div>
       </div>
     </div>

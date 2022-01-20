@@ -10,6 +10,23 @@ import SideScreen from "../Project/SideScreen";
 
 export default function MainDashboard() {
   const router = useRouter();
+
+  const [isSideScreen, setSideScreen] = useState(false);
+  const [activeScreen, setActiveScreen] = useState("");
+
+  const setScreen = (screen) => setActiveScreen(screen);
+  const screenVisible = (is) => setSideScreen(is);
+
+  const openSideScreen = () => {
+    if (!isSideScreen) {
+      const side = document.getElementsByClassName("sideScreen")[0];
+      side.style.width = "320px";
+    } else {
+      const side = document.getElementsByClassName("sideScreen")[0];
+      side.style.width = "0px";
+    }
+  };
+
   return (
     <div className={dashboard.container}>
       <Head>
@@ -21,7 +38,7 @@ export default function MainDashboard() {
       <Header />
 
       <div className={dashboard.Main}>
-        <Sidebar />
+        <Sidebar openSideScreen={openSideScreen} setSideScreen={setScreen} />
         <div className={dashboard.projectContainer}>
           <div
             className={dashboard.Card}
@@ -35,7 +52,7 @@ export default function MainDashboard() {
           </div>
         </div>
 
-        <SideScreen />
+        <SideScreen screen={activeScreen} />
       </div>
     </div>
   );

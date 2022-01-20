@@ -11,7 +11,7 @@ import { Avatar, Tooltip } from "antd";
 import CreateProject from "../Dashboard/CreateProject";
 import { useState } from "react";
 
-export default function UserSidebar() {
+export default function UserSidebar({ openSideScreen, setSideScreen }) {
   const [openModal, setOpenModal] = useState(false);
 
   const setModal = (isOpen) => setOpenModal(isOpen);
@@ -19,7 +19,14 @@ export default function UserSidebar() {
     <div id="sidebar" className={dashboard.Sidebar}>
       <div className={dashboard.SidebarTop}>
         <Tooltip placement="right" title="View Profile" color="#030303">
-          <UserOutlined id="expandIcon" className={icons.colorSize} />
+          <UserOutlined
+            id="expandIcon"
+            className={icons.colorSize}
+            onClick={() => {
+              openSideScreen();
+              setSideScreen("profile");
+            }}
+          />
         </Tooltip>
       </div>
 
@@ -43,6 +50,10 @@ export default function UserSidebar() {
             <Avatar
               src={<MailFilled className={icons.colorSize} />}
               size="large"
+              onClick={() => {
+                openSideScreen();
+                setSideScreen("invites");
+              }}
             />
           </Tooltip>
         </div>
