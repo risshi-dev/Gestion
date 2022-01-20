@@ -24,4 +24,9 @@ app.use("/api/user", userRoute);
 app.use("/api/project", projectRoute);
 app.use("/api/card", cardRoute);
 
+app.use((error, req, res, next) => {
+  console.log(error);
+  res.status(400).json({ message: error.message });
+});
+
 app.listen(5000, console.log("server is running... "));

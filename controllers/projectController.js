@@ -7,6 +7,12 @@ export const getAllProjects = async (req, res) => {};
 export const createProjectController = async (req, res) => {
   const { title, techStack, githubLink, deploymentLink } = req.body.params;
 
+  const found = await Project.find({ title: title });
+  if (found) {
+    res.status(200);
+    throw new Error("Already a project with that name exists!");
+  }
+
   const project = await Project.create({
     title,
     techStack,
@@ -21,7 +27,7 @@ export const createProjectController = async (req, res) => {
   }
   const user = await User.findById(req.user_id);
 
-  user.projects.push({ id: project._id });
+  user.projects.push(project._id);
   project.teamMembers.push(user._id);
 
   await user.save();
