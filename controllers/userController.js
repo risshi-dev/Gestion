@@ -16,7 +16,6 @@ export const loginController = async (req, res) => {
     if (isMatch) {
       res.cookie("token", tokenGenerator(User._id), {
         expire: 86400000 + Date.now(),
-        signedCookie: true,
       });
       res.status(200).json({
         email: User.email,
@@ -45,12 +44,20 @@ export const signinController = async (req, res) => {
     });
 
     if (user) {
-      res
-        .status(200)
-        .json({ email, username, token: tokenGenerator(user._id) });
+      res.cookie("token", tokenGenerator(User._id), {
+        expire: 86400000 + Date.now(),
+      });
+      res.status(200).json({ email, username });
     } else {
       res.status(400);
       throw new Error("failed to create user");
     }
   }
+};
+
+export const logoutController = async (req, res) => {
+  res.cookie("token", tokenGenerator(User._id), {
+    expire: Date.now() - 86400000,
+  });
+  res.status(200).json({ message: "Logged out successfully" });
 };
