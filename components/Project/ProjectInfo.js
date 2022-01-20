@@ -17,6 +17,19 @@ function ProjectInfo() {
         </div>
 
         <div className={Input.inputContainer}>
+          <div className={Input.label}>Technologies Used</div>
+          <div className={Input.technologies}>
+            <div className={Input.technos}>React Js</div>
+            <div className={Input.technos}>Mongo Db</div>
+            <div className={Input.technos}>Express</div>
+            <div className={Input.technos}>Mongo Db</div>
+            <div className={Input.technos}>Express</div>
+            {/* <div className={Input.technos}>
+              <PlusOutlined className={Icons.extra} />
+            </div> */}
+          </div>
+        </div>
+        <div className={Input.inputContainer}>
           <div className={Input.label}>Github Link</div>
           <input
             className={Input.inputBox}
@@ -32,20 +45,6 @@ function ProjectInfo() {
             type="text"
             placeholder="@deployed here"
           />
-        </div>
-
-        <div className={Input.inputContainer}>
-          <div className={Input.label}>Technologies Used</div>
-          <div className={Input.technologies}>
-            <div className={Input.technos}>React Js</div>
-            <div className={Input.technos}>Mongo Db</div>
-            <div className={Input.technos}>Express</div>
-            <div className={Input.technos}>Mongo Db</div>
-            <div className={Input.technos}>Express</div>
-            {/* <div className={Input.technos}>
-              <PlusOutlined className={Icons.extra} />
-            </div> */}
-          </div>
         </div>
 
         <div className={Input.inputContainer} style={{ display: "flex" }}>

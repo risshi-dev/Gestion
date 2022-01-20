@@ -6,6 +6,7 @@ import CreateProject from "./CreateProject";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header.js";
 import { useRouter } from "next/router";
+import SideScreen from "../Project/SideScreen";
 
 export default function MainDashboard() {
   const router = useRouter();
@@ -33,6 +34,8 @@ export default function MainDashboard() {
             <div className={dashboard.newProject}>Project 1</div>
           </div>
         </div>
+
+        <SideScreen />
       </div>
     </div>
   );

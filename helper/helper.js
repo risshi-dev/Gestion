@@ -4,5 +4,7 @@ export const WriteCookie = (time) => {
 };
 
 export const isAuth = () => {
-  return document.cookie("half") === null ? true : false;
+  return document.cookie && document.cookie.indexOf("half") != -1
+    ? true
+    : false;
 };
