@@ -11,13 +11,6 @@ const invites = mongoose.Schema({
   },
 });
 
-const project = mongoose.Schema({
-  id: {
-    type: mongoose.Types.ObjectId,
-    ref: "Project",
-  },
-});
-
 const userModel = mongoose.Schema({
   email: {
     type: String,
@@ -41,7 +34,12 @@ const userModel = mongoose.Schema({
     required: true,
   },
   invitesReceived: [invites],
-  projects: [project],
+  projects: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Project",
+    },
+  ],
 });
 
 const User = mongoose.model("User", userModel);

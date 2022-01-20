@@ -11,7 +11,7 @@ const description = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  text: {
+  task: {
     type: String,
     required: true,
   },

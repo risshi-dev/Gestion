@@ -7,6 +7,19 @@ export const getAllProjects = async (req, res) => {};
 export const createProjectController = async (req, res) => {
   const { title } = req.body.params;
 
+  const currProjects = await User.findById(req.user_id)
+    .select({ projects: 1 })
+    .populate("projects");
+
+  const found = await currProjects.projects.filter(
+    (project) => project.title === title
+  );
+
+  if (found.length > 0) {
+    res.status(200);
+    throw new Error("Already a project with that name exists!");
+  }
+
   const project = await Project.create({
     title,
     isAdmin: true,
@@ -18,13 +31,26 @@ export const createProjectController = async (req, res) => {
   }
   const user = await User.findById(req.user_id);
 
-  user.projects.push({ id: project._id });
+  user.projects.push(project._id);
   project.teamMembers.push(user._id);
 
   await user.save();
   await project.save();
 
   res.status(200).json({ project });
+};
+
+export const getProjectsController = async (req, res, next) => {
+  const userId = req.user_id;
+  const projects = await User.findById(userId)
+    .select({ projects: 1 })
+    .populate("projects");
+
+  if (!projects) {
+    res.status(400);
+    throw new Error("Failed to get the projects");
+  }
+  res.status(200).send(projects);
 };
 
 export const inviteSentController = async (req, res) => {
