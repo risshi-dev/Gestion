@@ -7,8 +7,15 @@ export const getAllProjects = async (req, res) => {};
 export const createProjectController = async (req, res) => {
   const { title, techStack, githubLink, deploymentLink } = req.body.params;
 
-  const found = await Project.find({ title: title });
-  if (found) {
+  const currProjects = await User.findById(req.user_id)
+    .select({ projects: 1 })
+    .populate("projects");
+
+  const found = await currProjects.projects.filter(
+    (project) => project.title === title
+  );
+
+  if (found.length > 0) {
     res.status(200);
     throw new Error("Already a project with that name exists!");
   }

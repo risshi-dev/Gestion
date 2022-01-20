@@ -7,11 +7,12 @@ const invites = mongoose.Schema({
   },
 });
 
+// removing unique true from title because multiple users can have a project with same name
+// modified the createProject controller to only allow unique titles as of now
 const project = mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
   },
   techStack: {
     type: String,

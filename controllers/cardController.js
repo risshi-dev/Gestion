@@ -12,10 +12,10 @@ export const createCardController = async (req, res, next) => {
   }
 
   const project = await Project.findById(projectId);
-  project.cards.push(card);
+  project.cards.push(card._id);
 
   await project.save();
-  res.status(200).send("Card created successfully!");
+  res.status(200).send(card);
 };
 
 export const editCardController = async (req, res, next) => {
