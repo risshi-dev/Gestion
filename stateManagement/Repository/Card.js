@@ -22,7 +22,7 @@ class CardRepository {
     return response;
   }
 
-  async getCards() {
+  async getCards(params) {
     const token = window.localStorage.getItem("token");
     const response = await axios.post(
       `${baseUrl}/card/getall`,

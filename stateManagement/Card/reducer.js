@@ -41,7 +41,7 @@ function reducer(state = initState, action) {
       return {
         ...state,
         loading: false,
-        ...action.payload.cards,
+        cards: [...action.payload.cards],
       };
 
     default:
