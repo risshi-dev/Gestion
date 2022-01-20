@@ -136,7 +136,7 @@ export default function Project() {
           <div className={Cards.container}>
             {cards.map((card) => (
               <Card
-                key={card.id}
+                key={card._id}
                 open={openModal}
                 click={() => onCardClick(card)}
                 card={card}

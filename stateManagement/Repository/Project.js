@@ -10,7 +10,7 @@ class ProjectRepository {
     const token = window.localStorage.getItem("token");
     console.log(token);
     const response = await axios.post(
-      `${baseUrl}/user/create`,
+      `${baseUrl}/project/create`,
       { params },
       {
         headers: {

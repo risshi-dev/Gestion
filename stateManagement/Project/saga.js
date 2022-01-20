@@ -15,6 +15,13 @@ const modalSuccess = (type) => {
   });
 };
 
+const modalError = (type, message) => {
+  notification[type]({
+    message: "Duplicate project name",
+    description: message,
+  });
+};
+
 function* createProjectSaga({ payload }) {
   try {
     const response = yield call(Project.createProject, payload);
@@ -26,7 +33,8 @@ function* createProjectSaga({ payload }) {
       modalSuccess("success");
     }
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
+    modalError("error", err.response.data.message);
   }
 }
 

@@ -1,14 +1,33 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dashboard from "../../styles/Dashboard.module.css";
 import CreateProject from "./CreateProject";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header.js";
 import { useRouter } from "next/router";
 import SideScreen from "../Project/SideScreen";
+import { useDispatch, useSelector } from "react-redux";
+import { getProjects } from "../../stateManagement/Project/action";
+
+const ProjectsList = ({ projects, router }) => {
+  return (
+    <>
+      {projects.map((project) => (
+        <div
+          key={project._id}
+          className={dashboard.Card}
+          onClick={() => router.push(`/projects/${project._id}`)}
+        >
+          <div className={dashboard.newProject}>{project.title}</div>
+        </div>
+      ))}
+    </>
+  );
+};
 
 export default function MainDashboard() {
+  const { projects, loading } = useSelector((state) => state.projectReducer);
   const router = useRouter();
 
   const [isSideScreen, setSideScreen] = useState(false);
@@ -27,6 +46,11 @@ export default function MainDashboard() {
     }
   };
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProjects());
+  }, []);
+
   return (
     <div className={dashboard.container}>
       <Head>
@@ -40,16 +64,7 @@ export default function MainDashboard() {
       <div className={dashboard.Main}>
         <Sidebar openSideScreen={openSideScreen} setSideScreen={setScreen} />
         <div className={dashboard.projectContainer}>
-          <div
-            className={dashboard.Card}
-            onClick={() => router.push("/projects/1")}
-          >
-            <div className={dashboard.newProject}>Project 1</div>
-          </div>
-
-          <div className={dashboard.Card}>
-            <div className={dashboard.newProject}>Project 1</div>
-          </div>
+          {!loading && <ProjectsList projects={projects} router={router} />}
         </div>
 
         <SideScreen screen={activeScreen} />
