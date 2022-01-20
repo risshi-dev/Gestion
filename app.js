@@ -21,7 +21,7 @@ app.use("/", (req, res, next) => {
   next();
 });
 app.use("/api/user", userRoute);
-app.use("/project", projectRoute);
-app.use("/card", cardRoute);
+app.use("/api/project", projectRoute);
+app.use("/api/card", cardRoute);
 
 app.listen(5000, console.log("server is running... "));
