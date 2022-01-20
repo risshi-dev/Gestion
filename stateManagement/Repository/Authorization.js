@@ -7,7 +7,11 @@ class AuthorizationRepository {
 
   async loginRepo(params) {
     console.log(params);
-    const response = await Repository.post(`${baseUrl}/user/login`, { params });
+    const response = await Repository.post(
+      `${baseUrl}/user/login`,
+      { params },
+      { withCredentials: true }
+    );
     return response;
   }
 

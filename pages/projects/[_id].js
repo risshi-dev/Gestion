@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import Chat from "../../components/Chat/Chat";
 import ProjectInfo from "../../components/Project/ProjectInfo";
 import SideScreen from "../../components/Project/SideScreen";
+import { useRouter } from "next/router";
+import { isAuth } from "../../helper/helper";
 
 const sampleCards = [
   {
@@ -64,6 +66,11 @@ const emptyCard = {
 };
 
 export default function Project() {
+  const router = useRouter();
+  useEffect(() => {
+    !isAuth() ? router.push("/login") : null;
+  }, []);
+
   const [openModal, setOpenModal] = useState(false);
 
   const [cards, setCards] = useState(sampleCards);

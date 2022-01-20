@@ -2,6 +2,8 @@ import React from "react";
 import Chat from "../Chat/Chat";
 import Profile from "./Profile";
 import ProjectInfo from "./ProjectInfo";
+import ViewInvites from "./ViewInvites";
+import ViewMembers from "./ViewMembers";
 
 function SideScreen({ screen, screenVisible }) {
   return (
@@ -15,7 +17,9 @@ function SideScreen({ screen, screenVisible }) {
       ) : screen === "profile" ? (
         <Profile />
       ) : screen === "invites" ? (
-        <ProjectInfo />
+        <ViewInvites />
+      ) : screen === "members" ? (
+        <ViewMembers />
       ) : (
         <></>
       )}

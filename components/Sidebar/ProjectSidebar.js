@@ -61,7 +61,10 @@ export default function ProjectSidebar({
         <div className="SidebarContainer">
           <Tooltip placement="right" title="View Members" color="#030303">
             <Avatar
-              onClick={() => openSideScreen()}
+              onClick={() => {
+                openSideScreen();
+                setSideScreen("members");
+              }}
               src={<UserOutlined className={icons.colorSize} />}
               size="large"
             />

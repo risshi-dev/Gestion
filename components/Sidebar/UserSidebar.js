@@ -7,7 +7,7 @@ import {
   MailFilled,
   InfoCircleOutlined,
 } from "@ant-design/icons/lib/icons";
-import { Avatar, Tooltip } from "antd";
+import { Avatar, Badge, Tooltip } from "antd";
 import CreateProject from "../Dashboard/CreateProject";
 import { useState } from "react";
 
@@ -47,14 +47,16 @@ export default function UserSidebar({ openSideScreen, setSideScreen }) {
 
         <div className="SidebarContainer">
           <Tooltip placement="right" title="View Invites" color="#030303">
-            <Avatar
-              src={<MailFilled className={icons.colorSize} />}
-              size="large"
-              onClick={() => {
-                openSideScreen();
-                setSideScreen("invites");
-              }}
-            />
+            <Badge count={1} color={"#3b78f8"}>
+              <Avatar
+                src={<MailFilled className={icons.colorSize} />}
+                size="large"
+                onClick={() => {
+                  openSideScreen();
+                  setSideScreen("invites");
+                }}
+              />{" "}
+            </Badge>
           </Tooltip>
         </div>
       </div>

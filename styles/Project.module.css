@@ -63,3 +63,13 @@
   letter-spacing: 2px;
   margin: 10px auto 10px auto;
 }
+
+.inviteContainer {
+  width: 250px;
+  margin: 10px auto;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  color: #030303;
+}

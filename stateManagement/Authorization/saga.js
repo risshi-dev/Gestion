@@ -16,10 +16,11 @@ function* loginSaga({ payload }) {
   try {
     const response = yield call(AuthorizationRepository.loginRepo, payload);
     const { status, data } = response;
-
+    console.log(response);
     if (status === 200) {
       yield put(loginSuccess(data));
       modalSuccessLogin("success");
+
       WriteCookie();
       router.push("/dashboard");
     } else {
