@@ -12,8 +12,12 @@ export const createCard = async (req, res, next) => {
   }
 
   const project = await Project.findById(projectId);
-  project.cards.push(card);
+  project.cards.push(card._id);
 
   await project.save();
   res.status(200).send("Card created successfully!");
 };
+
+// export const addComment = async(req, res, next) =>{
+//     const {comment}
+// }

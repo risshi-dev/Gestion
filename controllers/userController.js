@@ -14,10 +14,13 @@ export const loginController = async (req, res) => {
     const isMatch = await bcrypt.compare(password, User.password);
 
     if (isMatch) {
+      res.cookie("token", tokenGenerator(User._id), {
+        expire: 86400000 + Date.now(),
+        signedCookie: true,
+      });
       res.status(200).json({
         email: User.email,
         username: User.username,
-        token: tokenGenerator(User._id),
       });
     } else {
       res.status(401);

@@ -1,16 +1,18 @@
 import jwt from "jsonwebtoken";
 import ash from "express-async-handler";
 export const isAuth = ash((req, res, next) => {
-  const authHeader = req.headers.authorization;
+  // const authHeader = req.headers.authorization;
 
-  const error = new Error("Not authenticated");
-  error.statusCode = 401;
+  // const error = new Error("Not authenticated");
+  // error.statusCode = 401;
 
-  if (!authHeader) {
-    throw error;
-  }
+  // if (!authHeader) {
+  //   throw error;
+  // }
+  const cook = req.headers.cookie;
+  const index = cook.search("; token=");
 
-  const token = authHeader.split(" ")[1];
+  const token = cook.slice(index + 8);
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
