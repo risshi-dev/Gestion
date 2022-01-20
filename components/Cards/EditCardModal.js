@@ -68,7 +68,7 @@ const TodoListItem = ({ item, editTodo, index, removeTodo }) => {
       ) : (
         <div className={styles.cardTodoItemContainer}>
           <Checkbox checked={item.isChecked} onChange={handleCheckboxChange} />
-          <div className={item.isChecked && styles.cardTaskStrike}>
+          <div className={item.isChecked ? styles.cardTaskStrike : undefined}>
             {item.task}
           </div>
           <div className={styles.cardTaskAction}>
