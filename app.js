@@ -8,7 +8,6 @@ import projectRoute from "./routes/ProjectRoutes.js";
 import cardRoute from "./routes/CardRoutes.js";
 import cookieParser from "cookie-parser";
 const app = express();
-
 dotenv.config();
 
 await mongooseConnect();

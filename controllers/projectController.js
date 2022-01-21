@@ -2,8 +2,6 @@ import mongoose from "mongoose";
 import Project from "../models/Project.js";
 import User from "../models/User.js";
 
-export const getAllProjects = async (req, res) => {};
-
 export const createProjectController = async (req, res) => {
   const { title } = req.body.params;
 

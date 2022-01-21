@@ -10,15 +10,18 @@ export const isAuth = ash((req, res, next) => {
   //   throw error;
   // }
   const cook = req.headers.cookie;
-  const index = cook.search("; token=");
 
-  const token = cook.slice(index + 8);
+  let token = "";
+  for (let i = cook.search("token=") + 6; cook[i] != ";"; i++) {
+    token += cook[i];
+  }
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
   } catch (err) {
     err.statusCode = 500;
-    console.log(err);
+    console.log(err, "here");
+    throw err;
   }
 
   if (!decodedToken) {
