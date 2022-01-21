@@ -1,6 +1,6 @@
 import { actionTypes } from "./action";
 
-export const initState = {};
+export const initState = { loading: true };
 
 function reducer(state = initState, action) {
   switch (action.type) {
@@ -11,9 +11,21 @@ function reducer(state = initState, action) {
       };
     case actionTypes.CREATE_PROJECT_SUCCESS:
       return {
+        projects: [...state.projects, { ...action.payload.project }],
+        loading: false,
+      };
+
+    case actionTypes.GET_PROJECTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case actionTypes.GET_PROJECTS_SUCCESS:
+      return {
         ...state,
         loading: false,
-        projectDetails: { ...action.payload },
+        ...action.payload,
       };
     default:
       return state;

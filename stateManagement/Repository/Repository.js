@@ -11,5 +11,6 @@ export const baseUrl = `${baseDomain}`;
 
 export default axios.create({
   baseUrl,
+  withCredentials: true,
   headers: customHeaders,
 });

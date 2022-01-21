@@ -29,7 +29,10 @@ function Sidebar({ handleCreateCard, openSideScreen, setSideScreen }) {
           setSideScreen={setSideScreen}
         />
       ) : (
-        <UserSidebar />
+        <UserSidebar
+          openSideScreen={openSideScreen}
+          setSideScreen={setSideScreen}
+        />
       )}
     </>
     // <div className={dashboard.SidebarBottom}>
