@@ -12,6 +12,7 @@ export default function Landing() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     localStorage.setItem("email", email);
     router.push("/signin");
   };

@@ -11,7 +11,11 @@ import { Avatar, Badge, Tooltip } from "antd";
 import CreateProject from "../Dashboard/CreateProject";
 import { useState } from "react";
 
-export default function UserSidebar({ openSideScreen, setSideScreen }) {
+export default function UserSidebar({
+  openSideScreen,
+  setSideScreen,
+  screenVisible,
+}) {
   const [openModal, setOpenModal] = useState(false);
 
   const setModal = (isOpen) => setOpenModal(isOpen);
@@ -23,7 +27,8 @@ export default function UserSidebar({ openSideScreen, setSideScreen }) {
             id="expandIcon"
             className={icons.colorSize}
             onClick={() => {
-              openSideScreen();
+              screenVisible(false);
+              // openSideScreen();
               setSideScreen("profile");
             }}
           />
@@ -52,7 +57,8 @@ export default function UserSidebar({ openSideScreen, setSideScreen }) {
                 src={<MailFilled className={icons.colorSize} />}
                 size="large"
                 onClick={() => {
-                  openSideScreen();
+                  screenVisible(false);
+                  // openSideScreen();
                   setSideScreen("invites");
                 }}
               />{" "}

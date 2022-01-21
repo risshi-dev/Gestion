@@ -20,6 +20,7 @@ export default function ProjectSidebar({
   handleCreateCard,
   openSideScreen,
   setSideScreen,
+  screenVisible,
 }) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
@@ -37,7 +38,7 @@ export default function ProjectSidebar({
             id="expandIcon"
             className={icons.colorSize}
             onClick={() => {
-              openSideScreen();
+              screenVisible(false);
               setSideScreen("info");
             }}
           />
@@ -62,7 +63,7 @@ export default function ProjectSidebar({
           <Tooltip placement="right" title="View Members" color="#030303">
             <Avatar
               onClick={() => {
-                openSideScreen();
+                screenVisible(false);
                 setSideScreen("members");
               }}
               src={<UserOutlined className={icons.colorSize} />}
@@ -85,7 +86,7 @@ export default function ProjectSidebar({
           <Tooltip placement="right" title="Discuss Tasks" color="#030303">
             <Avatar
               onClick={() => {
-                openSideScreen();
+                screenVisible(false);
                 setSideScreen("chat");
               }}
               src={<MessageOutlined className={icons.colorSize} />}

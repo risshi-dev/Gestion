@@ -10,7 +10,12 @@ import UserSidebar from "./UserSidebar";
 import ProjectSidebar from "./ProjectSidebar";
 import { useRouter } from "next/router";
 
-function Sidebar({ handleCreateCard, openSideScreen, setSideScreen }) {
+function Sidebar({
+  handleCreateCard,
+  openSideScreen,
+  setSideScreen,
+  screenVisible,
+}) {
   const router = useRouter();
   return (
     // <div id="sidebar" className={dashboard.Sidebar}>
@@ -27,11 +32,13 @@ function Sidebar({ handleCreateCard, openSideScreen, setSideScreen }) {
           handleCreateCard={handleCreateCard}
           openSideScreen={openSideScreen}
           setSideScreen={setSideScreen}
+          screenVisible={screenVisible}
         />
       ) : (
         <UserSidebar
           openSideScreen={openSideScreen}
           setSideScreen={setSideScreen}
+          screenVisible={screenVisible}
         />
       )}
     </>

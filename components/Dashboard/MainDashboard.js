@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import dashboard from "../../styles/Dashboard.module.css";
 import CreateProject from "./CreateProject";
 import Sidebar from "../Sidebar/Sidebar";
@@ -36,7 +36,7 @@ export default function MainDashboard() {
   const setScreen = (screen) => setActiveScreen(screen);
   const screenVisible = (is) => setSideScreen(is);
 
-  const openSideScreen = () => {
+  const openSideScreen = useCallback(() => {
     if (!isSideScreen) {
       const side = document.getElementsByClassName("sideScreen")[0];
       side.style.width = "320px";
@@ -44,7 +44,11 @@ export default function MainDashboard() {
       const side = document.getElementsByClassName("sideScreen")[0];
       side.style.width = "0px";
     }
-  };
+  }, [isSideScreen]);
+
+  useEffect(() => {
+    if (activeScreen !== "") openSideScreen();
+  }, [isSideScreen, activeScreen, openSideScreen]);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -62,12 +66,20 @@ export default function MainDashboard() {
       <Header />
 
       <div className={dashboard.Main}>
-        <Sidebar openSideScreen={openSideScreen} setSideScreen={setScreen} />
+        <Sidebar
+          openSideScreen={openSideScreen}
+          setSideScreen={setScreen}
+          screenVisible={screenVisible}
+        />
         <div className={dashboard.projectContainer}>
           {!loading && <ProjectsList projects={projects} router={router} />}
         </div>
 
-        <SideScreen screen={activeScreen} />
+        <SideScreen
+          screen={activeScreen}
+          screenVisible={screenVisible}
+          openSideScreen={openSideScreen}
+        />
       </div>
     </div>
   );

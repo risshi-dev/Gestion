@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header.js";
 import styles from "../../styles/Home.module.css";
 import Card from "../../components/Cards/Cards";
 import EditCardModal from "../../components/Cards/EditCardModal";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Chat from "../../components/Chat/Chat";
 import ProjectInfo from "../../components/Project/ProjectInfo";
 import SideScreen from "../../components/Project/SideScreen";
@@ -114,7 +114,7 @@ export default function Project() {
   const setScreen = (screen) => setActiveScreen(screen);
   const screenVisible = (is) => setSideScreen(is);
 
-  const openSideScreen = () => {
+  const openSideScreen = useCallback(() => {
     if (!isSideScreen) {
       const side = document.getElementsByClassName("sideScreen")[0];
       side.style.width = "320px";
@@ -122,7 +122,11 @@ export default function Project() {
       const side = document.getElementsByClassName("sideScreen")[0];
       side.style.width = "0px";
     }
-  };
+  }, [isSideScreen]);
+
+  useEffect(() => {
+    if (activeScreen !== "") openSideScreen();
+  }, [isSideScreen, activeScreen, openSideScreen]);
 
   return (
     <div className={styles.container}>
@@ -139,6 +143,7 @@ export default function Project() {
             handleCreateCard={handleCreateCard}
             openSideScreen={openSideScreen}
             setSideScreen={setScreen}
+            screenVisible={screenVisible}
           />
           <div className={Cards.container}>
             {cards.map((card) => (
@@ -150,7 +155,11 @@ export default function Project() {
               />
             ))}
           </div>
-          <SideScreen screen={activeScreen} />
+          <SideScreen
+            screen={activeScreen}
+            screenVisible={screenVisible}
+            openSideScreen={openSideScreen}
+          />
         </div>
       </div>
       <EditCardModal

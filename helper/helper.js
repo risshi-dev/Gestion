@@ -13,3 +13,11 @@ export const isAuth = () => {
     ? true
     : false;
 };
+
+export const checkExtraSpaces = (text) => {
+  return /^\s+$/.test(text);
+};
+
+export const validateEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};

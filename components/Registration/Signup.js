@@ -1,7 +1,9 @@
+import { message } from "antd";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { checkExtraSpaces } from "../../helper/helper";
 import {
   registerRequest,
   signinRequest,
@@ -31,11 +33,11 @@ export default function Landing() {
     e.preventDefault();
     if (
       signinData.password != "" &&
-      signinData.password != signinData.verifyPassword
+      signinData.password != signinData.verifyPassword &&
+      checkExtraSpaces(signinData.password)
     )
-      console.log("Error");
+      message.warning("Passwords do not match or can't be empty");
     else {
-      console.log(signinData);
       dispatch(registerRequest(signinData));
     }
   };
@@ -75,7 +77,7 @@ export default function Landing() {
                 setSignInData({ ...signinData, username: e.target.value })
               }
               placeholder="what should we call you?"
-              required={true}
+              required
             />
           </div>
 
@@ -89,7 +91,7 @@ export default function Landing() {
                 setSignInData({ ...signinData, email: e.target.value })
               }
               placeholder="@your.mail.com"
-              required={true}
+              required
             />
           </div>
           <div className={SignStyle.inputContainer}>
@@ -100,7 +102,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, password: e.target.value })
               }
-              required={true}
+              required
               placeholder="Here..."
             />
           </div>
@@ -112,7 +114,7 @@ export default function Landing() {
               onChange={(e) =>
                 setSignInData({ ...signinData, verifyPassword: e.target.value })
               }
-              required={true}
+              required
               placeholder="Here..."
             />
           </div>
