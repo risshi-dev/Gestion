@@ -43,7 +43,7 @@ function* getProjectsSaga() {
     const response = yield call(Project.getProjects);
 
     const { status, data } = response;
-
+    console.log(response);
     if (status === 200) {
       yield put(getProjectsSuccess(data));
     }

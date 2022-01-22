@@ -13,7 +13,7 @@ import { getProjects } from "../../stateManagement/Project/action";
 const ProjectsList = ({ projects, router }) => {
   return (
     <>
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <div
           key={project._id}
           className={dashboard.Card}
@@ -55,6 +55,7 @@ export default function MainDashboard() {
     dispatch(getProjects());
   }, []);
 
+  console.log(projects);
   return (
     <div className={dashboard.container}>
       <Head>
