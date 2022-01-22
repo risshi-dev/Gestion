@@ -21,51 +21,6 @@ import {
 import { useSelector } from "react-redux";
 import _ from "lodash";
 
-const sampleCards = [
-  {
-    _id: 1,
-    title: "Card one",
-    description: "This is a description",
-    todo: [
-      {
-        task: "This is a todo task",
-        isChecked: false,
-      },
-      {
-        task: "this is a another task",
-        isChecked: true,
-      },
-    ],
-    comments: [
-      {
-        id: "userid",
-        comment: "this is a comment",
-      },
-    ],
-  },
-  {
-    _id: 2,
-    title: "Card two",
-    description: "This is another description",
-    todo: [
-      {
-        task: "This is a todo task",
-        isChecked: false,
-      },
-      {
-        task: "this is a another task",
-        isChecked: true,
-      },
-    ],
-    comments: [
-      {
-        id: "userid",
-        comment: "this is another comment",
-      },
-    ],
-  },
-];
-
 const emptyCard = {
   title: "",
   todo: [],
