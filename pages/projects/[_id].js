@@ -11,7 +11,11 @@ import Chat from "../../components/Chat/Chat";
 import ProjectInfo from "../../components/Project/ProjectInfo";
 import SideScreen from "../../components/Project/SideScreen";
 import { useRouter } from "next/router";
-import { isAuth } from "../../helper/helper";
+import { checkExtraSpaces, isAuth, objectsEqual } from "../../helper/helper";
+import { useDispatch } from "react-redux";
+import { editCard, getCards } from "../../stateManagement/Card/action";
+import { useSelector } from "react-redux";
+import _ from "lodash";
 
 const sampleCards = [
   {
@@ -66,43 +70,52 @@ const emptyCard = {
 };
 
 export default function Project() {
+  const { loading, cards } = useSelector((state) => state.cardReducer);
+
   const router = useRouter();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     !isAuth() ? router.push("/login") : null;
+
+    const projectId = router.query._id;
+    dispatch(getCards({ projectId }));
   }, []);
 
   const [openModal, setOpenModal] = useState(false);
 
-  const [cards, setCards] = useState(sampleCards);
   const [activeCard, setActiveCard] = useState(emptyCard);
 
   const setModal = (isOpen) => setOpenModal(isOpen);
+
   const onCardClick = (card) => {
     setModal(true);
-    setActiveCard(card);
+    setActiveCard(_.cloneDeep(card));
   };
 
   // edits a existing card
   const handleEditModalClose = () => {
-    let newCards = [...cards];
+    let newCard = { ...activeCard };
 
-    for (let i = 0; i < newCards.length; i++) {
-      if (newCards[i]._id === activeCard._id) {
-        newCards[i] = activeCard;
-        break;
-      }
+    // checking if the card is changed or not
+    let index = cards.findIndex((card) => card._id === newCard._id);
+
+    if (_.isEqual(cards[index], newCard)) {
+      setActiveCard(emptyCard);
+      return;
     }
-
-    setCards(newCards);
 
     //resetting the active card
     setActiveCard(emptyCard);
+
+    dispatch(editCard({ newCard }));
+    return;
   };
 
   // creates a new card
   // TODO: this function will eventually send a request and create a card in DB and get back its _id (right now edit modal doesn't work for newly created cards)
   const handleCreateCard = (title) => {
-    if (title.length > 0) {
+    if (title.length > 0 && !checkExtraSpaces(title)) {
       setCards([...cards, { ...emptyCard, title: title }]);
     }
   };
@@ -146,14 +159,15 @@ export default function Project() {
             screenVisible={screenVisible}
           />
           <div className={Cards.container}>
-            {cards.map((card) => (
-              <Card
-                key={card._id}
-                open={openModal}
-                click={() => onCardClick(card)}
-                card={card}
-              />
-            ))}
+            {!loading &&
+              cards.map((card) => (
+                <Card
+                  key={card._id}
+                  open={openModal}
+                  click={() => onCardClick(card)}
+                  card={card}
+                />
+              ))}
           </div>
           <SideScreen
             screen={activeScreen}

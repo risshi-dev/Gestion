@@ -7,8 +7,6 @@ class ProjectRepository {
   }
 
   async createProject(params) {
-    const token = window.localStorage.getItem("token");
-    console.log(token);
     const response = await axios.post(
       `${baseUrl}/project/create`,
       { params },
@@ -21,11 +19,8 @@ class ProjectRepository {
   }
 
   async getProjects() {
-    const token = window.localStorage.getItem("token");
     const response = await axios.get(`${baseUrl}/project/getall`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      withCredentials: true,
     });
     return response;
   }

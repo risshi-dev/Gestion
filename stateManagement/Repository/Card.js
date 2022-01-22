@@ -23,28 +23,22 @@ class CardRepository {
   }
 
   async getCards(params) {
-    const token = window.localStorage.getItem("token");
     const response = await axios.post(
       `${baseUrl}/card/getall`,
       { params },
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        withCredentials: true,
       }
     );
     return response;
   }
 
-  async editCard() {
-    const token = window.localStorage.getItem("token");
+  async editCard(params) {
     const response = await axios.post(
       `${baseUrl}/card/edit`,
       { params },
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        withCredentials: true,
       }
     );
     return response;

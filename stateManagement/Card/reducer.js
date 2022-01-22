@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { actionTypes } from "./action";
 
 export const initState = { loading: true };
@@ -23,11 +24,17 @@ function reducer(state = initState, action) {
       };
 
     case actionTypes.EDIT_CARD_SUCCESS: {
-      // will implement this
-      // need to maintain the order of cards after edit
+      // all this just to maintain the order of cards
+      let currState = { ...state, loading: false };
+
+      let index = currState.cards.findIndex(
+        (card) => card._id === action.payload.savedCard._id
+      );
+
+      currState.cards[index] = _.cloneDeep(action.payload.savedCard);
+
       return {
-        ...state,
-        loading: false,
+        ...currState,
       };
     }
 

@@ -31,13 +31,11 @@ function* createCardSaga({ payload }) {
 
 function* getCardsSaga({ payload }) {
   try {
-    console.log("getcard saga", payload);
     const response = yield call(Card.getCards, payload);
 
     const { status, data } = response;
 
     if (status === 200) {
-      console.log("getcard", data);
       yield put(getCardsSuccess(data));
     }
   } catch (err) {
