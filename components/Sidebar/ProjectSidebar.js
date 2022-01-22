@@ -46,7 +46,7 @@ export default function ProjectSidebar({
       </div>
       <div className={dashboard.SidebarMid}>
         <div className="SidebarContainer">
-          <Tooltip placement="right" title="Add Task" color="#030303">
+          <Tooltip placement="right" title="Create Card" color="#030303">
             <Avatar
               src={
                 <PlusCircleOutlined
