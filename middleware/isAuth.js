@@ -10,9 +10,13 @@ export const isAuth = ash((req, res, next) => {
   //   throw error;
   // }
   const cook = req.headers.cookie;
-
+  console.log(cook);
   let token = "";
-  for (let i = cook.search("token=") + 6; cook[i] != ";"; i++) {
+  for (
+    let i = cook.search("token=") + 6;
+    cook[i] != ";" && i < cook.length;
+    i++
+  ) {
     token += cook[i];
   }
   let decodedToken;

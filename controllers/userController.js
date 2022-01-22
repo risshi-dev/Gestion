@@ -15,7 +15,8 @@ export const loginController = async (req, res) => {
 
     if (isMatch) {
       res.cookie("token", tokenGenerator(User._id), {
-        expire: 86400000 + Date.now(),
+        expires: new Date(86400000 + Date.now()),
+        httpOnly: true,
       });
       res.status(200).json({
         email: User.email,
@@ -45,7 +46,8 @@ export const signinController = async (req, res) => {
 
     if (user) {
       res.cookie("token", tokenGenerator(User._id), {
-        expire: 86400000 + Date.now(),
+        expires: new Date(86400000 + Date.now()),
+        httpOnly: true,
       });
       res.status(200).json({ email, username });
     } else {
@@ -57,7 +59,7 @@ export const signinController = async (req, res) => {
 
 export const logoutController = async (req, res) => {
   res.cookie("token", tokenGenerator(User._id), {
-    expire: Date.now() - 86400000,
+    expires: new Date(Date.now() - 86400000),
   });
   res.status(200).json({ message: "Logged out successfully" });
 };
