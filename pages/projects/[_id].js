@@ -13,7 +13,11 @@ import SideScreen from "../../components/Project/SideScreen";
 import { useRouter } from "next/router";
 import { checkExtraSpaces, isAuth, objectsEqual } from "../../helper/helper";
 import { useDispatch } from "react-redux";
-import { editCard, getCards } from "../../stateManagement/Card/action";
+import {
+  createCard,
+  editCard,
+  getCards,
+} from "../../stateManagement/Card/action";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 
@@ -113,10 +117,10 @@ export default function Project() {
   };
 
   // creates a new card
-  // TODO: this function will eventually send a request and create a card in DB and get back its _id (right now edit modal doesn't work for newly created cards)
   const handleCreateCard = (title) => {
     if (title.length > 0 && !checkExtraSpaces(title)) {
-      setCards([...cards, { ...emptyCard, title: title }]);
+      const projectId = router.query._id;
+      dispatch(createCard({ title, projectId }));
     }
   };
 

@@ -9,6 +9,7 @@ import EditCardModal from "./EditCardModal";
 function Card({ click, open, card }) {
   const countChecked = () => {
     let count = 0;
+
     for (let item of card.todo) {
       if (item.isChecked) count++;
     }
