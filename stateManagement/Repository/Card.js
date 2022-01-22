@@ -7,15 +7,11 @@ class CardRepository {
   }
 
   async createCard(params) {
-    const token = window.localStorage.getItem("token");
-    console.log(token);
     const response = await axios.post(
       `${baseUrl}/card/create`,
       { params },
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        withCredentials: true,
       }
     );
 
