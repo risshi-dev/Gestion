@@ -11,7 +11,7 @@ function reducer(state = initState, action) {
       };
     case actionTypes.CREATE_PROJECT_SUCCESS:
       return {
-        // projects: [...state.projects, { ...action.payload.project }],
+        projects: [...state.projects, { ...action.payload.project }],
         loading: false,
       };
 
@@ -25,7 +25,7 @@ function reducer(state = initState, action) {
       return {
         ...state,
         loading: false,
-        projects: [...state.projects, { ...action.payload.projects }],
+        projects: action.payload.projects,
       };
     default:
       return state;
