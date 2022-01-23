@@ -24,8 +24,25 @@ const cards = mongoose.Schema({
   },
   todo: [description],
   comments: [comments],
+  priority: {
+    type: Number,
+    default: 0,
+  },
+  status: {
+    type: Number,
+    default: 0,
+  },
+  description: {
+    type: String,
+  },
 });
-
+/*
+ *Priority and status number depicts the following:
+ *Number    Priority   Status
+ *0         Low        Todo
+ *1         Medium     In progress
+ *2         High       Completed
+ */
 const Cards = mongoose.model("Cards", cards);
 
 export default Cards;
