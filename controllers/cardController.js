@@ -9,9 +9,14 @@ const emptyCard = {
 };
 
 export const createCardController = async (req, res, next) => {
-  const { title, projectId } = req.body.params;
+  const { title, priority, description, projectId } = req.body.params;
 
-  const card = await Card.create({ ...emptyCard, title: title });
+  const card = await Card.create({
+    ...emptyCard,
+    title,
+    priority,
+    description,
+  });
 
   if (!card) {
     res.status(400);
