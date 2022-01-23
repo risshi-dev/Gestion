@@ -1,32 +1,79 @@
 import Modal from "antd/lib/modal/Modal";
 import React, { useState } from "react";
 import Dashboard from "../../styles/Dashboard.module.css";
+import PriorityButtonGroup from "../Priority/PriorityButtonGroup";
+import styles from "../../styles/CreateCard.module.css";
+
 export default function CreateCardModal({
   isOpen,
   handleCreateCard,
   setModal,
 }) {
-  const [cardTitle, setCardTitle] = useState("");
+  const [card, setCard] = useState({
+    title: "",
+    description: "",
+    priority: 0,
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleCreateCard(card);
+    setModal(false);
+  };
 
   return (
     <Modal
       title="Create card"
       visible={isOpen}
-      okText="Create Card"
-      onOk={() => {
-        handleCreateCard(cardTitle);
-        setModal(false);
-      }}
-      cancelText="Later"
+      footer={false}
       onCancel={() => setModal(false)}
     >
-      <input
-        type="text"
-        value={cardTitle}
-        className={Dashboard.addProjectModal}
-        onChange={(e) => setCardTitle(e.target.value)}
-        placeholder="Card Title"
-      />
+      <form onSubmit={handleSubmit}>
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="title">
+            Title<span style={{ color: "red" }}>*</span>
+          </label>
+          <br />
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={card.title}
+            className={styles.input}
+            onChange={(e) => setCard({ ...card, title: e.target.value })}
+            placeholder="Card Title"
+            required={true}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="description">
+            Description
+          </label>
+          <br />
+          <textarea
+            name="description"
+            id="description"
+            value={card.description}
+            className={styles.input}
+            placeholder="Add a description ..."
+            onChange={(e) => setCard({ ...card, description: e.target.value })}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="priority">
+            Set priority
+          </label>
+          <br />
+          <PriorityButtonGroup
+            id="priority"
+            selected={card.priority}
+            setSelected={(selected) => setCard({ ...card, priority: selected })}
+          />
+        </div>
+        <button className={styles.button} type="submit">
+          Create
+        </button>
+      </form>
     </Modal>
   );
 }

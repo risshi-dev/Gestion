@@ -1,0 +1,37 @@
+.formGroup {
+  margin: 15px 0px;
+}
+
+.label {
+  font-size: 1.02rem;
+}
+
+.input {
+  outline: 0;
+  border: 2px solid aliceblue;
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding: 5px;
+  width: 60%;
+  transition: 0.2s ease;
+}
+
+.input:focus {
+  border: 2px solid rgb(198, 229, 255);
+}
+
+.button {
+  font-size: 1.07rem;
+  border: 0;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 6px 12px;
+  color: white;
+  cursor: pointer;
+  background-color: #1890ff;
+  transition: 0.2s ease;
+}
+
+.button:hover {
+  background-color: #1780e2;
+}

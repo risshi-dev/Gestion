@@ -20,6 +20,7 @@ import {
 } from "../../stateManagement/Card/action";
 import { useSelector } from "react-redux";
 import _ from "lodash";
+import PriorityButton from "../../components/Priority/PriorityButton";
 
 const emptyCard = {
   title: "",
@@ -72,10 +73,10 @@ export default function Project() {
   };
 
   // creates a new card
-  const handleCreateCard = (title) => {
-    if (title.length > 0 && !checkExtraSpaces(title)) {
+  const handleCreateCard = (card) => {
+    if (card.title.length > 0 && !checkExtraSpaces(card.title)) {
       const projectId = router.query._id;
-      dispatch(createCard({ title, projectId }));
+      dispatch(createCard({ ...card, projectId }));
     }
   };
 
@@ -128,6 +129,7 @@ export default function Project() {
                 />
               ))}
           </div>
+
           <SideScreen
             screen={activeScreen}
             screenVisible={screenVisible}
