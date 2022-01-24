@@ -17,6 +17,14 @@ a {
 
 .SidebarContainer {
   margin: 10px 0px;
+  padding: 5px 0px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.5s ease;
+}
+.SidebarContainer:hover {
+  background-color: #f1f3ffd4;
 }
 
 .sidebarText {
@@ -25,7 +33,7 @@ a {
 
 .sideScreen {
   color: #e7e6e8;
-  height: 80vh;
+  height: 86vh;
   background: #eef2fa;
   border: 1px solid #ffffff;
   border-radius: 5px;
@@ -33,6 +41,7 @@ a {
   width: 0px;
   transition: 0.2s ease-in-out;
   overflow-y: auto;
+  margin: auto 0;
 }
 
 input {

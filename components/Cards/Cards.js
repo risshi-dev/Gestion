@@ -18,7 +18,11 @@ function Card({ click, open, card }) {
   };
   return (
     <div className={Cards.card} onClick={click}>
-      <div>{card.title}</div>
+      <div className={Cards.cardHeading}>{card.title}</div>
+      <div style={{ display: "flex" }}>
+        <div className={Cards.cardLabel}>Low</div>
+        <div className={Cards.cardLabel2}>On Track</div>
+      </div>
       <div>
         <div className={Cards.cardstats}>
           <div className={Cards.cardstat}>

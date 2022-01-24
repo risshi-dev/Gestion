@@ -18,37 +18,35 @@ function Sidebar({
 }) {
   const router = useRouter();
   return (
-    // <div id="sidebar" className={dashboard.Sidebar}>
-    //   <div className={dashboard.SidebarTop}>
-    //     <RightCircleOutlined
-    //       id="expandIcon"
-    //       className={icons.colorSize}
-    //       onClick={() => handleSidebar()}
-    //     />
-    //   </div>
-    <>
-      {router.pathname.match("/projects/") ? (
-        <ProjectSidebar
-          handleCreateCard={handleCreateCard}
-          openSideScreen={openSideScreen}
-          setSideScreen={setSideScreen}
-          screenVisible={screenVisible}
-        />
-      ) : (
-        <UserSidebar
-          openSideScreen={openSideScreen}
-          setSideScreen={setSideScreen}
-          screenVisible={screenVisible}
-        />
-      )}
-    </>
-    // <div className={dashboard.SidebarBottom}>
-    // <div>
-    //   <LogoutOutlined className={icons.colorSize} />{" "}
-    //   <span className="sidebarText">Log out</span>
-    // </div>
-    // </div>
-    //  </div>
+    <div>
+      <>
+        {router.pathname.match("/projects/") ? (
+          <ProjectSidebar
+            handleCreateCard={handleCreateCard}
+            openSideScreen={openSideScreen}
+            setSideScreen={setSideScreen}
+            screenVisible={screenVisible}
+          />
+        ) : (
+          <UserSidebar
+            openSideScreen={openSideScreen}
+            setSideScreen={setSideScreen}
+            screenVisible={screenVisible}
+          />
+        )}
+      </>
+      {/* //{" "}
+      <div className={dashboard.SidebarBottom}>
+        //{" "}
+        <div>
+          // <LogoutOutlined className={icons.colorSize} /> //{" "}
+          <span className="sidebarText">Log out</span>
+          //{" "}
+        </div>
+        //{" "}
+      </div>
+      //{" "} */}
+    </div>
   );
 }
 

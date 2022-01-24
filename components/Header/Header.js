@@ -14,7 +14,7 @@ function Header() {
     <div className={dashboard.Header}>
       <div onClick={() => router.push("/")}>Gestion</div>
 
-      {path === "/" ? <LandingHeader /> : <div></div>}
+      <LandingHeader />
     </div>
   );
 }

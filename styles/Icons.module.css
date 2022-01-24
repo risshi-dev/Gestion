@@ -1,11 +1,34 @@
 .colorSize {
-  color: #e7e6e8;
-  font-size: 32px;
+  color: #323350;
+  font-size: 28px;
   cursor: pointer;
 }
 
 .extra {
-  color: #e7e6e8;
+  color: #323350;
   font-size: 22px;
   cursor: pointer;
+}
+
+.text {
+  font-size: 18px;
+  margin-left: 15px;
+  color: #323350;
+}
+
+.button {
+  font-size: 16px;
+  font-weight: 100px;
+  padding: 15px 40px;
+  background: #3bbfff;
+  width: fit-content;
+  color: #fff;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 3px 5px 16px #fff;
+  transition: 0.5s ease;
+}
+.button:hover {
+  box-shadow: 3px 5px 16px #a4e2ff;
 }

@@ -90,7 +90,7 @@ export default function Project() {
   const openSideScreen = useCallback(() => {
     if (!isSideScreen) {
       const side = document.getElementsByClassName("sideScreen")[0];
-      side.style.width = "320px";
+      side.style.width = "350px";
     } else {
       const side = document.getElementsByClassName("sideScreen")[0];
       side.style.width = "0px";
@@ -109,7 +109,7 @@ export default function Project() {
           <meta name="description" content="Login in your account" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Header />
+        {/* <Header /> */}
 
         <div className={dashboard.Main}>
           <Sidebar
@@ -118,18 +118,24 @@ export default function Project() {
             setSideScreen={setScreen}
             screenVisible={screenVisible}
           />
-          <div className={Cards.container}>
-            {!loading &&
-              cards.map((card) => (
-                <Card
-                  key={card._id}
-                  open={openModal}
-                  click={() => onCardClick(card)}
-                  card={card}
-                />
-              ))}
+          <div style={{ backgroundColor: "#f1f2f98a" }}>
+            <div
+              style={{ fontSize: "30px", marginBottom: "2vh", padding: "20px" }}
+            >
+              Projects
+            </div>
+            <div className={Cards.container}>
+              {!loading &&
+                cards.map((card) => (
+                  <Card
+                    key={card._id}
+                    open={openModal}
+                    click={() => onCardClick(card)}
+                    card={card}
+                  />
+                ))}
+            </div>
           </div>
-
           <SideScreen
             screen={activeScreen}
             screenVisible={screenVisible}

@@ -9,7 +9,8 @@ import { useRouter } from "next/router";
 import SideScreen from "../Project/SideScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { getProjects } from "../../stateManagement/Project/action";
-
+import Image from "next/image";
+import image from "../../public/projects.jpg";
 const ProjectsList = ({ projects, router }) => {
   return (
     <>
@@ -19,6 +20,7 @@ const ProjectsList = ({ projects, router }) => {
           className={dashboard.Card}
           onClick={() => router.push(`/projects/${project._id}`)}
         >
+          <div></div>
           <div className={dashboard.newProject}>{project.title}</div>
         </div>
       ))}
@@ -39,7 +41,7 @@ export default function MainDashboard() {
   const openSideScreen = useCallback(() => {
     if (!isSideScreen) {
       const side = document.getElementsByClassName("sideScreen")[0];
-      side.style.width = "320px";
+      side.style.width = "350px";
     } else {
       const side = document.getElementsByClassName("sideScreen")[0];
       side.style.width = "0px";
@@ -63,8 +65,8 @@ export default function MainDashboard() {
         <meta name="description" content="Login in your account" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Header />
+      {/* 
+      <Header /> */}
 
       <div className={dashboard.Main}>
         <Sidebar
@@ -72,8 +74,15 @@ export default function MainDashboard() {
           setSideScreen={setScreen}
           screenVisible={screenVisible}
         />
-        <div className={dashboard.projectContainer}>
-          {!loading && <ProjectsList projects={projects} router={router} />}
+        <div style={{ backgroundColor: "#f1f2f98a" }}>
+          <div
+            style={{ fontSize: "30px", marginBottom: "2vh", padding: "20px" }}
+          >
+            Projects
+          </div>
+          <div className={dashboard.projectContainer}>
+            {!loading && <ProjectsList projects={projects} router={router} />}
+          </div>
         </div>
 
         <SideScreen

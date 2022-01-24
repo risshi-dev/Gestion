@@ -16,6 +16,14 @@ import InviteMember from "./InviteMember";
 import CreateCardModal from "../Cards/CreateCardModal";
 import { useRouter } from "next/router";
 
+import {
+  AiFillInfoCircle,
+  AiFillLeftCircle,
+  AiFillMessage,
+} from "react-icons/ai";
+import { FaUser, FaUsers } from "react-icons/fa";
+import { MdGroupAdd } from "react-icons/md";
+import { IoChevronBackCircleSharp } from "react-icons/io";
 export default function ProjectSidebar({
   handleCreateCard,
   openSideScreen,
@@ -32,67 +40,75 @@ export default function ProjectSidebar({
 
   return (
     <div id="sidebar" className={dashboard.Sidebar}>
-      <div className={dashboard.SidebarTop}>
-        <Tooltip placement="right" title="Project Info" color="#030303">
-          <InfoCircleOutlined
-            id="expandIcon"
-            className={icons.colorSize}
-            onClick={() => {
-              screenVisible(false);
-              setSideScreen("info");
-            }}
-          />
-        </Tooltip>
+      <div className={dashboard.sidebarHeader}>Gestion</div>
+      <div
+        className={dashboard.SidebarTop}
+        onClick={() => {
+          screenVisible(false);
+          setSideScreen("info");
+        }}
+      >
+        {/* <Tooltip placement="right" title="Project Info" color="#030303"> */}
+        <AiFillInfoCircle id="expandIcon" className={icons.colorSize} />
+        <span className={icons.text}>Project Info</span>
+        {/* </Tooltip> */}
       </div>
       <div className={dashboard.SidebarMid}>
-        <div className="SidebarContainer">
-          <Tooltip placement="right" title="Create Card" color="#030303">
-            <Avatar
-              src={
-                <PlusCircleOutlined
-                  onClick={() => setModal(true)}
-                  className={icons.colorSize}
-                />
-              }
-              size="large"
-            />
-          </Tooltip>
+        <div
+          className="SidebarContainer"
+          onClick={() => {
+            screenVisible(false);
+            setSideScreen("members");
+          }}
+        >
+          {/* <Tooltip placement="right" title="View Members" color="#030303"> */}
+          <Avatar src={<FaUsers className={icons.colorSize} />} size="large" />
+          <span className={icons.text}>Team Members</span>
+          {/* </Tooltip> */}
         </div>
 
-        <div className="SidebarContainer">
-          <Tooltip placement="right" title="View Members" color="#030303">
-            <Avatar
-              onClick={() => {
-                screenVisible(false);
-                setSideScreen("members");
-              }}
-              src={<UserOutlined className={icons.colorSize} />}
-              size="large"
-            />
-          </Tooltip>
+        <div className="SidebarContainer" onClick={setInviteModal}>
+          {/* <Tooltip placement="right" title="Send Invites" color="#030303"> */}
+          <Avatar
+            src={<MdGroupAdd className={icons.colorSize} />}
+            size="large"
+          />
+          <span className={icons.text}>Send Invites</span>
+          {/* </Tooltip> */}
         </div>
 
-        <div className="SidebarContainer">
-          <Tooltip placement="right" title="Send Invites" color="#030303">
-            <Avatar
-              src={<UsergroupAddOutlined className={icons.colorSize} />}
-              onClick={setInviteModal}
-              size="large"
-            />
-          </Tooltip>
+        <div
+          className="SidebarContainer"
+          onClick={() => {
+            screenVisible(false);
+            setSideScreen("chat");
+          }}
+        >
+          {/* <Tooltip placement="right" title="Discuss Tasks" color="#030303"> */}
+          <Avatar
+            src={<AiFillMessage className={icons.colorSize} />}
+            size="large"
+          />
+          <span className={icons.text}>Chat</span>
+          {/* </Tooltip> */}
         </div>
-
-        <div className="SidebarContainer">
-          <Tooltip placement="right" title="Discuss Tasks" color="#030303">
-            <Avatar
-              onClick={() => {
-                screenVisible(false);
-                setSideScreen("chat");
-              }}
-              src={<MessageOutlined className={icons.colorSize} />}
-              size="large"
-            />
-          </Tooltip>
+        <div className="SidebarContainer" onClick={() => setModal(true)}>
+          {/* <Tooltip placement="right" title="Create Card" color="#030303"> */}
+          {/* <Avatar
+            src={
+              <PlusCircleOutlined
+                onClick={() => setModal(true)}
+                className={icons.colorSize}
+              />
+            }
+            size="large"
+          />
+          <span className={icons.text}>Create Card</span> */}
+          {/* </Tooltip> */}
+          <div className={icons.button}>
+            {/* <PlusCircleFilled /> */}
+            <span>Create Card</span>
+          </div>
         </div>
 
         <CreateCardModal
@@ -103,13 +119,17 @@ export default function ProjectSidebar({
         <InviteMember isOpen={openInviteModal} setModal={setInviteModal} />
       </div>
       <div className={dashboard.SidebarBottom}>
-        <div>
-          <Tooltip placement="right" title="Back to Projects" color="#030303">
-            <LeftCircleOutlined
-              onClick={() => router.push("/dashboard")}
-              className={icons.colorSize}
-            />{" "}
-          </Tooltip>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => router.push("/dashboard")}
+        >
+          {/* <Tooltip placement="right" title="Back to Projects" color="#030303"> */}
+          <Avatar
+            src={<AiFillLeftCircle className={icons.colorSize} />}
+            size="large"
+          />{" "}
+          <span className={icons.text}>Go Back</span>
+          {/* </Tooltip> */}
         </div>
       </div>
     </div>

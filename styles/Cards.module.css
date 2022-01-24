@@ -1,22 +1,73 @@
 .container {
-  background: #eef2fa;
+  background: transparent;
+  overflow-y: auto;
   border-radius: 5px;
   padding: 15px;
+  height: 80vh;
+}
+
+.container::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border-radius: 5px;
+  background-color: #f1f2f9;
+  height: 50px;
+}
+
+.container::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+.container::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  background-color: #9ca8ff;
+  height: 50px;
 }
 
 .card {
   font-size: 18px;
-  width: 250px;
-  height: auto;
+  width: 300px;
+  height: 210px;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 15px;
-  margin: 15px;
+  margin: 30px 15px;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr 1.5fr auto;
+  box-shadow: 4px 5px 9px #dee2fe00, -1px 0px 9px #dee2fe73;
   cursor: pointer;
 }
 
+.cardHeading {
+  font-size: 20px;
+  margin-left: 10px;
+  color: #323500;
+  font-weight: 100;
+}
+
+.cardLabel {
+  height: fit-content;
+  padding: 5px 20px;
+  background: #ff6952;
+  border-radius: 46px;
+  font-size: 16px;
+  font-weight: 100;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-right: 10px;
+}
+.cardLabel2 {
+  height: fit-content;
+  padding: 5px 20px;
+  background: #f4a838;
+  border-radius: 46px;
+  font-size: 16px;
+  font-weight: 100;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-right: 10px;
+}
 .cardFooter {
   display: grid;
   grid-template-columns: auto auto;
@@ -69,6 +120,7 @@
 
 .cardstats {
   display: flex;
+  justify-content: end;
   font-size: 0.9em;
   color: rgb(87, 87, 87);
 }
