@@ -43,7 +43,7 @@ export default function Landing() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.paddingContainer}>
       <Head>
         <title>Gestion SignUp</title>
         <meta name="description" content="sign Up for Gestion" />

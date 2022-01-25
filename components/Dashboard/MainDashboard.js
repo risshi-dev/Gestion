@@ -41,7 +41,7 @@ export default function MainDashboard() {
   const openSideScreen = useCallback(() => {
     if (!isSideScreen) {
       const side = document.getElementsByClassName("sideScreen")[0];
-      side.style.width = "350px";
+      side.style.width = "320px";
     } else {
       const side = document.getElementsByClassName("sideScreen")[0];
       side.style.width = "0px";

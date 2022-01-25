@@ -4,7 +4,13 @@ export const actionTypes = {
 
   REGISTER_REQUEST: "REGISTER_REQUEST",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
+
+  LOGOUT_REQUEST: "LOGOUT_REQUEST",
 };
+
+export function logoutRequest() {
+  return { type: actionTypes.LOGOUT_REQUEST };
+}
 
 export function loginRequest(payload) {
   return { type: actionTypes.LOGIN_REQUEST, payload };

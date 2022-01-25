@@ -23,6 +23,7 @@ function Card({ click, open, card }) {
         <div className={Cards.cardLabel}>Low</div>
         <div className={Cards.cardLabel2}>On Track</div>
       </div>
+
       <div>
         <div className={Cards.cardstats}>
           <div className={Cards.cardstat}>

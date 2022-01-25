@@ -120,7 +120,7 @@
 
 .cardstats {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   font-size: 0.9em;
   color: rgb(87, 87, 87);
 }

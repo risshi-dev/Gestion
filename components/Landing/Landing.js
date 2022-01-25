@@ -18,7 +18,7 @@ export default function Landing() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.paddingContainer}>
       <Head>
         <title>Gestion</title>
         <meta name="description" content="A Project Management Tool" />

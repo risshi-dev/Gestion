@@ -22,6 +22,11 @@ class AuthorizationRepository {
     });
     return response;
   }
+
+  async logoutRepo() {
+    const response = await Repository.get(`${baseUrl}/user/logout`);
+    return response;
+  }
 }
 
 export default new AuthorizationRepository();

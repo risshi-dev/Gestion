@@ -4,6 +4,12 @@
   background-color: #fff;
 }
 
+.paddingContainer {
+  padding: 0 5rem;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
 .innerContainer {
   display: flex;
 }

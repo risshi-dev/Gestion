@@ -92,7 +92,7 @@ export default function ProjectSidebar({
           <span className={icons.text}>Chat</span>
           {/* </Tooltip> */}
         </div>
-        <div className="SidebarContainer" onClick={() => setModal(true)}>
+        <div style={{ marginTop: "10px" }} onClick={() => setModal(true)}>
           {/* <Tooltip placement="right" title="Create Card" color="#030303"> */}
           {/* <Avatar
             src={

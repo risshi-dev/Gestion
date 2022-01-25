@@ -4,7 +4,7 @@ import firebase from "firebase";
 import db from "./firebase";
 
 function SendMessage() {
-  const uid = 123;
+  const uid = 122;
   const displayName = "Anurag";
   const dummyspace = useRef();
   const [newMessage, setNewMessage] = useState("");

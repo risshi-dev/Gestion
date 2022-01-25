@@ -3,7 +3,7 @@ import AuthorizationRepository from "../../stateManagement/Repository/Authorizat
 import { actionTypes, loginSuccess, registerSuccess } from "./action";
 import { message } from "antd";
 import router from "next/router";
-import { WriteCookie } from "../../helper/helper";
+import { clearStorage, deleteCookie, WriteCookie } from "../../helper/helper";
 
 const modalSuccessLogin = (type) => {
   message.success("Welcome back");
@@ -49,7 +49,24 @@ function* registerSaga({ payload }) {
   }
 }
 
+function* logoutSaga() {
+  try {
+    const response = yield call(AuthorizationRepository.logoutRepo);
+    const { status } = response;
+
+    if (status === 200) {
+      deleteCookie();
+      clearStorage();
+      message.success("Logged Out Successfully");
+      router.push("/login");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* rootSaga() {
   yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
   yield all([takeEvery(actionTypes.REGISTER_REQUEST, registerSaga)]);
+  yield all([takeEvery(actionTypes.LOGOUT_REQUEST, logoutSaga)]);
 }

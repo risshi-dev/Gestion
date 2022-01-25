@@ -15,6 +15,11 @@ function Header() {
       <div onClick={() => router.push("/")}>Gestion</div>
 
       <LandingHeader />
+      {/* <div>
+        <span>03</span>
+        <span>/</span> <span>Jan</span>
+        <span>/</span> <span>2022</span>
+      </div> */}
     </div>
   );
 }

@@ -14,15 +14,22 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { Avatar, Badge, Tooltip } from "antd";
 import CreateProject from "../Dashboard/CreateProject";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logoutRequest } from "../../stateManagement/Authorization/action";
 
 export default function UserSidebar({
   openSideScreen,
   setSideScreen,
   screenVisible,
 }) {
+  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
 
   const setModal = (isOpen) => setOpenModal(isOpen);
+
+  const logoutHandler = () => {
+    dispatch(logoutRequest());
+  };
   return (
     <div id="sidebar" className={dashboard.Sidebar}>
       <div className={dashboard.sidebarHeader}>Gestion</div>
@@ -78,7 +85,7 @@ export default function UserSidebar({
           {/* </Tooltip> */}
         </div>
       </div>
-      <div className={dashboard.SidebarBottom}>
+      <div className={dashboard.SidebarBottom} onClick={() => logoutHandler()}>
         <div>
           {/* <Tooltip placement="right" title="Logout" color="#030303"> */}
           <RiLogoutBoxRFill

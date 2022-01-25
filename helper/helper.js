@@ -8,6 +8,10 @@ export const deleteCookie = () => {
   document.cookie = "LoggedIn=true" + ";" + " expires=" + expires + ";path=/;";
 };
 
+export const clearStorage = () => {
+  window.localStorage.clear();
+};
+
 export const isAuth = () => {
   return document.cookie && document.cookie.indexOf("LoggedIn") != -1
     ? true
@@ -16,8 +20,4 @@ export const isAuth = () => {
 
 export const checkExtraSpaces = (text) => {
   return /^\s+$/.test(text);
-};
-
-export const validateEmail = (email) => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
