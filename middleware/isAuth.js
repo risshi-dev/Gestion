@@ -10,7 +10,7 @@ export const isAuth = ash((req, res, next) => {
   //   throw error;
   // }
   const cook = req.headers.cookie;
-  console.log(cook);
+
   let token = "";
   for (
     let i = cook.search("token=") + 6;
@@ -19,6 +19,7 @@ export const isAuth = ash((req, res, next) => {
   ) {
     token += cook[i];
   }
+  console.log(token);
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
@@ -31,6 +32,7 @@ export const isAuth = ash((req, res, next) => {
   if (!decodedToken) {
     console.log(error);
   }
+  console.log(decodedToken);
   req.user_id = decodedToken.id;
   next();
 });

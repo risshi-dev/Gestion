@@ -23,9 +23,9 @@ const project = mongoose.Schema({
   deploymentLink: {
     type: String,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  createdBy: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
   },
   cards: [
     {
