@@ -3,11 +3,12 @@
   padding: 10px 10px;
   border-radius: 5px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 0fr));
-  height: 80vh;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 0fr));
+  height: 70vh;
   overflow-y: auto;
-  grid-row-gap: 15px;
-  grid-column-gap: 15px;
+  grid-row-gap: 30px;
+  grid-column-gap: 30px;
+  justify-content: center;
 }
 
 .projectContainer::-webkit-scrollbar-track {
@@ -31,15 +32,15 @@
 
 .Card {
   background-color: #fff;
-  color: #3b78f8;
-  width: 250px;
-  height: 150px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #323500;
+  width: 260px;
+  height: 200px;
+  border-radius: 15px;
+  display: grid;
+  grid-template-rows: 1.5fr 2fr auto;
+  padding: 15px 20px;
   transition: 0.5s ease-in;
-  box-shadow: 3px 4px 10px #cbdcff;
+  box-shadow: 4px 5px 9px #dee2fe00, -1px 0px 9px #dee2fe73;
 }
 
 .Card:hover {
@@ -47,11 +48,32 @@
   cursor: pointer;
 }
 
+.cardMid {
+  color: #484848;
+}
+
+.cardFooter {
+  /* #9ca8ff */
+  color: #7989ff;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 20px;
+}
+.cardFooterLeft {
+  color: #ff6952;
+}
+.cardFooterRight {
+  display: flex;
+  align-items: flex-end;
+  color: #ffd746;
+}
+
 .newProject {
   font-size: 25px;
-
-  font-weight: 100;
-  letter-spacing: 1px;
+  font-weight: 300;
+  letter-spacing: 0px;
+  color: #272727;
 }
 
 .addProjectModal {
@@ -65,7 +87,7 @@
   height: 100vh;
   background: #ffffff;
   border: 1px solid #ffffff;
-  width: 240px;
+  width: 220px;
   /* border-radius: 5px; */
   /* text-align: center; */
   padding: 30px 0px;
@@ -73,6 +95,13 @@
   grid-template-rows: 1fr 1fr 5fr 1fr;
   transition: 0.3s ease-in-out;
   /* box-shadow: 6px 0px 10px #e4edff; */
+}
+
+.userSideBar {
+  position: fixed;
+  width: 60px;
+  padding: 30px 10px;
+  grid-template-rows: 1fr 5fr 1fr;
 }
 
 .Header {
@@ -83,8 +112,11 @@
 }
 .Main {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   grid-column-gap: 40px;
+}
+.userMain {
+  grid-column-gap: 100px;
 }
 .SidebarTop {
   display: flex;
@@ -120,6 +152,23 @@
   font-size: 30px;
   color: #000;
   margin-left: 25px;
+}
+
+.dropDown {
+  border-radius: 15px;
+  margin: 5vh auto;
+  width: 85%;
+  padding: 10px 20px;
+  box-shadow: 4px 5px 9px #dee2fe00, -1px 0px 9px #dee2fe73;
+  background: #ffffff;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.dropDownHeader {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 .searchHeader {

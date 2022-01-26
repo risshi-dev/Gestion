@@ -19,16 +19,16 @@
 .button {
   font-size: 16px;
   font-weight: 100px;
-  padding: 15px 40px;
+  padding: 10px 10px 6px 10px;
   background: #3bbfff;
   width: fit-content;
   color: #fff;
   border-radius: 10px;
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: 3px 5px 16px #fff;
+  box-shadow: 3px 5px 16px #a4e2ff;
   transition: 0.5s ease;
 }
 .button:hover {
-  box-shadow: 3px 5px 16px #a4e2ff;
+  box-shadow: 3px 5px 16px #93d9fa;
 }

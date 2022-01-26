@@ -9,33 +9,35 @@ import ViewMembers from "./ViewMembers";
 function SideScreen({ screen, screenVisible, openSideScreen }) {
   return (
     <div className="sideScreen">
-      <RightCircleOutlined
-        onClick={() => {
-          screenVisible(true);
-          openSideScreen();
-        }}
-        style={{
-          fontSize: "30px",
-          color: "#030303",
-          marginLeft: "15px",
-        }}
-      />
-      <div style={{ textAlign: "center" }}>
-        {screen === "" ? (
-          <></>
-        ) : screen === "chat" ? (
-          <Chat />
-        ) : screen === "info" ? (
-          <ProjectInfo />
-        ) : screen === "profile" ? (
-          <Profile />
-        ) : screen === "invites" ? (
-          <ViewInvites />
-        ) : screen === "members" ? (
-          <ViewMembers />
-        ) : (
-          <></>
-        )}
+      <div>
+        <RightCircleOutlined
+          onClick={() => {
+            screenVisible(true);
+            openSideScreen();
+          }}
+          style={{
+            fontSize: "30px",
+            color: "#030303",
+            marginLeft: "15px",
+          }}
+        />
+        <div style={{ textAlign: "center" }}>
+          {screen === "" ? (
+            <></>
+          ) : screen === "chat" ? (
+            <Chat />
+          ) : screen === "info" ? (
+            <ProjectInfo />
+          ) : screen === "profile" ? (
+            <Profile />
+          ) : screen === "invites" ? (
+            <ViewInvites />
+          ) : screen === "members" ? (
+            <ViewMembers />
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </div>
   );

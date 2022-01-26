@@ -1,6 +1,6 @@
 .priorityButton {
-  height: 32px;
-  padding: 0px 17px;
+  width: 100px;
+  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -9,6 +9,6 @@
   cursor: pointer;
   border: 2px solid;
   font-size: 13px;
-  border-radius: 16px;
+  border-radius: 43px;
   transition: 0.2s ease;
 }

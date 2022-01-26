@@ -28,52 +28,52 @@ export default function CreateCardModal({
       footer={false}
       onCancel={() => setModal(false)}
     >
-      <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="title">
-            Title<span style={{ color: "red" }}>*</span>
-          </label>
-          <br />
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={card.title}
-            className={styles.input}
-            onChange={(e) => setCard({ ...card, title: e.target.value })}
-            placeholder="Card Title"
-            required={true}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="description">
-            Description
-          </label>
-          <br />
-          <textarea
-            name="description"
-            id="description"
-            value={card.description}
-            className={styles.input}
-            placeholder="Add a description ..."
-            onChange={(e) => setCard({ ...card, description: e.target.value })}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="priority">
-            Set priority
-          </label>
-          <br />
-          <PriorityButtonGroup
-            id="priority"
-            selected={card.priority}
-            setSelected={(selected) => setCard({ ...card, priority: selected })}
-          />
-        </div>
-        <button className={styles.button} type="submit">
-          Create
-        </button>
-      </form>
+      {/* <form onSubmit={handleSubmit}> */}
+      <div className={styles.formGroup}>
+        <label className={styles.label} htmlFor="title">
+          Title<span style={{ color: "red" }}>*</span>
+        </label>
+        <br />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value={card.title}
+          className={styles.input}
+          onChange={(e) => setCard({ ...card, title: e.target.value })}
+          placeholder="Card Title"
+          required={true}
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label className={styles.label} htmlFor="description">
+          Description
+        </label>
+        <br />
+        <textarea
+          name="description"
+          id="description"
+          value={card.description}
+          className={styles.input}
+          placeholder="Add a description ..."
+          onChange={(e) => setCard({ ...card, description: e.target.value })}
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label className={styles.label} htmlFor="priority">
+          Set priority
+        </label>
+        <br />
+        <PriorityButtonGroup
+          id="priority"
+          selected={card.priority}
+          setSelected={(selected) => setCard({ ...card, priority: selected })}
+        />
+      </div>
+      <button className={styles.button} type="submit">
+        Create
+      </button>
+      {/* </form> */}
     </Modal>
   );
 }

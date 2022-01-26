@@ -42,34 +42,44 @@
   font-size: 14px;
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #030303;
-  border: 1px solid #030303;
+  background-color: #3bbfff;
+  border: 1px solid #3bbfff;
+  width: 120px;
+  width: 100px;
+  color: #e7e6e8;
+}
+
+.cancelColor {
+  background-color: #bb3354;
+  border: 1px solid #bb3354;
+}
+
+.sideScreenDeleteButtons {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #323350;
+  border: 1px solid #323350;
   width: 120px;
   width: 100px;
   color: #e7e6e8;
   margin: 10px auto 10px auto;
 }
 
-.sideScreenDeleteButtons {
-  cursor: pointer;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #ff0000;
-  border: 1px solid #ff0000;
-  font-weight: 300;
-  width: 250px;
-  color: #e7e6e8;
-  letter-spacing: 2px;
-  margin: 10px auto 10px auto;
+.inviteContainer {
+  /* width: 90%; */
+  margin: 20px auto;
+  border: 1px solid #e9e9e9;
+  border-radius: 15px;
+  padding: 20px 10px;
+  background-color: #fff;
+  /* box-shadow: 4px 5px 9px #dee2fe00, -1px 0px 9px #dee2fe73; */
+  color: #030303;
 }
 
-.inviteContainer {
-  width: 250px;
-  margin: 10px auto;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #fff;
-  color: #030303;
+.inviteContainerButton {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 25px;
 }

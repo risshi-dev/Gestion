@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Invites from "../../styles/Project.module.css";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import dashboard from "../../styles/Dashboard.module.css";
@@ -11,6 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProjects } from "../../stateManagement/Project/action";
 import Image from "next/image";
 import image from "../../public/projects.jpg";
+import { FaUsers } from "react-icons/fa";
+import {
+  AiFillGithub,
+  AiOutlineDeploymentUnit,
+  AiOutlineDown,
+} from "react-icons/ai";
+import DropDown from "./DropDown";
 const ProjectsList = ({ projects, router }) => {
   return (
     <>
@@ -20,8 +28,25 @@ const ProjectsList = ({ projects, router }) => {
           className={dashboard.Card}
           onClick={() => router.push(`/projects/${project._id}`)}
         >
-          <div></div>
           <div className={dashboard.newProject}>{project.title}</div>
+          <div className={dashboard.cardMid}>
+            This project is about something
+          </div>
+          <div>
+            <div className={dashboard.cardFooter}>
+              <div className={dashboard.cardFooterLeft}>
+                <AiFillGithub
+                  style={{ fontSize: "28px", marginRight: "10px" }}
+                />
+                <AiOutlineDeploymentUnit
+                  style={{ fontSize: "28px", marginRight: "10px" }}
+                />
+              </div>
+              <div className={dashboard.cardFooterRight}>
+                <FaUsers style={{ fontSize: "28px", marginRight: "10px" }} /> 7{" "}
+              </div>
+            </div>
+          </div>
         </div>
       ))}
     </>
@@ -68,28 +93,26 @@ export default function MainDashboard() {
       {/* 
       <Header /> */}
 
-      <div className={dashboard.Main}>
+      <div className={`${dashboard.Main} ${dashboard.userMain}`}>
         <Sidebar
           openSideScreen={openSideScreen}
           setSideScreen={setScreen}
           screenVisible={screenVisible}
         />
         <div style={{ backgroundColor: "#f1f2f98a" }}>
-          <div
-            style={{ fontSize: "30px", marginBottom: "2vh", padding: "20px" }}
-          >
-            Projects
-          </div>
+          <div style={{ fontSize: "30px", padding: "10px 30px" }}>Welcome</div>
           <div className={dashboard.projectContainer}>
             {!loading && <ProjectsList projects={projects} router={router} />}
           </div>
+
+          <DropDown />
         </div>
 
-        <SideScreen
+        {/* <SideScreen
           screen={activeScreen}
           screenVisible={screenVisible}
           openSideScreen={openSideScreen}
-        />
+        /> */}
       </div>
     </div>
   );

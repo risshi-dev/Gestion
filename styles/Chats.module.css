@@ -10,7 +10,7 @@
 
 .chatButton {
   padding: 10px 20px;
-  background-color: #030303;
+  background-color: #323550;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -18,9 +18,10 @@
 
 .messageScreen {
   width: 90%;
-  height: 60vh;
+  height: 58vh;
   margin: 10px auto 30px auto;
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .messageContainer {
@@ -40,14 +41,14 @@
 
 .self {
   float: right;
-  background-color: #030303;
+  background-color: #3bbfff;
   color: #fff;
 }
 
 .others {
   float: left;
   background-color: #fff;
-  color: #030303;
+  color: #323550;
 }
 
 .userName {

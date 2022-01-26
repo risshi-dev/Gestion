@@ -1,16 +1,8 @@
 import dashboard from "../../styles/Dashboard.module.css";
 import icons from "../../styles/Icons.module.css";
-import {
-  UserOutlined,
-  LogoutOutlined,
-  PlusCircleOutlined,
-  MailFilled,
-  InfoCircleOutlined,
-  PlusOutlined,
-  PlusCircleFilled,
-} from "@ant-design/icons/lib/icons";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLogoutBoxRFill } from "react-icons/ri";
+import { AiOutlinePlusCircle, AiFillMail } from "react-icons/ai";
 import { Avatar, Badge, Tooltip } from "antd";
 import CreateProject from "../Dashboard/CreateProject";
 import { useState } from "react";
@@ -31,8 +23,11 @@ export default function UserSidebar({
     dispatch(logoutRequest());
   };
   return (
-    <div id="sidebar" className={dashboard.Sidebar}>
-      <div className={dashboard.sidebarHeader}>Gestion</div>
+    <div
+      id="sidebar"
+      className={`${dashboard.Sidebar} ${dashboard.userSideBar}`}
+    >
+      {/* <div className={dashboard.sidebarHeader}>Gestion</div> */}
 
       <div
         className={dashboard.SidebarTop}
@@ -42,13 +37,14 @@ export default function UserSidebar({
           setSideScreen("profile");
         }}
       >
-        {/* <Tooltip placement="right" title="View Profile" color="#030303"> */}
-        <FaUserAlt id="expandIcon" className={icons.colorSize} />
-        {/* </Tooltip> */} <span className={icons.text}>Profile</span>
+        <Tooltip placement="right" title="View Profile" color="#3bbfff">
+          <FaUserAlt id="expandIcon" className={icons.colorSize} />
+        </Tooltip>
+        {/* <span className={icons.text}>Profile</span> */}
       </div>
 
       <div className={dashboard.SidebarMid}>
-        <div
+        {/* <div
           className="SidebarContainer"
           onClick={() => {
             screenVisible(false);
@@ -56,23 +52,26 @@ export default function UserSidebar({
             setSideScreen("invites");
           }}
         >
-          {/* <Tooltip placement="right" title="View Invites" color="#030303"> */}
-          <Badge count={1} color={"#3b78f8"}>
-            <Avatar
-              src={<MailFilled className={icons.colorSize} />}
-              size="large"
-            />{" "}
-          </Badge>{" "}
-          <span className={icons.text}>Invites</span>
-          {/* </Tooltip> */}
-        </div>
+          {/* <div> */}
+        {/* <Tooltip placement="right" title="View Invites" color="#3bbfff">
+            <Badge count={1} color={"#3b78f8"}>
+              <Avatar
+                src={<AiFillMail className={icons.colorSize} />}
+                size="large"
+              />{" "}
+            </Badge>{" "}
+          </Tooltip>{" "} */}
+        {/* <span className={icons.text}>Invites</span> */}
+        {/* </div> */}
+        {/* </div> */}
+
         <div style={{ margin: "10px 0px" }} onClick={setModal}>
-          {/* <Tooltip placement="right" title="Create Project" color="#030303"> */}
-          <div className={icons.button}>
-            {/* <PlusCircleFilled /> */}
-            <span>Add a Project</span>
-          </div>
-          {/* <Avatar
+          <Tooltip placement="right" title="Create Project" color="#3bbfff">
+            <div className={icons.button}>
+              <AiOutlinePlusCircle style={{ fontSize: "30px" }} />
+              {/* <span>Add a Project</span> */}
+            </div>
+            {/* <Avatar
             src={
               <PlusCircleOutlined
                
@@ -82,15 +81,16 @@ export default function UserSidebar({
             size="large"
           />
           <span className={icons.text}>Add Projects</span> */}
-          {/* </Tooltip> */}
+          </Tooltip>
         </div>
       </div>
       <div className={dashboard.SidebarBottom} onClick={() => logoutHandler()}>
         <div>
-          {/* <Tooltip placement="right" title="Logout" color="#030303"> */}
-          <RiLogoutBoxRFill
-            className={icons.colorSize}
-          /> {/* </Tooltip> */} <span className={icons.text}>Logout</span>
+          <Tooltip placement="right" title="Logout" color="#3bbfff">
+            <RiLogoutBoxRFill className={icons.colorSize} />
+          </Tooltip>
+
+          {/* <span className={icons.text}>Logout</span> */}
         </div>
       </div>
       <CreateProject isOpen={openModal} setModal={setModal} />
