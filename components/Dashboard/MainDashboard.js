@@ -84,7 +84,7 @@ export default function MainDashboard() {
 
   console.log(projects);
   return (
-    <div className={dashboard.container}>
+    <div className={dashboard.container} style={{ marginRight: "1rem" }}>
       <Head>
         <title>Gestion Login</title>
         <meta name="description" content="Login in your account" />

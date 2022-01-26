@@ -112,10 +112,11 @@
 }
 .Main {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   grid-column-gap: 40px;
 }
 .userMain {
+  grid-template-columns: auto 1fr;
   grid-column-gap: 100px;
 }
 .SidebarTop {
