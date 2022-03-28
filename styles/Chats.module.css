@@ -2,10 +2,15 @@
   text-align: center;
 }
 .chatInput {
-  border: 1px solid #fff;
+  border: 1px solid rgb(209, 209, 209);
   border-radius: 5px;
   padding: 10px;
+  color: black;
   margin-right: 10px;
+}
+
+.chatInput:focus{
+  border: 1.5px solid rgb(180, 180, 180);
 }
 
 .chatButton {

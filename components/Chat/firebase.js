@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import 'firebase/storage';
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -11,6 +12,7 @@ if (!firebase.apps.length) {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
   });
 } else firebase.app();
-const db = firebase.firestore();
 
+const db = firebase.firestore();
+export const storage = firebase.storage();
 export default db;

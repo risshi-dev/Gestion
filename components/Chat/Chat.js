@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import MessageScreen from "./MessageScreen";
 import SendMessage from "./SendMessage";
 import ChatCss from "../../styles/Chats.module.css";
 function Chat() {
+  const messageScreenRef = useRef();
   return (
     <div className={ChatCss.Container}>
-      <MessageScreen />
-      <SendMessage />
+      <MessageScreen messageScreenRef={messageScreenRef}/>
+      <SendMessage messageScreenRef={messageScreenRef}/>
     </div>
   );
 }

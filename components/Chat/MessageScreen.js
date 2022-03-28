@@ -3,9 +3,13 @@ import { useEffect, useState } from "react";
 import { formatRelative } from "date-fns";
 import Chat from "../../styles/Chats.module.css";
 import db from "./firebase";
+import { useSelector } from "react-redux";
 
-function MessageScreen() {
-  const uid = 123;
+function MessageScreen({messageScreenRef}) {
+  const {login} = useSelector(state => state.loginReducer)
+  const {username, _id} = login;
+  
+  const uid = _id;
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -18,11 +22,11 @@ function MessageScreen() {
   }, []);
 
   return (
-    <div className={Chat.messageScreen}>
+    <div className={Chat.messageScreen} ref={messageScreenRef}>
       {messages.map(
         (message) => (
-          <>
-            <div
+          <div key={message.uid}>
+            <div 
               className={
                 message.uid === uid
                   ? `${Chat.self} ${Chat.messageContainer}`
@@ -33,7 +37,7 @@ function MessageScreen() {
               <p>{message.text}</p>
             </div>
             <div className={Chat.divider}></div>
-          </>
+          </div>
         )
         // <div className={`${Chat.others} ${Chat.messageContainer}`}>
         //   <p className={Chat.userName}>{message.displayName}</p>
