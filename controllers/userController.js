@@ -22,6 +22,7 @@ export const loginController = async (req, res) => {
         email: User.email,
         username: User.username,
         _id: User._id,
+        invitesReceived: User.invitesReceived,
       });
     } else {
       res.status(401);
@@ -64,4 +65,23 @@ export const logoutController = async (req, res) => {
     httpOnly: true,
   });
   res.status(200).json({ message: "Logged out successfully" });
+};
+
+export const getUser = async (req, res) => {
+  const userId = req.user_id;
+
+  const isUser = await User.findOne({ _id: userId });
+
+  if (!isUser) {
+    res.status(404);
+    throw new Error("User do not exist");
+  } else {
+    const User = isUser;
+    res.status(200).json({
+      email: User.email,
+      username: User.username,
+      _id: User._id,
+      invitesReceived: User.invitesReceived,
+    });
+  }
 };
