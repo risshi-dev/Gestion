@@ -12,6 +12,7 @@ export const isAuth = ash((req, res, next) => {
   const cook = req.headers.cookie;
 
   let token = "";
+  // req.headers.Authrization = `Bearer ${token}`
   for (
     let i = cook.search("token=") + 6;
     cook[i] != ";" && i < cook.length;

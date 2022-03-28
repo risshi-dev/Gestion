@@ -110,3 +110,16 @@ export const inviteReceivedController = async (req, res) => {
 
   res.status(200).send("Invite accepted");
 };
+
+export const getInvitesController = async (req, res) => {
+    const userId = req.user_id;
+
+    const invites = await User.findById(userId).select({invitesReceived: 1});
+
+    if(!invites) {
+      res.status(400);
+    throw new Error("Server error occured while fetching invites!");
+    }
+
+    res.status(200).json({invites});
+}
