@@ -3,6 +3,8 @@ import Chat from "../../styles/Chats.module.css";
 import firebase from "firebase";
 import db from "./firebase";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+
 
 function SendMessage({messageScreenRef}) {
   const {login} = useSelector(state => state.loginReducer)
@@ -12,11 +14,13 @@ function SendMessage({messageScreenRef}) {
   const displayName = username;
   const dummyspace = useRef();
   const [newMessage, setNewMessage] = useState("");
+  const router = useRouter();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    db.collection("messages").add({
+    db.collection(router.query._id).add({
       text: newMessage,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid: uid,
