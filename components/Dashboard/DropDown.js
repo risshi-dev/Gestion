@@ -8,19 +8,45 @@ import {
   AiOutlineUp,
 } from "react-icons/ai";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  acceptInviteUser,
+  getInvites,
+} from "../../stateManagement/Invites/action";
 
 function DropDown() {
   const [drop, setDrop] = useState("down");
+
+  const acceptInvite = {
+    projectId: "",
+    isAccepted: false,
+    senderId: "",
+  };
+
   const dropdownHandler = () => {
     var d = document.getElementById("dropdown");
-    if (drop === "down") {
+    if (d && drop === "down") {
       d.style.display = "block";
       setDrop("up");
-    } else {
+    } else if (d) {
       d.style.display = "none";
       setDrop("down");
     }
   };
+
+  const dispatch = useDispatch();
+
+  const inviteHandler = (invite, accepted) => {
+    (acceptInvite.projectId = invite.projectId._id),
+      (acceptInvite.senderId = invite.id._id),
+      (acceptInvite.isAccepted = accepted),
+      console.log(acceptInvite);
+    dispatch(acceptInviteUser(acceptInvite));
+    dispatch(getInvites());
+  };
+
+  const { invites } = useSelector((state) => state.inviteReducer);
+
   return (
     <div className={dashboard.dropDown}>
       <div
@@ -28,31 +54,41 @@ function DropDown() {
         onClick={() => dropdownHandler()}
       >
         <div>View Invites</div>{" "}
-        <div>{drop === "down" ? <AiOutlineDown /> : <AiOutlineUp />}</div>
+        {invites?.length > 0 ? (
+          <div>{drop === "down" ? <AiOutlineDown /> : <AiOutlineUp />}</div>
+        ) : null}
       </div>
-      <div id="dropdown">
-        <div className={Invites.inviteContainer}>
-          <div
-            style={{
-              textAlign: "left",
-              fontSize: "18px",
-              fontWeight: "200",
-            }}
-          >
-            <div>Rishi</div>
-            <div>Project Name</div>
-          </div>
-          <div className={Invites.inviteContainerButton}>
-            <button className={Invites.sideScreenButtons}>Accept</button>
-
-            <button
-              className={`${Invites.sideScreenButtons} ${Invites.cancelColor}`}
+      {invites?.map((invite) => (
+        <div id="dropdown">
+          <div className={Invites.inviteContainer}>
+            <div
+              style={{
+                textAlign: "left",
+                fontSize: "18px",
+                fontWeight: "200",
+              }}
             >
-              Cancel
-            </button>
+              <div>{invite.id.username}</div>
+              <div>{invite.projectId.title}</div>
+            </div>
+            <div className={Invites.inviteContainerButton}>
+              <button
+                className={Invites.sideScreenButtons}
+                onClick={() => inviteHandler(invite, true)}
+              >
+                Accept
+              </button>
+
+              <button
+                className={`${Invites.sideScreenButtons} ${Invites.cancelColor}`}
+                onClick={() => inviteHandler(invite, false)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }

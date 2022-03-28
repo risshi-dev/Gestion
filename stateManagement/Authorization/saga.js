@@ -12,6 +12,7 @@ const modalSuccessLogin = (type) => {
 const modalSuccessRegister = (type) => {
   message.success("Welcome");
 };
+
 function* loginSaga({ payload }) {
   try {
     const response = yield call(AuthorizationRepository.loginRepo, payload);
@@ -40,6 +41,7 @@ function* registerSaga({ payload }) {
     if (status === 200) {
       yield put(registerSuccess(data));
       modalSuccessRegister("success");
+      WriteCookie();
       router.push("/dashboard");
     } else {
       message.error("Some Error occured");

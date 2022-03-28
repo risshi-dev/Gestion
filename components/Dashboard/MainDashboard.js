@@ -19,6 +19,7 @@ import {
   AiOutlineDown,
 } from "react-icons/ai";
 import DropDown from "./DropDown";
+import { getInvites } from "../../stateManagement/Invites/action";
 const ProjectsList = ({ projects, router }) => {
   return (
     <>
@@ -43,7 +44,10 @@ const ProjectsList = ({ projects, router }) => {
                 />
               </div>
               <div className={dashboard.cardFooterRight}>
-                <FaUsers style={{ fontSize: "28px", marginRight: "10px" }} /> 7{" "}
+                <FaUsers style={{ fontSize: "28px", marginRight: "10px" }} />{" "}
+                {project.teamMembers.length > 0
+                  ? project.teamMembers.length
+                  : null}
               </div>
             </div>
           </div>
@@ -80,6 +84,7 @@ export default function MainDashboard() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProjects());
+    dispatch(getInvites());
   }, []);
 
   console.log(projects);

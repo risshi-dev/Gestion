@@ -12,6 +12,18 @@ class AuthorizationRepository {
       { params },
       { withCredentials: true }
     );
+    console.log(response);
+    return response;
+  }
+
+  async cookieRepo(params) {
+    console.log(params);
+    const response = await Repository.post(
+      `${baseUrl}/user/getuser`,
+      { params },
+      { withCredentials: true }
+    );
+    console.log(response);
     return response;
   }
 

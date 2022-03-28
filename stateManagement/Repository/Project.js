@@ -1,4 +1,5 @@
 import axios from "axios";
+import { sendInvite } from "../Project/action";
 import Repository, { baseUrl } from "./Repository";
 
 class ProjectRepository {
@@ -7,6 +8,7 @@ class ProjectRepository {
   }
 
   async createProject(params) {
+    console.log(params);
     const response = await axios.post(
       `${baseUrl}/project/create`,
       { params },

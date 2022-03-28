@@ -34,7 +34,8 @@ function* createProjectSaga({ payload }) {
     }
   } catch (err) {
     console.log(err.response);
-    modalError("error", err.response.data.message);
+    modalError("error", "Cannot create projects with same name");
+    // modalError("error", err.response);
   }
 }
 

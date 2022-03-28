@@ -49,8 +49,8 @@ export default function ProjectSidebar({
         }}
       >
         {/* <Tooltip placement="right" title="Project Info" color="#030303"> */}
-        <AiFillInfoCircle id="expandIcon" className={icons.colorSize} />
-        <span className={icons.text}>Project Info</span>
+        {/* <AiFillInfoCircle id="expandIcon" className={icons.colorSize} />
+        <span className={icons.text}>Project Info</span> */}
         {/* </Tooltip> */}
       </div>
       <div className={dashboard.SidebarMid}>

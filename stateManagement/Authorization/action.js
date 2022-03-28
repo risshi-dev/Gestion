@@ -6,10 +6,16 @@ export const actionTypes = {
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
 
   LOGOUT_REQUEST: "LOGOUT_REQUEST",
+
+  COOKIE_REQUEST: "COOKIE_REQUEST",
 };
 
 export function logoutRequest() {
   return { type: actionTypes.LOGOUT_REQUEST };
+}
+
+export function cookieRequest(payload) {
+  return { type: actionTypes.COOKIE_REQUEST, payload };
 }
 
 export function loginRequest(payload) {
