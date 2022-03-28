@@ -37,8 +37,8 @@ function Profile() {
           <div className={Input.label}>Change Password</div>
           <input className={Input.inputBox} type="text" placeholder="Here..." />
         </div>
-        <div className={Input.inputContainer} style={{ display: "flex" }}>
-          <div className={Input.sideScreenButtons}>Cancel</div>
+        <div className={Input.inputContainer}>
+          {/* <div className={Input.sideScreenButtons}>Cancel</div> */}
           <div className={Input.sideScreenButtons}>Update</div>
         </div>
       </div>

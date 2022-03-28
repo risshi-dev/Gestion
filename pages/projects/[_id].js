@@ -126,14 +126,16 @@ export default function Project() {
             </div>
             <div className={Cards.container}>
               {!loading &&
-                cards.map((card) => (
-                  <Card
-                    key={card._id}
-                    open={openModal}
-                    click={() => onCardClick(card)}
-                    card={card}
-                  />
-                ))}
+                cards.map((card, index) =>
+                  index < 4 ? (
+                    <Card
+                      key={card._id}
+                      open={openModal}
+                      click={() => onCardClick(card)}
+                      card={card}
+                    />
+                  ) : null
+                )}
             </div>
           </div>
           <SideScreen

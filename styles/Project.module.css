@@ -24,6 +24,7 @@
   width: 95%;
   margin: auto;
   justify-content: space-around;
+  cursor: pointer;
 }
 
 .technos {
@@ -35,6 +36,18 @@
   width: fit-content;
   color: #e7e6e8;
   margin: 10px auto 10px auto;
+}
+
+.techModal {
+  width: fit-content;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3bbfff;
+  border-radius: 15px;
+  margin: 10px 0px;
+  color: #fff;
+  display: flex;
+  letter-spacing: 1px;
 }
 
 .sideScreenButtons {
@@ -59,10 +72,10 @@
   font-size: 14px;
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #323350;
-  border: 1px solid #323350;
-  width: 120px;
-  width: 100px;
+  background-color: #ff2f2f;
+  border: 1px solid #ff2f2f;
+  width: 235px;
+  /* width: 100px; */
   color: #e7e6e8;
   margin: 10px auto 10px auto;
 }

@@ -1,4 +1,7 @@
 .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));
+  grid-column-gap: 20px;
   background: transparent;
   overflow-y: auto;
   border-radius: 5px;

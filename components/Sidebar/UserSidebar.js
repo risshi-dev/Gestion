@@ -8,7 +8,7 @@ import CreateProject from "../Dashboard/CreateProject";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logoutRequest } from "../../stateManagement/Authorization/action";
-
+import router from "next/router";
 export default function UserSidebar({
   openSideScreen,
   setSideScreen,
@@ -32,9 +32,7 @@ export default function UserSidebar({
       <div
         className={dashboard.SidebarTop}
         onClick={() => {
-          screenVisible(false);
-          // openSideScreen();
-          setSideScreen("profile");
+          router.push("/profile");
         }}
       >
         <Tooltip placement="right" title="View Profile" color="#3bbfff">
@@ -67,7 +65,7 @@ export default function UserSidebar({
 
         <div style={{ margin: "10px 0px" }} onClick={setModal}>
           <Tooltip placement="right" title="Create Project" color="#3bbfff">
-            <div className={icons.button}>
+            <div className={`${icons.button} ${icons.extraPadding}`}>
               <AiOutlinePlusCircle style={{ fontSize: "30px" }} />
               {/* <span>Add a Project</span> */}
             </div>

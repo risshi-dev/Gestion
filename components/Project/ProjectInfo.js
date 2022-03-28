@@ -1,7 +1,11 @@
 import { PlusOutlined } from "@ant-design/icons/lib/icons";
-import React from "react";
+import React, { useState } from "react";
 import Input from "../../styles/Project.module.css";
+import EditStack from "./EditStack";
 function ProjectInfo() {
+  const [modal, setModal] = useState(false);
+
+  const handleModal = (val) => setModal(val);
   return (
     <div>
       <div>
@@ -14,7 +18,7 @@ function ProjectInfo() {
           />
         </div>
 
-        <div className={Input.inputContainer}>
+        <div className={Input.inputContainer} onClick={() => setModal(true)}>
           <div className={Input.label}>Technologies Used</div>
           <div className={Input.technologies}>
             <div className={Input.technos}>React Js</div>
@@ -45,7 +49,10 @@ function ProjectInfo() {
           />
         </div>
 
-        <div className={Input.inputContainer} style={{ display: "flex" }}>
+        <div
+          className={Input.inputContainer}
+          style={{ display: "flex", justifyContent: "space-evenly" }}
+        >
           <div className={Input.sideScreenButtons}>Cancel</div>
           <div className={Input.sideScreenButtons}>Update</div>
         </div>
@@ -54,6 +61,7 @@ function ProjectInfo() {
           <div className={Input.sideScreenDeleteButtons}>Delete Project</div>
         </div>
       </div>
+      <EditStack isOpen={modal} setModal={handleModal} />
     </div>
   );
 }
