@@ -44,9 +44,10 @@ function* registerSaga({ payload }) {
       WriteCookie();
       router.push("/dashboard");
     } else {
-      message.error("Some Error occured");
+      message.error("User Already exists");
     }
   } catch (error) {
+    message.error("Some Error occured");
     console.log(error);
   }
 }

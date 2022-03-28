@@ -4,16 +4,17 @@ import { formatRelative } from "date-fns";
 import Chat from "../../styles/Chats.module.css";
 import db from "./firebase";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
-function MessageScreen({messageScreenRef}) {
-  const {login} = useSelector(state => state.loginReducer)
-  const {username, _id} = login;
-  
+function MessageScreen({ messageScreenRef }) {
+  const { login } = useSelector((state) => state.loginReducer);
+  const { username, _id } = login;
+  const router = useRouter();
   const uid = _id;
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    db.collection("messages")
+    db.collection(router.query._id)
       .orderBy("createdAt")
       .onSnapshot((snapshot) => {
         setMessages(snapshot.docs.map((doc) => doc.data()));
@@ -26,7 +27,7 @@ function MessageScreen({messageScreenRef}) {
       {messages.map(
         (message) => (
           <div key={message.uid}>
-            <div 
+            <div
               className={
                 message.uid === uid
                   ? `${Chat.self} ${Chat.messageContainer}`
