@@ -21,6 +21,7 @@ export const loginController = async (req, res) => {
       res.status(200).json({
         email: User.email,
         username: User.username,
+        _id: User._id,
       });
     } else {
       res.status(401);
@@ -49,7 +50,7 @@ export const signinController = async (req, res) => {
         expires: new Date(86400000 + Date.now()),
         httpOnly: true,
       });
-      res.status(200).json({ email, username });
+      res.status(200).json({ email, username, _id: user._id });
     } else {
       res.status(400);
       throw new Error("failed to create user");
