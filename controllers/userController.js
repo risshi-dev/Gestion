@@ -22,7 +22,6 @@ export const loginController = async (req, res) => {
         email: User.email,
         username: User.username,
         _id: User._id,
-        invitesReceived: User.invitesReceived,
       });
     } else {
       res.status(401);
@@ -81,7 +80,6 @@ export const getUser = async (req, res) => {
       email: User.email,
       username: User.username,
       _id: User._id,
-      invitesReceived: User.invitesReceived,
     });
   }
 };

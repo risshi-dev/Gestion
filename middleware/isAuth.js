@@ -20,20 +20,20 @@ export const isAuth = ash((req, res, next) => {
   ) {
     token += cook[i];
   }
-  console.log(token);
+  // console.log(token);
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
   } catch (err) {
     err.statusCode = 500;
-    console.log(err, "here");
+    // console.log(err, "here");
     throw err;
   }
 
   if (!decodedToken) {
     console.log(error);
   }
-  console.log(decodedToken);
+  // console.log(decodedToken);
   req.user_id = decodedToken.id;
   next();
 });

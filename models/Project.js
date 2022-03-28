@@ -14,22 +14,6 @@ const project = mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-  },
-  techStack: {
-    type: String,
-  },
-  githubLink: {
-    type: String,
-  },
-  deploymentLink: {
-    type: String,
-  },
-  createdBy: {
-    type: mongoose.Types.ObjectId,
-    ref: "User",
-  },
   cards: [
     {
       type: mongoose.Types.ObjectId,
