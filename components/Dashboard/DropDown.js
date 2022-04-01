@@ -40,8 +40,8 @@ function DropDown() {
     (acceptInvite.projectId = invite.projectId._id),
       (acceptInvite.senderId = invite.id._id),
       (acceptInvite.isAccepted = accepted),
-      console.log(acceptInvite);
-    dispatch(acceptInviteUser(acceptInvite));
+      //console.log(acceptInvite);
+      dispatch(acceptInviteUser(acceptInvite));
     dispatch(getInvites());
   };
 
@@ -58,37 +58,38 @@ function DropDown() {
           <div>{drop === "down" ? <AiOutlineDown /> : <AiOutlineUp />}</div>
         ) : null}
       </div>
-      {invites?.map((invite) => (
-        <div id="dropdown">
-          <div className={Invites.inviteContainer}>
-            <div
-              style={{
-                textAlign: "left",
-                fontSize: "18px",
-                fontWeight: "200",
-              }}
-            >
-              <div>{invite.id.username}</div>
-              <div>{invite.projectId.title}</div>
-            </div>
-            <div className={Invites.inviteContainerButton}>
-              <button
-                className={Invites.sideScreenButtons}
-                onClick={() => inviteHandler(invite, true)}
+      {invites?.length > 0 &&
+        invites?.map((invite) => (
+          <div id="dropdown">
+            <div className={Invites.inviteContainer}>
+              <div
+                style={{
+                  textAlign: "left",
+                  fontSize: "18px",
+                  fontWeight: "200",
+                }}
               >
-                Accept
-              </button>
+                <div>{invite.id.username}</div>
+                <div>{invite.projectId.title}</div>
+              </div>
+              <div className={Invites.inviteContainerButton}>
+                <button
+                  className={Invites.sideScreenButtons}
+                  onClick={() => inviteHandler(invite, true)}
+                >
+                  Accept
+                </button>
 
-              <button
-                className={`${Invites.sideScreenButtons} ${Invites.cancelColor}`}
-                onClick={() => inviteHandler(invite, false)}
-              >
-                Cancel
-              </button>
+                <button
+                  className={`${Invites.sideScreenButtons} ${Invites.cancelColor}`}
+                  onClick={() => inviteHandler(invite, false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 }

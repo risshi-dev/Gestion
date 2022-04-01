@@ -5,6 +5,7 @@ import {
 import { Avatar, Progress } from "antd";
 import React, { useState } from "react";
 import Cards from "../../styles/Cards.module.css";
+import PriorityButton from "../Priority/PriorityButton";
 import EditCardModal from "./EditCardModal";
 function Card({ click, open, card }) {
   const countChecked = () => {
@@ -19,8 +20,10 @@ function Card({ click, open, card }) {
   return (
     <div className={Cards.card} onClick={click}>
       <div className={Cards.cardHeading}>{card.title}</div>
-      <div style={{ display: "flex" }}>
-        <div className={Cards.cardLabel}>Low</div>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {/* <div className={Cards.cardLabel}> */}
+        <PriorityButton priority={card.priority} isActive={true} />
+        {/* </div> */}
         <div className={Cards.cardLabel2}>On Track</div>
       </div>
 

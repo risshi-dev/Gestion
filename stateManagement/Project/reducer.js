@@ -27,6 +27,12 @@ function reducer(state = initState, action) {
         loading: false,
         projects: action.payload.projects,
       };
+    case actionTypes.GET_TEAM_MEMBERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        team: action.payload,
+      };
     default:
       return state;
   }

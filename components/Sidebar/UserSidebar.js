@@ -31,9 +31,9 @@ export default function UserSidebar({
 
       <div
         className={dashboard.SidebarTop}
-        onClick={() => {
-          router.push("/profile");
-        }}
+        // onClick={() => {
+        //   router.push("/profile");
+        // }}
       >
         <Tooltip placement="right" title="View Profile" color="#3bbfff">
           <FaUserAlt id="expandIcon" className={icons.colorSize} />

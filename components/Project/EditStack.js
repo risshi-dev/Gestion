@@ -5,7 +5,7 @@ import styles from "../../styles/CreateCard.module.css";
 import { AiFillDelete } from "react-icons/ai";
 export default function EditStack({ isOpen, setModal }) {
   const handleSubmit = () => {
-    console.log("emails");
+    //console.log("emails");
   };
   return (
     <>

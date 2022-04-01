@@ -21,6 +21,7 @@ import {
 import { useSelector } from "react-redux";
 import _ from "lodash";
 import PriorityButton from "../../components/Priority/PriorityButton";
+import { getTeam } from "../../stateManagement/Project/action";
 
 const emptyCard = {
   title: "",
@@ -34,11 +35,11 @@ export default function Project() {
 
   const router = useRouter();
   const dispatch = useDispatch();
-
   useEffect(() => {
     !isAuth() ? router.push("/login") : null;
 
     const projectId = router.query._id;
+    dispatch(getTeam({ projectId: router.query._id }));
     dispatch(getCards({ projectId }));
   }, []);
 
@@ -76,6 +77,7 @@ export default function Project() {
   const handleCreateCard = (card) => {
     if (card.title.length > 0 && !checkExtraSpaces(card.title)) {
       const projectId = router.query._id;
+      console.log(card);
       dispatch(createCard({ ...card, projectId }));
     }
   };
@@ -122,7 +124,7 @@ export default function Project() {
             <div
               style={{ fontSize: "30px", marginBottom: "2vh", padding: "20px" }}
             >
-              Projects
+              {router.query.name}
             </div>
             <div className={Cards.container}>
               {!loading &&

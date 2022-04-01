@@ -9,7 +9,7 @@
   margin-right: 10px;
 }
 
-.chatInput:focus{
+.chatInput:focus {
   border: 1.5px solid rgb(180, 180, 180);
 }
 
@@ -52,7 +52,7 @@
 
 .others {
   float: left;
-  background-color: #fff;
+  background-color: aliceblue;
   color: #323550;
 }
 

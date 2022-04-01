@@ -15,8 +15,7 @@ export default function CreateCardModal({
     priority: 0,
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     handleCreateCard(card);
     setModal(false);
   };
@@ -28,7 +27,6 @@ export default function CreateCardModal({
       footer={false}
       onCancel={() => setModal(false)}
     >
-      {/* <form onSubmit={handleSubmit}> */}
       <div className={styles.formGroup}>
         <label className={styles.label} htmlFor="title">
           Title<span style={{ color: "red" }}>*</span>
@@ -70,10 +68,13 @@ export default function CreateCardModal({
           setSelected={(selected) => setCard({ ...card, priority: selected })}
         />
       </div>
-      <button className={styles.button} type="submit">
+      <button
+        className={styles.button}
+        type="submit"
+        onClick={() => handleSubmit()}
+      >
         Create
       </button>
-      {/* </form> */}
     </Modal>
   );
 }

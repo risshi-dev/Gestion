@@ -5,18 +5,22 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { sendInvite } from "../../stateManagement/Invites/action";
 export default function InviteMember({ isOpen, setModal }) {
-  const [emails, setEmails] = useState({
+  const schema = {
     email: "",
     projectId: "",
-  });
+  };
+
+  const [emails, setEmails] = useState(schema);
 
   const dispatch = useDispatch();
   const router = useRouter();
 
   const handleSubmit = () => {
     var query = router.query;
-    console.log(emails);
+    //console.log(emails);
     dispatch(sendInvite(emails));
+    setEmails(schema);
+    setModal(false);
   };
   return (
     <>
@@ -26,7 +30,10 @@ export default function InviteMember({ isOpen, setModal }) {
         onOk={() => handleSubmit()}
         okText="Send Invite"
         cancelText="Later"
-        onCancel={() => setModal(false)}
+        onCancel={() => {
+          setEmails(schema);
+          setModal(false);
+        }}
         width={600}
       >
         <div className="asd">

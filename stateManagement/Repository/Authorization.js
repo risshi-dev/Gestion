@@ -6,29 +6,29 @@ class AuthorizationRepository {
   }
 
   async loginRepo(params) {
-    console.log(params);
+    //console.log(params);
     const response = await Repository.post(
       `${baseUrl}/user/login`,
       { params },
       { withCredentials: true }
     );
-    console.log(response);
+    //console.log(response);
     return response;
   }
 
   async cookieRepo(params) {
-    console.log(params);
+    //console.log(params);
     const response = await Repository.post(
       `${baseUrl}/user/getuser`,
       { params },
       { withCredentials: true }
     );
-    console.log(response);
+    //console.log(response);
     return response;
   }
 
   async signinRepo(params) {
-    console.log(params);
+    //console.log(params);
     const response = await Repository.post(`${baseUrl}/user/signin`, {
       params,
     });

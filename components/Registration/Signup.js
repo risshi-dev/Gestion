@@ -31,12 +31,10 @@ export default function Landing() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    if (
-      signinData.password != "" &&
-      signinData.password != signinData.verifyPassword &&
-      checkExtraSpaces(signinData.password)
-    )
-      message.warning("Passwords do not match or can't be empty");
+    if (signinData.password === "" || checkExtraSpaces(signinData.password)) {
+      message.warning("Passwords can't be empty");
+    } else if (signinData.password !== signinData.verifyPassword)
+      message.warning("Passwords do not match ");
     else {
       dispatch(registerRequest(signinData));
     }

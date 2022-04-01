@@ -1,6 +1,6 @@
 import { actionTypes } from "./action";
 
-export const initState = { loading: true, invites: [] };
+export const initState = { loading: true };
 
 function reducer(state = initState, action) {
   switch (action.type) {

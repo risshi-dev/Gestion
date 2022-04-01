@@ -8,7 +8,7 @@ class ProjectRepository {
   }
 
   async createProject(params) {
-    console.log(params);
+    //console.log(params);
     const response = await axios.post(
       `${baseUrl}/project/create`,
       { params },
@@ -24,6 +24,32 @@ class ProjectRepository {
     const response = await axios.get(`${baseUrl}/project/getall`, {
       withCredentials: true,
     });
+    return response;
+  }
+
+  async getTeam(params) {
+    const response = await axios.post(
+      `${baseUrl}/project/getTeams`,
+      {
+        params,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    return response;
+  }
+
+  async deleteProject(params) {
+    const response = await axios.post(
+      `${baseUrl}/project/deleteProject`,
+      {
+        params,
+      },
+      {
+        withCredentials: true,
+      }
+    );
     return response;
   }
 }

@@ -96,3 +96,21 @@
   grid-template-columns: 1fr 2fr;
   margin-top: 25px;
 }
+
+.TeamContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 15px;
+}
+
+.TeamMember {
+  /* display: flex; */
+  margin: 15px 0px;
+  font-size: 18px;
+  color: #323350;
+}
+
+.TeamAdmin {
+  font-size: 25px;
+}

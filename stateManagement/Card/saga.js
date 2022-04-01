@@ -24,7 +24,7 @@ function* createCardSaga({ payload }) {
       yield put(createCardSuccess(data));
     }
   } catch (err) {
-    console.log(err.respones);
+    //console.log(err.respones);
     modalError(err.response.data.message);
   }
 }
@@ -39,7 +39,7 @@ function* getCardsSaga({ payload }) {
       yield put(getCardsSuccess(data));
     }
   } catch (err) {
-    console.log(err.respones);
+    //console.log(err.respones);
     modalError(err.response.data.message);
   }
 }
@@ -54,7 +54,7 @@ function* editCardSaga({ payload }) {
       yield put(editCardSuccess(data));
     }
   } catch (err) {
-    console.log(err.respones);
+    //console.log(err.respones);
     modalError(err.response.data.message);
   }
 }

@@ -9,7 +9,7 @@ import Header from "../Header/Header.js";
 import { useRouter } from "next/router";
 import SideScreen from "../Project/SideScreen";
 import { useDispatch, useSelector } from "react-redux";
-import { getProjects } from "../../stateManagement/Project/action";
+import { getProjects, getTeam } from "../../stateManagement/Project/action";
 import Image from "next/image";
 import image from "../../public/projects.jpg";
 import { FaUsers } from "react-icons/fa";
@@ -27,11 +27,18 @@ const ProjectsList = ({ projects, router }) => {
         <div
           key={project._id}
           className={dashboard.Card}
-          onClick={() => router.push(`/projects/${project._id}`)}
+          onClick={() =>
+            router.push({
+              pathname: `/projects/${project._id}`,
+              query: {
+                name: project.title,
+              },
+            })
+          }
         >
           <div className={dashboard.newProject}>{project.title}</div>
           <div className={dashboard.cardMid}>
-            This project is about something
+            {/* This project is about something */}
           </div>
           <div>
             <div className={dashboard.cardFooter}>
@@ -85,9 +92,10 @@ export default function MainDashboard() {
   useEffect(() => {
     dispatch(getProjects());
     dispatch(getInvites());
+    dispatch(getTeam({ projectId: router.query._id }));
   }, []);
 
-  console.log(projects);
+  //console.log(projects);
   return (
     <div className={dashboard.container} style={{ marginRight: "1rem" }}>
       <Head>

@@ -19,7 +19,7 @@ function MessageScreen({ messageScreenRef }) {
       .onSnapshot((snapshot) => {
         setMessages(snapshot.docs.map((doc) => doc.data()));
       });
-    console.log(messages);
+    //console.log(messages);
   }, []);
 
   return (

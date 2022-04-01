@@ -10,6 +10,7 @@ import {
   UnorderedListOutlined,
 } from "@ant-design/icons/lib/icons";
 import styles from "../../styles/EditCard.module.css";
+import { useSelector } from "react-redux";
 
 // using props because of naming clash (state task and props task)
 // using this function to both edit and add a new task to the todoList
@@ -181,12 +182,14 @@ const TodoList = ({ card, setCard }) => {
 
 const CommentList = ({ card, setCard }) => {
   const [comment, setcomment] = useState("");
+  const user = useSelector((state) => state.loginReducer.login);
 
   const handleAddComment = (e) => {
     e.preventDefault();
     const newComments = card.comments;
-    newComments.unshift({ id: "sample_userid", comment });
-    setCard({ ...card, comments: newComments });
+    newComments.unshift({ id: user._id, comment, name: user.username });
+    console.log({ ...card, comments: newComments, name: user.username });
+    setCard({ ...card, comments: newComments, name: user.username });
     setcomment("");
   };
   return (
@@ -212,8 +215,7 @@ const CommentList = ({ card, setCard }) => {
           {card.comments.map((comment) => (
             <div key={comment.id} className={styles.cardComment}>
               <div className={styles.cardCommentUserDetails}>
-                <img src="https://via.placeholder.com/40" />
-                <div>User name</div>
+                <div>{comment.name || "Username"}</div>
               </div>
               {comment.comment}
             </div>

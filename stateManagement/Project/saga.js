@@ -1,10 +1,11 @@
 import { all, put, call, takeEvery } from "redux-saga/effects";
-import { notification } from "antd";
+import { message, notification } from "antd";
 
 import {
   actionTypes,
   createProjectSuccess,
   getProjectsSuccess,
+  getTeamSuccess,
 } from "./action";
 import Project from "../Repository/Project";
 
@@ -33,7 +34,7 @@ function* createProjectSaga({ payload }) {
       modalSuccess("success");
     }
   } catch (err) {
-    console.log(err.response);
+    //console.log(err.response);
     modalError("error", "Cannot create projects with same name");
     // modalError("error", err.response);
   }
@@ -44,16 +45,47 @@ function* getProjectsSaga() {
     const response = yield call(Project.getProjects);
 
     const { status, data } = response;
-    console.log(response);
+    //console.log(response);
     if (status === 200) {
       yield put(getProjectsSuccess(data));
     }
   } catch (err) {
-    console.log(err);
+    //console.log(err);
+  }
+}
+
+function* getTeamSaga({ payload }) {
+  try {
+    const response = yield call(Project.getTeam, payload);
+
+    const { status, data } = response;
+    //console.log(data.teamMembers);
+    if (status === 200) {
+      yield put(getTeamSuccess(data.teamMembers));
+    }
+  } catch (err) {
+    //console.log(err);
+  }
+}
+
+function* deleteProjectSaga({ payload }) {
+  try {
+    const response = yield call(Project.deleteProject, payload);
+
+    const { status, data } = response;
+    //console.log(data.teamMembers);
+    if (status === 200) {
+      message.success("Project deleted successfully");
+      //  yield put(getTeamSuccess(data.teamMembers));
+    }
+  } catch (err) {
+    //console.log(err);
   }
 }
 
 export default function* rootSaga() {
   yield all([takeEvery(actionTypes.CREATE_PROJECT_REQUEST, createProjectSaga)]);
   yield all([takeEvery(actionTypes.GET_PROJECTS_REQUEST, getProjectsSaga)]);
+  yield all([takeEvery(actionTypes.GET_TEAM_MEMBERS, getTeamSaga)]);
+  yield all([takeEvery(actionTypes.DELETE_PROJECT, deleteProjectSaga)]);
 }

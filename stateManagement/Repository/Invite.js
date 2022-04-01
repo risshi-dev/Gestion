@@ -7,7 +7,7 @@ class InviteRepository {
   }
 
   async sendInvite(params) {
-    console.log(params);
+    //console.log(params);
     const response = await axios.post(
       `${baseUrl}/project/sendinvite`,
       { params },
@@ -15,11 +15,11 @@ class InviteRepository {
         withCredentials: true,
       }
     );
-    console.log(response);
+    //console.log(response);
     return response;
   }
   async getInvites(params) {
-    console.log(params);
+    //console.log(params);
     const response = await axios.post(
       `${baseUrl}/project/getinvites`,
       { params },
@@ -27,11 +27,11 @@ class InviteRepository {
         withCredentials: true,
       }
     );
-    console.log(response);
+    //console.log(response);
     return response;
   }
   async acceptInvite(params) {
-    console.log(params);
+    //console.log(params);
     const response = await axios.post(
       `${baseUrl}/project/inviteresponse`,
       { params },
@@ -39,7 +39,7 @@ class InviteRepository {
         withCredentials: true,
       }
     );
-    console.log(response);
+    //console.log(response);
     return response;
   }
 }

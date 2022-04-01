@@ -17,7 +17,7 @@ function* loginSaga({ payload }) {
   try {
     const response = yield call(AuthorizationRepository.loginRepo, payload);
     const { status, data } = response;
-    console.log(response);
+    //console.log(response);
     if (status === 200) {
       yield put(loginSuccess(data));
       modalSuccessLogin("success");
@@ -28,7 +28,8 @@ function* loginSaga({ payload }) {
       message.error("Wrong email or password");
     }
   } catch (err) {
-    console.log(err);
+    message.error("Wrong email or password");
+    //console.log(err);
   }
 }
 
@@ -48,7 +49,7 @@ function* registerSaga({ payload }) {
     }
   } catch (error) {
     message.error("Some Error occured");
-    console.log(error);
+    //console.log(error);
   }
 }
 
@@ -64,7 +65,7 @@ function* logoutSaga() {
       router.push("/login");
     }
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 }
 

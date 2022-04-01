@@ -3,11 +3,12 @@ import Chat from "../../styles/Chats.module.css";
 import firebase from "firebase";
 import db from "./firebase";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
-function SendMessage({messageScreenRef}) {
-  const {login} = useSelector(state => state.loginReducer)
-  const {username, _id} = login;
-  
+function SendMessage({ messageScreenRef }) {
+  const { login } = useSelector((state) => state.loginReducer);
+  const { username, _id } = login;
+  const router = useRouter();
   const uid = _id;
   const displayName = username;
   const dummyspace = useRef();
@@ -16,7 +17,7 @@ function SendMessage({messageScreenRef}) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    db.collection("messages").add({
+    db.collection(router.query._id).add({
       text: newMessage,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid: uid,
@@ -26,7 +27,8 @@ function SendMessage({messageScreenRef}) {
     setNewMessage("");
 
     setTimeout(() => {
-      messageScreenRef.current.scrollTop = messageScreenRef.current.scrollHeight;
+      messageScreenRef.current.scrollTop =
+        messageScreenRef.current.scrollHeight;
     }, 100);
 
     dummyspace.current.scrollIntoView({ behavor: "smooth" });

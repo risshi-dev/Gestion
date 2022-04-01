@@ -9,7 +9,7 @@ export default function CardModal({ isOpen, setModal }) {
   });
 
   const handleSubmit = () => {
-    console.log(cardDetails);
+    //console.log(cardDetails);
   };
 
   const [arrayofTasks, setArray] = useState([]);

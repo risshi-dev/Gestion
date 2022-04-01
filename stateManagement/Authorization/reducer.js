@@ -24,7 +24,7 @@ function reducer(state = initialState, action) {
       };
 
     case actionTypes.REGISTER_SUCCESS:
-      console.log(action.payload);
+      //console.log(action.payload);
       return {
         ...state,
         loading: false,
