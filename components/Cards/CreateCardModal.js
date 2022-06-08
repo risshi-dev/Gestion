@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Dashboard from "../../styles/Dashboard.module.css";
 import PriorityButtonGroup from "../Priority/PriorityButtonGroup";
 import styles from "../../styles/CreateCard.module.css";
+import DatePick from "./DatePick";
 
 export default function CreateCardModal({
   isOpen,
@@ -13,6 +14,7 @@ export default function CreateCardModal({
     title: "",
     description: "",
     priority: 0,
+    deadline: Date.now() + 7 * 24 * 60 * 60 * 1000,
   });
 
   const handleSubmit = () => {
@@ -59,7 +61,7 @@ export default function CreateCardModal({
       </div>
       <div className={styles.formGroup}>
         <label className={styles.label} htmlFor="priority">
-          Set priority
+          Set Deadline
         </label>
         <br />
         <PriorityButtonGroup
@@ -68,6 +70,15 @@ export default function CreateCardModal({
           setSelected={(selected) => setCard({ ...card, priority: selected })}
         />
       </div>
+
+      <div className={styles.formGroup}>
+        <label className={styles.label} htmlFor="priority">
+          Set priority
+        </label>
+        <br />
+        <DatePick setCard={setCard} card={card} />
+      </div>
+
       <button
         className={styles.button}
         type="submit"

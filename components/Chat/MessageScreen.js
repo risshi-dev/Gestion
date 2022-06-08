@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { formatRelative } from "date-fns";
 import Chat from "../../styles/Chats.module.css";
-import db from "./firebase";
+import { db } from "./firebase";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 

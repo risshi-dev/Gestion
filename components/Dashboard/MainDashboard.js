@@ -7,7 +7,7 @@ import CreateProject from "./CreateProject";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header.js";
 import { useRouter } from "next/router";
-import SideScreen from "../Project/SideScreen";
+import SideScreen from "../SideScreen/SideScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { getProjects, getTeam } from "../../stateManagement/Project/action";
 import Image from "next/image";
@@ -97,7 +97,7 @@ export default function MainDashboard() {
 
   //console.log(projects);
   return (
-    <div className={dashboard.container} style={{ marginRight: "1rem" }}>
+    <div className={dashboard.container}>
       <Head>
         <title>Gestion Login</title>
         <meta name="description" content="Login in your account" />
@@ -112,20 +112,19 @@ export default function MainDashboard() {
           setSideScreen={setScreen}
           screenVisible={screenVisible}
         />
-        <div style={{ backgroundColor: "#f1f2f98a" }}>
+        <div style={{ backgroundColor: "#f1f2f98a", marginLeft: "60px" }}>
           <div style={{ fontSize: "30px", padding: "10px 30px" }}>Welcome</div>
           <div className={dashboard.projectContainer}>
             {!loading && <ProjectsList projects={projects} router={router} />}
           </div>
-
           <DropDown />
         </div>
 
-        {/* <SideScreen
+        <SideScreen
           screen={activeScreen}
           screenVisible={screenVisible}
           openSideScreen={openSideScreen}
-        /> */}
+        />
       </div>
     </div>
   );

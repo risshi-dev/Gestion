@@ -99,7 +99,7 @@
 
 .userSideBar {
   position: fixed;
-  width: 60px;
+  width: 100px;
   padding: 30px 10px;
   grid-template-rows: 1fr 5fr 1fr;
 }
@@ -116,8 +116,8 @@
   grid-column-gap: 40px;
 }
 .userMain {
-  grid-template-columns: auto 1fr;
-  grid-column-gap: 100px;
+  grid-template-columns: auto 1fr auto;
+  grid-column-gap: 40px;
 }
 .SidebarTop {
   display: flex;

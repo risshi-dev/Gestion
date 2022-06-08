@@ -7,7 +7,7 @@ import {
   AiOutlineDown,
   AiOutlineUp,
 } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   acceptInviteUser,
@@ -59,37 +59,40 @@ function DropDown() {
         ) : null}
       </div>
       {invites?.length > 0 &&
-        invites?.map((invite) => (
-          <div id="dropdown">
-            <div className={Invites.inviteContainer}>
-              <div
-                style={{
-                  textAlign: "left",
-                  fontSize: "18px",
-                  fontWeight: "200",
-                }}
-              >
-                <div>{invite.id.username}</div>
-                <div>{invite.projectId.title}</div>
-              </div>
-              <div className={Invites.inviteContainerButton}>
-                <button
-                  className={Invites.sideScreenButtons}
-                  onClick={() => inviteHandler(invite, true)}
-                >
-                  Accept
-                </button>
+        invites?.map(
+          (invite, index) =>
+            invite.projectId && (
+              <div id="dropdown" key={index}>
+                <div className={Invites.inviteContainer}>
+                  <div
+                    style={{
+                      textAlign: "left",
+                      fontSize: "18px",
+                      fontWeight: "200",
+                    }}
+                  >
+                    <div>{invite.id.username}</div>
+                    <div>{invite.projectId.title}</div>
+                  </div>
+                  <div className={Invites.inviteContainerButton}>
+                    <button
+                      className={Invites.sideScreenButtons}
+                      onClick={() => inviteHandler(invite, true)}
+                    >
+                      Accept
+                    </button>
 
-                <button
-                  className={`${Invites.sideScreenButtons} ${Invites.cancelColor}`}
-                  onClick={() => inviteHandler(invite, false)}
-                >
-                  Cancel
-                </button>
+                    <button
+                      className={`${Invites.sideScreenButtons} ${Invites.cancelColor}`}
+                      onClick={() => inviteHandler(invite, false)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            )
+        )}
     </div>
   );
 }

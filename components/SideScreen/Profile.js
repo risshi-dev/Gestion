@@ -2,47 +2,64 @@ import Avatar from "antd/lib/avatar/avatar";
 import React, { useState } from "react";
 import { storage } from "../Chat/firebase";
 import Input from "../../styles/Project.module.css";
-import "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import Image from "next/image";
+import { message } from "antd";
 
 function Profile() {
-  const [image, setImage] = useState(null);
-  const [url, setUrl] = useState(null);
-
+  const [url, setImgUrl] = useState(null);
+  const [chooseImg, setChoose] = useState(null);
+  const [progresspercent, setProgresspercent] = useState(0);
+  const [imgFile, setFile] = useState(null);
   const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
+    setFile(e.target.files[0]);
+    setChoose(URL.createObjectURL(e.target.files[0]));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const file = imgFile;
+
+    console.log(file);
+    if (!file) {
+      console.log("not found");
+      return;
     }
-  };
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
 
-  const handleSubmit = () => {
-    const imageRef = storage.ref("image");
-    updateProfile(imageRef, image)
-      .then(() => {
-        getDownloadURL(imageRef)
-          .then((url) => {
-            setUrl(url);
-          })
-          .catch((error) => {
-            //console.log(error.message, "error getting the image url");
-          });
-        setImage(null);
-      })
-      .catch((error) => {
-        //console.log(error.message);
-      });
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgresspercent(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImgUrl(downloadURL);
+          message.success("Profile Photo Uploded");
+        });
+      }
+    );
   };
-
   return (
     <div>
       <div>
         <div className={Input.inputContainer}>
           <div className={Input.label}>Add Profile Photo</div>
+          {!url && chooseImg && (
+            <img src={chooseImg} width={100} height={100} />
+          )}
+          {url && <img src={url} width={100} height={100} />}
           <input
             type="file"
             onChange={handleImageChange}
             className={Input.inputBox}
           />
-          <Avatar src={url} sx={{ width: 15, height: 15 }} />
           <button onClick={handleSubmit}>Submit</button>
         </div>
 

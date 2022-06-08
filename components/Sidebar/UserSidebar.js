@@ -31,6 +31,10 @@ export default function UserSidebar({
 
       <div
         className={dashboard.SidebarTop}
+        onClick={() => {
+          screenVisible(false);
+          setSideScreen("profile");
+        }}
         // onClick={() => {
         //   router.push("/profile");
         // }}
@@ -42,27 +46,6 @@ export default function UserSidebar({
       </div>
 
       <div className={dashboard.SidebarMid}>
-        {/* <div
-          className="SidebarContainer"
-          onClick={() => {
-            screenVisible(false);
-            // openSideScreen();
-            setSideScreen("invites");
-          }}
-        >
-          {/* <div> */}
-        {/* <Tooltip placement="right" title="View Invites" color="#3bbfff">
-            <Badge count={1} color={"#3b78f8"}>
-              <Avatar
-                src={<AiFillMail className={icons.colorSize} />}
-                size="large"
-              />{" "}
-            </Badge>{" "}
-          </Tooltip>{" "} */}
-        {/* <span className={icons.text}>Invites</span> */}
-        {/* </div> */}
-        {/* </div> */}
-
         <div style={{ margin: "10px 0px" }} onClick={setModal}>
           <Tooltip placement="right" title="Create Project" color="#3bbfff">
             <div className={`${icons.button} ${icons.extraPadding}`}>

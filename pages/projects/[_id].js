@@ -8,10 +8,15 @@ import Card from "../../components/Cards/Cards";
 import EditCardModal from "../../components/Cards/EditCardModal";
 import { useCallback, useEffect, useState } from "react";
 import Chat from "../../components/Chat/Chat";
-import ProjectInfo from "../../components/Project/ProjectInfo";
-import SideScreen from "../../components/Project/SideScreen";
+import ProjectInfo from "../../components/SideScreen/ProjectInfo";
+import SideScreen from "../../components/SideScreen/SideScreen";
 import { useRouter } from "next/router";
-import { checkExtraSpaces, isAuth, objectsEqual } from "../../helper/helper";
+import {
+  checkExtraSpaces,
+  close_to_deadline,
+  isAuth,
+  objectsEqual,
+} from "../../helper/helper";
 import { useDispatch } from "react-redux";
 import {
   createCard,
@@ -32,9 +37,11 @@ const emptyCard = {
 
 export default function Project() {
   const { loading, cards } = useSelector((state) => state.cardReducer);
+  const { login } = useSelector((state) => state.loginReducer);
 
   const router = useRouter();
   const dispatch = useDispatch();
+
   useEffect(() => {
     !isAuth() ? router.push("/login") : null;
 
@@ -42,6 +49,16 @@ export default function Project() {
     dispatch(getTeam({ projectId: router.query._id }));
     dispatch(getCards({ projectId }));
   }, []);
+
+  const checkCard = (card) => {
+    if (
+      card.creator !== login._id &&
+      close_to_deadline(new Date(), new Date(card.deadline)) < 0
+    )
+      return true;
+
+    return false;
+  };
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -51,7 +68,9 @@ export default function Project() {
 
   const onCardClick = (card) => {
     setModal(true);
-    setActiveCard(_.cloneDeep(card));
+
+    if (checkCard(card)) setModal(false);
+    else setActiveCard(_.cloneDeep(card));
   };
 
   // edits a existing card
@@ -135,6 +154,7 @@ export default function Project() {
                       open={openModal}
                       click={() => onCardClick(card)}
                       card={card}
+                      disable={checkCard(card)}
                     />
                   ) : null
                 )}

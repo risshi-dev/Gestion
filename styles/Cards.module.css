@@ -76,6 +76,11 @@
   grid-template-columns: auto auto;
 }
 
+.disableCard {
+  opacity: 0.7;
+  cursor: default;
+}
+
 .checkboxContainer {
   margin: 30px 0px;
 }

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Chat from "../../styles/Chats.module.css";
-import firebase from "firebase";
-import db from "./firebase";
+import firebase from "firebase/compat/app";
+import { db } from "./firebase";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 

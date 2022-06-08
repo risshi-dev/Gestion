@@ -19,7 +19,7 @@ const getActiveStyle = (color) => {
   };
 };
 
-function PriorityButton({ priority, onClick, disabled, isActive }) {
+function PriorityButton({ priority, onClick, disabled, isActive, date }) {
   return (
     <button
       onClick={onClick}
@@ -31,7 +31,7 @@ function PriorityButton({ priority, onClick, disabled, isActive }) {
           : getActiveStyle(colors[priority])
       }
     >
-      {priorityLabel[priority]}
+      {date ? date : priorityLabel[priority]}
     </button>
   );
 }

@@ -1,4 +1,4 @@
-import Profile from "../components/Project/Profile";
+import Profile from "../components/SideScreen/Profile";
 
 export default function ProfileFunction() {
   return <Profile />;
