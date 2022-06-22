@@ -26,8 +26,18 @@ const cards = mongoose.Schema({
     type: String,
     required: true,
   },
+
+  creator: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   todo: [description],
   comments: [comments],
+  deadline: {
+    type: Date,
+    required: false,
+  },
   priority: {
     type: Number,
     default: 0,

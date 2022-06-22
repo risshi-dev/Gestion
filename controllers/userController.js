@@ -18,10 +18,15 @@ export const loginController = async (req, res) => {
         expires: new Date(86400000 + Date.now()),
         httpOnly: true,
       });
+
+      const reqFields = User.toObject();
+
+      delete reqFields.password;
+      delete reqFields.projects;
+      delete reqFields.invitesReceived;
+
       res.status(200).json({
-        email: User.email,
-        username: User.username,
-        _id: User._id,
+        ...reqFields,
       });
     } else {
       res.status(401);
@@ -66,20 +71,22 @@ export const logoutController = async (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
 
-export const getUser = async (req, res) => {
-  const userId = req.user_id;
+export const updateController = async (req, res) => {
+  const { profilePic, password, username } = req.body.params;
 
-  const isUser = await User.findOne({ _id: userId });
+  const user = await User.findById(req.user_id).select({
+    email: 1,
+    username: 1,
+    profilePic: 1,
+  });
 
-  if (!isUser) {
-    res.status(404);
-    throw new Error("User do not exist");
-  } else {
-    const User = isUser;
-    res.status(200).json({
-      email: User.email,
-      username: User.username,
-      _id: User._id,
-    });
+  user.profilePic = profilePic ? profilePic : user.profilePic;
+  user.username = username ? username : user.username;
+  if (password) {
+    user.password = await bcrypt.hash(password, 10);
   }
+
+  await user.save();
+
+  res.status(200).json(user);
 };

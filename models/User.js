@@ -21,10 +21,6 @@ const userModel = mongoose.Schema({
     type: String,
     required: true,
   },
-  githubId: {
-    type: String,
-    required: false,
-  },
   profilePic: {
     type: String,
     required: false,

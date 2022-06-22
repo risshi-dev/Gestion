@@ -14,6 +14,10 @@ const project = mongoose.Schema({
     type: String,
     required: true,
   },
+  owner: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+  },
   cards: [
     {
       type: mongoose.Types.ObjectId,

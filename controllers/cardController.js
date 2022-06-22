@@ -1,7 +1,7 @@
 import Card from "../models/Cards.js";
 import Project from "../models/Project.js";
 
-const emptyCard = {
+let emptyCard = {
   title: "",
   todo: [],
   comments: [],
@@ -9,14 +9,18 @@ const emptyCard = {
 };
 
 export const createCardController = async (req, res, next) => {
-  const { title, priority, description, projectId } = req.body.params;
+  const { title, priority, description, projectId, deadline } = req.body.params;
 
   const card = await Card.create({
     ...emptyCard,
     title,
     priority,
     description,
+    deadline,
+    creator: req.user_id,
   });
+
+  // console.log(card);
 
   if (!card) {
     res.status(400);

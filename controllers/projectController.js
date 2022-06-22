@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Project from "../models/Project.js";
 import User from "../models/User.js";
+import Cards from "../models/Cards.js";
 
 export const createProjectController = async (req, res) => {
   const { title } = req.body.params;
@@ -20,7 +21,7 @@ export const createProjectController = async (req, res) => {
 
   const project = await Project.create({
     title,
-    isAdmin: true,
+    owner: req.user_id,
   });
 
   if (!project) {
@@ -66,10 +67,19 @@ export const inviteSentController = async (req, res) => {
   }
 
   const project = await Project.findById(projectId);
+  var flag = false;
 
-  if (project.invitesSent.forEach((invite) => invite.id === receiver._id)) {
+  project.invitesSent.forEach((invite) =>
+    invite.id.equals(receiver._id) ? (flag = true) : null
+  );
+
+  project.teamMembers.forEach((invite) =>
+    invite.equals(receiver._id) ? (flag = true) : null
+  );
+
+  if (flag) {
     res.status(400);
-    throw new Error("invite already sent");
+    throw new Error("Already Sent");
   } else {
     project.invitesSent.push({ id: receiver._id });
     receiver.invitesReceived.push({ id: req.user_id, projectId: projectId });
@@ -91,7 +101,7 @@ export const inviteReceivedController = async (req, res) => {
     (invite) => !invite.id.equals(mongoose.Types.ObjectId(senderId))
   );
 
-  console.log(receiver.invitesReceived);
+  //console.log(receiver.invitesReceived);
 
   project.invitesSent = project.invitesSent.filter(
     (invite) => invite.id.toString() !== req.user_id
@@ -121,11 +131,46 @@ export const getInvitesController = async (req, res) => {
     ])
     .select({ invitesReceived: 1 });
 
-  console.log(invites);
+  // console.log(invites);
   if (!invites) {
     res.status(400);
     throw new Error("Server error occured while fetching invites!");
   }
 
   res.status(200).json({ invites });
+};
+
+export const getTeamMembers = async (req, res) => {
+  const { projectId } = req.body.params;
+
+  const project = await Project.findById(projectId)
+    .populate({ path: "teamMembers", select: "username" })
+    .select("teamMembers");
+
+  if (project) res.status(200).send(project);
+};
+
+export const deleteProject = async (req, res) => {
+  const { projectId } = req.body.params;
+  const userId = req.user_id;
+  const project = await Project.findById(projectId);
+
+  if (userId !== project.owner) {
+    res.status(400).send("Unauthorised Access");
+  } else {
+    const user = await User.findById(userId);
+    const remainingProjects = user.projects.filter(
+      (project) => project._id.toString() !== projectId
+    );
+    user.projects = [...remainingProjects];
+    await user.save();
+
+    const cards = project.cards;
+
+    cards?.forEach(async (card) => await Cards.deleteOne({ _id: card }));
+
+    await Project.deleteOne({ _id: projectId });
+
+    res.status(200).send("Project Removed Successfully");
+  }
 };
