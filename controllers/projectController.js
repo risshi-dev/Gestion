@@ -153,24 +153,41 @@ export const getTeamMembers = async (req, res) => {
 export const deleteProject = async (req, res) => {
   const { projectId } = req.body.params;
   const userId = req.user_id;
-  const project = await Project.findById(projectId);
+  const project = await Project.findById(projectId).populate(
+    "cards teamMembers"
+  );
 
-  if (userId !== project.owner) {
-    res.status(400).send("Unauthorised Access");
-  } else {
-    const user = await User.findById(userId);
+  if (userId === project.owner.toString()) {
+    const user = await User.findById(userId).populate("projects");
+
     const remainingProjects = user.projects.filter(
       (project) => project._id.toString() !== projectId
     );
+
     user.projects = [...remainingProjects];
+
     await user.save();
 
     const cards = project.cards;
 
-    cards?.forEach(async (card) => await Cards.deleteOne({ _id: card }));
+    cards?.forEach(async (card) => await Cards.deleteOne({ _id: card._id }));
+
+    project.teamMembers?.forEach(async (member) => {
+      const dummy = await User.findById(member._id).populate("projects");
+
+      const remainingProjects = dummy.projects.filter(
+        (project) => project._id.toString() !== projectId
+      );
+
+      dummy.projects = [...remainingProjects];
+
+      await dummy.save();
+    });
 
     await Project.deleteOne({ _id: projectId });
 
     res.status(200).send("Project Removed Successfully");
+  } else {
+    res.status(400).send("Unauthorised Access");
   }
 };

@@ -81,7 +81,9 @@ export const updateController = async (req, res) => {
   });
 
   user.profilePic = profilePic ? profilePic : user.profilePic;
+
   user.username = username ? username : user.username;
+
   if (password) {
     user.password = await bcrypt.hash(password, 10);
   }
