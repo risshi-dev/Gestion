@@ -64,7 +64,8 @@ a {
 
 input {
   outline: none;
-  color: #51554fa9;
+  border: 0.5px solid;
+  color: #323550;
 }
 
 input::placeholder {

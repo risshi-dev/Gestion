@@ -5,6 +5,9 @@ export const actionTypes = {
   REGISTER_REQUEST: "REGISTER_REQUEST",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
 
+  UPDATE_PROFILE: "UPDATE_PROFILE",
+  UPDATE_PROFILE_SUCCESS: "UPDATE_PROFILE_SUCCESS",
+
   LOGOUT_REQUEST: "LOGOUT_REQUEST",
 
   COOKIE_REQUEST: "COOKIE_REQUEST",
@@ -39,6 +42,20 @@ export function registerRequest(payload) {
 export function registerSuccess(payload) {
   return {
     type: actionTypes.REGISTER_SUCCESS,
+    payload,
+  };
+}
+
+export function updateProfile(payload) {
+  return {
+    type: actionTypes.UPDATE_PROFILE,
+    payload,
+  };
+}
+
+export function updateProfileSuccess(payload) {
+  return {
+    type: actionTypes.UPDATE_PROFILE_SUCCESS,
     payload,
   };
 }

@@ -77,7 +77,8 @@
 }
 
 .disableCard {
-  opacity: 0.7;
+  opacity: 0.6;
+  border: 1px solid #ff00005c;
   cursor: default;
 }
 

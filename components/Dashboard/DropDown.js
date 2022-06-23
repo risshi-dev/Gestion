@@ -13,6 +13,7 @@ import {
   acceptInviteUser,
   getInvites,
 } from "../../stateManagement/Invites/action";
+import { getProjects } from "../../stateManagement/Project/action";
 
 function DropDown() {
   const [drop, setDrop] = useState("down");
@@ -42,6 +43,7 @@ function DropDown() {
       (acceptInvite.isAccepted = accepted),
       //console.log(acceptInvite);
       dispatch(acceptInviteUser(acceptInvite));
+    dispatch(getProjects());
     dispatch(getInvites());
   };
 

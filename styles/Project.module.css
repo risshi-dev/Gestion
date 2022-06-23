@@ -2,9 +2,9 @@
   font-size: 12px;
   padding: 12px 12px;
   border-radius: 5px;
-  border: 1px solid #fff;
   width: 250px;
-  color: #51554fa9;
+  border: 0.5px solid #32355075;
+  color: #323550;
   margin: 10px auto 10px auto;
 }
 .inputContainer {

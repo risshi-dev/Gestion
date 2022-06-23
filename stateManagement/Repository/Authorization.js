@@ -35,6 +35,14 @@ class AuthorizationRepository {
     return response;
   }
 
+  async updateProfileRepo(params) {
+    console.log(params);
+    const response = await Repository.post(`${baseUrl}/user/updateUser`, {
+      params,
+    });
+    return response;
+  }
+
   async logoutRepo() {
     const response = await Repository.get(`${baseUrl}/user/logout`);
     return response;

@@ -21,7 +21,7 @@ function* loginSaga({ payload }) {
     if (status === 200) {
       yield put(loginSuccess(data));
       modalSuccessLogin("success");
-
+      console.log(data);
       WriteCookie();
       router.push("/dashboard");
     } else {
@@ -69,8 +69,26 @@ function* logoutSaga() {
   }
 }
 
+function* updateProfile({ payload }) {
+  try {
+    const response = yield call(
+      AuthorizationRepository.updateProfileRepo,
+      payload
+    );
+    const { status, data } = response;
+
+    if (status === 200) {
+      console.log(response);
+      yield put(loginSuccess(data));
+    } else message.error("Couldn't Update");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* rootSaga() {
   yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
   yield all([takeEvery(actionTypes.REGISTER_REQUEST, registerSaga)]);
   yield all([takeEvery(actionTypes.LOGOUT_REQUEST, logoutSaga)]);
+  yield all([takeEvery(actionTypes.UPDATE_PROFILE, updateProfile)]);
 }

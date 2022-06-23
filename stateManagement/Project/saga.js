@@ -70,6 +70,7 @@ function* getTeamSaga({ payload }) {
 
 function* deleteProjectSaga({ payload }) {
   try {
+    console.log(payload);
     const response = yield call(Project.deleteProject, payload);
 
     const { status, data } = response;
@@ -79,6 +80,7 @@ function* deleteProjectSaga({ payload }) {
       //  yield put(getTeamSuccess(data.teamMembers));
     }
   } catch (err) {
+    message.error("Cannot Delete other projects");
     //console.log(err);
   }
 }
